@@ -1,0 +1,70 @@
+.home{
+    width: 100%;
+    /* height: 100%; */
+    background-color: #214656;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+
+    color: #ffffff;
+    overflow: scroll;
+    /* background-image: url(../public/images/sdlc.png); */
+}
+
+ /* Hide scrollbar for Chrome***REMOVED*** Safari and Opera */
+ .home::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE***REMOVED*** Edge and Firefox */
+  .home {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  } 
+
+.home .content-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.heading{
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(253***REMOVED*** 245***REMOVED*** 230***REMOVED*** 0.6);
+}
+ul.steps{
+    list-style:none;
+    font-size: 18px;
+    font-weight: 400;
+    width: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.step{
+    padding: 20px 0;
+}
+.step i{
+    padding-right: 10px;
+    color: rgba(255***REMOVED***255***REMOVED***255***REMOVED*** 0.8);;
+}
+
+.buttons{
+    /* margin-top: auto; */
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.example{
+    width: 80%;
+    text-align: center;
+    font-size: 22px;
+}

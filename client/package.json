@@ -1,0 +1,44 @@
+{
+  "name": "client"***REMOVED***
+  "version": "0.1.0"***REMOVED***
+  "private": true***REMOVED***
+  "dependencies": {
+    "@fortawesome/free-regular-svg-icons": "^5.15.3"***REMOVED***
+    "@testing-library/jest-dom": "^5.12.0"***REMOVED***
+    "@testing-library/react": "^11.2.7"***REMOVED***
+    "@testing-library/user-event": "^12.8.3"***REMOVED***
+    "axios": "^0.21.1"***REMOVED***
+    "node-sass": "^6.0.0"***REMOVED***
+    "react": "^17.0.2"***REMOVED***
+    "react-dom": "^17.0.2"***REMOVED***
+    "react-router-dom": "^5.2.0"***REMOVED***
+    "react-scripts": "4.0.3"***REMOVED***
+    "react-spinners": "^0.11.0"***REMOVED***
+    "react-tooltip": "^4.2.21"***REMOVED***
+    "web-vitals": "^1.1.2"
+  }***REMOVED***
+  "scripts": {
+    "start": "react-scripts start"***REMOVED***
+    "build": "react-scripts build"***REMOVED***
+    "test": "react-scripts test"***REMOVED***
+    "eject": "react-scripts eject"
+  }***REMOVED***
+  "eslintConfig": {
+    "extends": [
+      "react-app"***REMOVED***
+      "react-app/jest"
+    ]
+  }***REMOVED***
+  "browserslist": {
+    "production": [
+      ">0.2%"***REMOVED***
+      "not dead"***REMOVED***
+      "not op_mini all"
+    ]***REMOVED***
+    "development": [
+      "last 1 chrome version"***REMOVED***
+      "last 1 firefox version"***REMOVED***
+      "last 1 safari version"
+    ]
+  }
+}

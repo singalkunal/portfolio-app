@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+}
+
+#account-app-overlay {
+    /* background-color: rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.2); */
+    background-image: linear-gradient(rgba(0***REMOVED*** 0***REMOVED*** 0***REMOVED*** 0.15)***REMOVED*** #ffffff);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    
+}
+
+.container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.account {
+    box-shadow: 0 0 20px rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.2);
+    padding: 20px;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 280px;
+    /* background-color: var(--bg-primary_);
+    color: var(--text-secondary); */
+
+    background-color: #ffffff;
+    font-weight: 500;
+
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+}
+
+.account header {
+    border-bottom: 2px solid rgba(0***REMOVED*** 0***REMOVED*** 0***REMOVED*** 0.5);
+}
+.account header .title {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 5px;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.options li{
+    margin: 10px;
+    margin-left: 0;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.views {
+    color: rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.8);
+}
+li a {
+    text-decoration: none;
+    color: unset;
+    width: 100%;
+}
+
+.link:hover{
+    background-color: var(--bg-primary_);
+    color: #ffffff;
+}
+
+.link:hover i{
+    color: #ffffff;
+}
+
+.options i {
+    padding-right: 10px;
+    color: var(--text-primary);
+}
+
+progress
+{
+    border: 0;
+    border-radius: 20px;
+    background-color: rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.13);
+    width: 100%;
+}
+
+::-webkit-progress-bar {
+    border: 0;
+    border-radius: 20px;
+    background-color: rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.13);
+    width: 100%;
+}
+
+::-moz-progress-bar {
+    border: 0;
+    border-radius: 20px;
+}
+
+::-webkit-progress-value {
+    border: 0;
+    background-color: #0064B4;
+    border-radius: 20px;
+}
+
+.bar-percentage{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+/* progress::-moz-progress-bar {
+    background-color: var(--bg-primary_);
+    opacity: 0.9;
+} */

@@ -1,0 +1,79 @@
+:root {
+    --btn-primary: #5A45F2;
+}
+
+.section-edit {
+    background-color: var(--btn-primary) !important;
+    color: #ffffff !important;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.section-edit:hover {
+    background-color: var(--btn-primary) !important;
+    color: #ffffff !important;
+}
+
+.edit-form-wrapper{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%***REMOVED*** -50%) scale(0);
+    transition : all 200ms ease-in-out;
+    z-index: 10;
+
+    background-color: #ffffff;
+    color: #000000;
+
+    padding: 20px;
+    max-height: 80%;
+    max-width: 375px;
+    border-radius: 15px;
+    overflow: scroll;
+}
+
+ /* Hide scrollbar for Chrome***REMOVED*** Safari and Opera */
+ .edit-form-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE***REMOVED*** Edge and Firefox */
+  .edit-form-wrapper {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  } 
+
+
+.edit-form-wrapper.active {
+    transform: translate(-50%***REMOVED*** -50%) scale(1);
+}
+
+.edit-form-wrapper .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-form-wrapper input[type=text]***REMOVED***
+.edit-form-wrapper input[type=url]***REMOVED***
+.edit-form-wrapper textarea{
+    min-width: 300px;
+    padding-left: 10px;
+}
+
+textarea {
+    resize:none;
+    padding: 10px;
+}
+
+.button.disable {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    pointer-events: none;
+}
+
+@media only screen and (min-width: 400px) {
+    .edit-form-wrapper{
+        max-height: 90%;
+***REMOVED***
+}

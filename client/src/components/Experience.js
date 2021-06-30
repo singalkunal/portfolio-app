@@ -1,0 +1,87 @@
+import Tags from './Tags';
+
+import '../css/Experience.css'
+import ExternalLinks from './ExternalLinks';
+import Button from './Button';
+
+const Experience = ({ 
+    experience***REMOVED*** 
+    bgColor***REMOVED*** 
+    faceClass***REMOVED*** 
+    editMode
+***REMOVED*** => {
+    // editMode is boolean 
+    // if user is in editing mode (editMode = True) then show edit buttons
+
+    // image move on hover animation
+    const imgHover = (e) => {
+        var width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+
+        if(width < 1000) return;
+        const [img1***REMOVED*** img2] = e.currentTarget.querySelectorAll('img');
+
+        if(img1) {
+            img1.style.transform = "translate3d(10px***REMOVED*** 10px***REMOVED*** -5px)"
+            img1.style.transition = "transform 330ms ease-in-out"
+    ***REMOVED***
+
+        if(img2) {
+            img2.style.transform = "translate3d(-10px***REMOVED*** -10px***REMOVED*** 5px)"
+            img2.style.transition = "transform 330ms ease-in-out"
+    ***REMOVED***
+
+***REMOVED***;
+
+    const imgrmHover = (e) => {
+        var width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+
+        if(width < 1000) return;
+
+        const [img1***REMOVED*** img2] = e.currentTarget.querySelectorAll('img');
+
+        if(img1) {
+            img1.style.transform = "translate3d(0***REMOVED*** 0***REMOVED*** 0)"
+            img1.style.transition = "transform 330ms ease-in-out"
+    ***REMOVED***
+
+        if(img2) {
+            img2.style.transform = "translate3d(0***REMOVED*** 0***REMOVED*** 0)"
+            img2.style.transition = "transform 330ms ease-in-out"
+    ***REMOVED***
+***REMOVED***;
+
+    return (        
+            <div>   
+                <div className={"experience " + faceClass} style={{backgroundColor: bgColor}} >
+                    <div className="exp-container">
+                        <div className='info'>
+                            <div className="title">{experience.title}</div>
+                            <div className="brief">{experience.brief}</div>
+
+                            <ExternalLinks showReveal={true} experience={experience}/>
+                        </div>
+
+                        <div className="exp-images" onMouseOver={imgHover} onMouseLeave={imgrmHover}>
+                ***REMOVED***
+                                experience.img_url.map(url => {
+                                    return <img src={url} alt="Can't load image" />
+                ***REMOVED***)
+            ***REMOVED***
+                        </div>
+                        <Tags tags={experience.tags}/>
+                    </div>
+        ***REMOVED***
+                        editMode 
+                        &&
+                        <Button 
+                            label="Edit"
+                            iconClass="fas fa-edit"
+                            className="exp-edit"
+                        ></Button>
+    ***REMOVED***
+                </div>
+            </div>
+    )
+}
+
+export default Experience

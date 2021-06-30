@@ -1,0 +1,59 @@
+form .form-group {
+    padding: 10px;
+}
+
+.form-group.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.form-group.checkbox label{
+    font-size: 12px;
+    margin: 0;
+    padding: 5px;
+}
+
+input{
+    min-height: 30px;
+    border-radius: 8px;
+    border: 2px solid rgba(46***REMOVED*** 57***REMOVED*** 89***REMOVED*** 0.5);
+} 
+
+.inputwithicon input {
+    padding-left: 25px;
+}
+
+textarea{
+    border-radius: 8px;
+    border: 2px solid rgba(46***REMOVED*** 57***REMOVED*** 89***REMOVED*** 0.5);
+}
+
+input:focus***REMOVED***
+textarea:focus{
+    outline: 2px solid rgba(46***REMOVED*** 57***REMOVED*** 89***REMOVED*** 0.5);
+}
+
+/* input:focus-visible{
+    border: 0;
+    outline: 0;
+} */
+
+.inputwithicon{
+    /* border: 1.5px solid #A7BAC5;
+    padding: 0 5px;
+    border-radius: 8px; */
+    position: relative;
+}
+
+.inputwithicon i{
+    /* padding-right: 5px; */
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    color: rgba(100***REMOVED***100***REMOVED***100***REMOVED***0.7);
+}
+
+/* .inputwithicon.focus{
+    border: 1px solid var(--bg-primary_);
+    box-shadow: 0 0 5px rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.2);
+} */
