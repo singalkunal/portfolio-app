@@ -15,7 +15,7 @@ export default function calcPercentageCompleted(user) {
     if(portfolio.about.lastname) num_fields_provided += 1;
     if(portfolio.about.imgUrl) num_fields_provided += 1;
 
-    num_fields_provided += Math.min(3***REMOVED*** portfolio.about.profileLinks.length) + Math.min(3***REMOVED*** portfolio.experiences.length) +  Math.min(3***REMOVED*** portfolio.skills.length);
+    num_fields_provided += Math.min(3***REMOVED*** portfolio.about.profile_links.length) + Math.min(3***REMOVED*** portfolio.experiences.length) +  Math.min(3***REMOVED*** portfolio.skills.length);
 
     return Math.floor(num_fields_provided * 100 / 13);
 }

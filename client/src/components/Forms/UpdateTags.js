@@ -1,5 +1,5 @@
 import { useState***REMOVED*** useEffect***REMOVED*** useRef } from 'react';
-import Plus from '../../icons/form-icons/Plus.png';
+import Plus from '../../icons/form-icons/Plus.svg';
 import Minus from '../../icons/form-icons/minus_square.svg';
 
 import { randomeBytes } from 'crypto';
@@ -8,14 +8,23 @@ import FileInput from './FileInput';
 
 import '../../css/UpdateTags.css';
 import FormTag from './FormTag';
+import FormInput from '../FormInput';
 
 const UpdateTags = ({
     title***REMOVED***
+    editableTitle***REMOVED*** // true if want to inlude form-input to edit title
+    handleTitle***REMOVED***   // method that will handle title change
+    nameTitle***REMOVED***     // form name of title (only if editableTitle=true)
+    helptext=null***REMOVED***
+    defaultIcon=""***REMOVED***
+    labelName="label"***REMOVED***
     tags=[]***REMOVED***
+    dataid***REMOVED***
     onDelete***REMOVED***
     children
 ***REMOVED*** => {
     const [showInputs***REMOVED*** setShowInputs] = useState(false);
+    const helptexts = ['Click to expand'***REMOVED*** helptext];
     const ref = useRef(null);
 
     const onClick = () => {
@@ -43,19 +52,28 @@ const UpdateTags = ({
                 <img className="btn-reveal" src={showInputs ? Minus : Plus} alt="" onClick={onClick}/>
                 <div className="line"></div>
             </header>
-
+***REMOVED***helptexts[+showInputs] && <p className="helptext">{helptexts[+showInputs]}</p>}
+***REMOVED***
+                editableTitle 
+                && 
+                <FormInput
+                    type="text"
+                    name={nameTitle}
+                    value={title}
+                    handleChange={handleTitle}
+                    dataid={dataid}
+                />
+***REMOVED***
             <div className="form-tags">
     ***REMOVED***
                     tags.map((tag***REMOVED*** index) => {
-                        var key = "";
-                        Object.keys(tag).forEach(k => key += `${k}:${tag[k]}`);
 
                         return <FormTag 
-                                    label={tag.title || tag.label || tag}
-                                    iconUrl={tag.icon_url}
+                                    label={tag[labelName] || tag.title || tag.label || tag.tag}
+                                    iconUrl={tag.icon_url || defaultIcon}
                                     link={tag.link}
-                                    key = {key}
-                                    index={index}
+                                    key = {tag._id || tag.id}
+                                    id = {tag._id || tag.id}
                                     onDelete={onDelete}
                                />
     ***REMOVED***)

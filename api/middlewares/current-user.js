@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
 const currentUser = (req***REMOVED*** res***REMOVED*** next) => {
-    console.log(req.session);
     if(req.session && req.session.jwt) {
     ***REMOVED***
             const payload = jwt.verify(req.session.jwt***REMOVED*** process.env.JWT_KEY);

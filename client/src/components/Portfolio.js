@@ -4,6 +4,7 @@ import useRequest from '../hooks/use-request';
 
 import About from './About';
 import Experiences from './Experiences';
+import Skills from './Skills';
 import FAB from './FAB';
 
 import Load from './Load';
@@ -85,6 +86,7 @@ const Portfolio = () => {
                     <SomeError isError={isError}>
                         <About about={portfolio.about} />
                         <Experiences experiences={portfolio.experiences} />
+                        <Skills skills={portfolio.skills} />
                     </SomeError>
                 </Load>
             </div>

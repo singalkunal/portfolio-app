@@ -30,6 +30,11 @@ validateRequest***REMOVED***
         throw new BadRequestError("User doesn't exists"***REMOVED*** 404***REMOVED*** 'email');
 ***REMOVED***
 
+    console.log(user.active);
+    if(!user.active) {
+        throw new BadRequestError('Check your email for verification...'***REMOVED*** 500);
+***REMOVED***
+
 ***REMOVED***
         const passwordMatch = await Password.verify(password***REMOVED*** user.password);
         if(passwordMatch) {

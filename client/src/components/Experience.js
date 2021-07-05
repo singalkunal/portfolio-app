@@ -3,12 +3,15 @@ import Tags from './Tags';
 import '../css/Experience.css'
 import ExternalLinks from './ExternalLinks';
 import Button from './Button';
+import { useEffect } from 'react';
 
 const Experience = ({ 
     experience***REMOVED*** 
     bgColor***REMOVED*** 
     faceClass***REMOVED*** 
-    editMode
+    editMode***REMOVED***
+    id=""***REMOVED***
+    onEditExp=null
 ***REMOVED*** => {
     // editMode is boolean 
     // if user is in editing mode (editMode = True) then show edit buttons
@@ -49,9 +52,9 @@ const Experience = ({
             img2.style.transition = "transform 330ms ease-in-out"
     ***REMOVED***
 ***REMOVED***;
-
+    
     return (        
-            <div>   
+            <div id={id}>   
                 <div className={"experience " + faceClass} style={{backgroundColor: bgColor}} >
                     <div className="exp-container">
                         <div className='info'>
@@ -77,6 +80,8 @@ const Experience = ({
                             label="Edit"
                             iconClass="fas fa-edit"
                             className="exp-edit"
+                            id={id}
+                            onClick={onEditExp}
                         ></Button>
     ***REMOVED***
                 </div>

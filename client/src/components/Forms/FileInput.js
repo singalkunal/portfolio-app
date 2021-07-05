@@ -1,4 +1,4 @@
-import UploadIcon from '../../icons/upload.png';
+import UploadIcon from '../../icons/upload.svg';
 import Button from '../Button';
 import { randomBytes } from 'crypto'
 
@@ -14,14 +14,14 @@ const FileInput = ({
     name***REMOVED*** 
     file***REMOVED*** 
     multiple=false***REMOVED***
+    className=""***REMOVED***
     handleChange
 ***REMOVED*** => {
-    console.log(file);
     const uniqueId = randomBytes(16).toString('hex');
     const files = Array.isArray(file) ? file : [file];
     return (
         <>
-        <div className="form-group file"> 
+        <div className={className+" form-group file"}> 
             <div className="btn-upload">
                 <label htmlFor={uniqueId}>
                     <i><img src={UploadIcon} alt=""/></i>

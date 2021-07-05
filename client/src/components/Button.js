@@ -1,8 +1,14 @@
 import '../css/Button.css';
 
-const Button = ({label***REMOVED*** iconUrl=null***REMOVED*** iconClass ***REMOVED***className=""***REMOVED*** onClick=()=>{}***REMOVED*** => {
+const Button = ({
+    label***REMOVED*** 
+    iconUrl=null***REMOVED*** 
+    className=""***REMOVED*** 
+    id=""***REMOVED***
+    onClick=()=>{}
+***REMOVED*** => {
     return (
-        <div className={className + " button"} onClick={onClick}>
+        <div data-id={id} className={className + " button"} onClick={onClick}>
 ***REMOVED***
                 iconUrl 
                 &&

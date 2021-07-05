@@ -17,8 +17,12 @@
 
 .button i {
     display: block;
-    width: 26px;    /* includes padding-right of 10px */
-    height: 16px;
+    width: 32px;    /* includes padding-right of 10px */
+    height: 26px;
+}
+
+.form-button i{
+    width: 26px;
 }
 
 .button.white img {
@@ -32,6 +36,6 @@
 
 }
 
-.button span {
+/* .button span {
     padding-bottom: 2px;
-}
+} */

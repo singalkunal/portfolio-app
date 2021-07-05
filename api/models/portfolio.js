@@ -15,7 +15,7 @@ const profileLinkSchema = new mongoose.Schema(
         // firebase publicUrl of file
         icon_url: {
             type: String***REMOVED***
-            default: ""
+            default: ""***REMOVED***
     ***REMOVED******REMOVED***
         // will be used to access file in firebase bucket
         filename: {
@@ -27,7 +27,6 @@ const profileLinkSchema = new mongoose.Schema(
 
 const portfolioSchema = new mongoose.Schema({
     about: {
-        type: {
             firstname: {
                 type: String***REMOVED***
                 required: true
@@ -44,8 +43,7 @@ const portfolioSchema = new mongoose.Schema({
                 type: String***REMOVED***
                 required: true
 ***REMOVED***
-            profileLinks: [profileLinkSchema]
-    ***REMOVED***
+            profile_links:[profileLinkSchema]
 ***REMOVED******REMOVED***
     // maybe project or experience
     experiences: [{
@@ -63,14 +61,18 @@ const portfolioSchema = new mongoose.Schema({
     ***REMOVED******REMOVED***
         tags: [
 ***REMOVED***
-                type: String***REMOVED***
-                required: true
+                tag: {
+                    type: String***REMOVED***
+                    required: true
+***REMOVED***
 ***REMOVED***
         ]***REMOVED***
         additional_tags: [
 ***REMOVED***
-                type: String***REMOVED***
-                required: true
+                tag: {
+                    type: String***REMOVED***
+                    required: true
+***REMOVED***
 ***REMOVED***
         ]***REMOVED***
         img_url: {
@@ -82,7 +84,7 @@ const portfolioSchema = new mongoose.Schema({
             ]***REMOVED***
             validate: [validateSize]
     ***REMOVED******REMOVED***
-        externalLinks: [
+        external_links: [
 ***REMOVED***
                 title: {
                     type: String***REMOVED***
@@ -108,10 +110,11 @@ const portfolioSchema = new mongoose.Schema({
             type: String***REMOVED***
             required: true
     ***REMOVED******REMOVED***
-        relatedSkills: [{
-            type: String***REMOVED***
-            required: true
-    ***REMOVED***]
+        relatedSkills: [
+***REMOVED***
+                skill: String
+***REMOVED***
+        ]
 ***REMOVED***]
 }***REMOVED*** {
     toJSON: {

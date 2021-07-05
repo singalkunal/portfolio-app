@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-const ProfileLinks = ({ profileLinks ***REMOVED*** => {
+const ProfileLinks = ({ profile_links ***REMOVED*** => {
     const onError = (event) => {
         event.preventDefault();
 
@@ -13,11 +13,12 @@ const ProfileLinks = ({ profileLinks ***REMOVED*** => {
     return (
         <div className="profileLinks">
 ***REMOVED***
-                profileLinks.map(profile => {
+                profile_links.map(profile => {
                     var classes = profile.classes
                     return  <a href={profile.link}
                      target="_blank"
-                     title={profile.title}
+                    //  title={profile.title}
+                    key={profile._id || profile.id}
                      className="icon">
                         <img src={profile.icon_url}  onError={onError} />
                         <div style={{display:"none"}}>{profile.title}</div>

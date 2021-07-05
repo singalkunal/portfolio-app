@@ -1,5 +1,6 @@
 :root {
     --btn-primary: #5A45F2;
+    --btn-secondary: #F2F2F2;
 }
 
 .section-edit {
@@ -27,11 +28,16 @@
 
     padding: 20px;
     max-height: 80%;
-    max-width: 375px;
+    max-width: 400px;
+    min-width: 350px;
     border-radius: 15px;
     overflow: scroll;
 }
 
+
+.edit-form-wrapper img {
+    transform: scale(1.1);
+}
  /* Hide scrollbar for Chrome***REMOVED*** Safari and Opera */
  .edit-form-wrapper::-webkit-scrollbar {
     display: none;
@@ -65,12 +71,76 @@ textarea {
     padding: 10px;
 }
 
+#skills-form .form-tag i:first-of-type{
+    width: unset;
+    height: unset;
+}
+
 .button.disable {
     border: 1px solid #999999;
     background-color: #cccccc;
     color: #666666;
     pointer-events: none;
 }
+
+.button.add-skill***REMOVED***
+.button.add-skill:hover {
+    padding: 5px 10px;
+    background-color: var(--btn-secondary);
+    color: rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.8);
+    box-shadow: 0 0 5px rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.2);
+    border: 1px solid rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.3);
+}
+
+
+.button.add-skill i{
+    width: 25px;
+    height: 25px;
+}
+
+.action-buttons {
+    margin: 40px 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.button.save {
+    background-color: #00D334;
+    margin: 0 15px;
+}
+.button.cancel {
+    background-color: #B20F0A;
+    margin: 0 15px;
+}
+
+.button.save:hover {
+    color: white;
+    background-color: #00D334;
+}
+.button.cancel:hover {
+    color: white;
+    background-color: #B20F0A;
+
+}
+
+.button.commit {
+    display: none;
+    /* max-height: 0;
+    overflow: hidden; */
+}
+
+.button.commit.show{
+    display: block;
+    /* max-height: none; */
+}
+
+#about-form***REMOVED***
+#experience-from***REMOVED***
+#skills-form {
+    max-width: 100%;
+}
+
 
 @media only screen and (min-width: 400px) {
     .edit-form-wrapper{

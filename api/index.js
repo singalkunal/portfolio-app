@@ -12,7 +12,7 @@ const signinRouter = require('./routes/auth/signin');
 const currentUserRouter = require('./routes/auth/current-user');
 const getUserRouter = require('./routes/auth/get-user');
 
-const getPortfolioRouter = require('./routes/portfolio/get-portfolio');
+const getPortfolioRouter = require('./routes/portfolio/portfolio');
 const uploadRouter = require('./routes/portfolio/upload');
 const editAboutRouter = require('./routes/portfolio/about');
 const experienceRouter = require('./routes/portfolio/experience');

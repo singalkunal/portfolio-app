@@ -1,0 +1,93 @@
+section#skills {
+    color: white;
+    background-color: #212121;
+    width: 100%;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 15px;
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position: center center;
+
+    /* position: relative; */
+    
+}
+
+.edit-container section#skills {
+    margin: 45px 0;
+}
+
+
+
+.skill-domain {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    /* padding: 0 10px 10px 10px; */
+    margin: 0 10px 10px 10px;
+
+    padding: 15px;
+    border: 1px solid rgba(255***REMOVED***255***REMOVED***255***REMOVED***0.1);
+    border-radius: 10px;
+    min-width: 250px;
+}
+.skill-header {
+    font-size: 18px;
+    font-weight: 500;
+
+    padding: 10px;
+    background-color: rgba(255***REMOVED***255***REMOVED***255***REMOVED*** 0.2);
+    border-radius: 10px;
+    margin: 10px 0;
+
+    border: 1px solid rgba(255***REMOVED***255***REMOVED***255***REMOVED***0.5);
+
+    width: fit-content;
+}
+
+.skill-domain .each-skill {
+    font-size: 14px;
+    background-color: rgba(255***REMOVED***255***REMOVED***255***REMOVED***0.1);
+    padding: 5px 8px;
+    margin: 10px 0;
+    border-radius: 5px;
+    width: fit-content;
+
+    transition: all 20ms ease-in-out;
+}
+
+.skill-domain .each-skill:hover {
+    transform: scale(1.1);
+}
+
+
+@media only screen and (min-width: 1000px) {
+    section#skills{
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        align-items: center;
+        justify-content: center;
+        /* width: max-content; */
+
+        background-size: cover;
+
+***REMOVED***
+
+    .skill-domain {
+        padding: 15px;
+        border: 1px solid rgba(255***REMOVED***255***REMOVED***255***REMOVED***0.1);
+        border-radius: 10px;
+***REMOVED***
+    .skill-header{
+        font-size: 20px;
+***REMOVED***
+
+    .skill-domain .each-skill {
+        font-size: 16px;
+***REMOVED***
+}

@@ -24,8 +24,12 @@ const useForm = ({ initialValues***REMOVED*** onSubmit***REMOVED*** requiredValu
 ***REMOVED***
 ***REMOVED***;
 
+    const reinitializeForm = (newValues) => {
+        setValues(newValues);
+***REMOVED***;
+
     const handleSubmit = (event) => {
-        console.log(event);
+        // console.log(event);
         event.preventDefault();
         event.stopPropagation();
         // this is the place to check for errors and validation stuff
@@ -43,10 +47,18 @@ const useForm = ({ initialValues***REMOVED*** onSubmit***REMOVED*** requiredValu
         // setValues(initialValues);
 ***REMOVED***
 
+    const handleDiscard = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        reinitializeForm(initialValues);
+***REMOVED***
+
     useEffect(() => {
         const submitOrError = async () => {
             if(errors.length === 0 && isSubmitting) {
                 const init = await onSubmit();
+                console.log('init: ' + init + '-->' + initialValues);
                 // clear input values
                 init && setValues(initialValues);
                 setisSubmitting(prev => false);
@@ -59,7 +71,7 @@ const useForm = ({ initialValues***REMOVED*** onSubmit***REMOVED*** requiredValu
         submitOrError();
 ***REMOVED******REMOVED*** [errors])
 
-    return { values***REMOVED*** handleChange***REMOVED*** changeSpecificValue***REMOVED*** handleSubmit***REMOVED*** isSubmitting***REMOVED*** errors };
+    return { values***REMOVED*** handleChange***REMOVED*** reinitializeForm***REMOVED*** changeSpecificValue***REMOVED*** handleSubmit***REMOVED*** handleDiscard***REMOVED*** isSubmitting***REMOVED*** errors };
 
 };
 

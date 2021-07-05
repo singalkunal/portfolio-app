@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 const Home = () => {
     const history = useHistory();
     const API_URL = process.env.REACT_APP_API_BASE_URL;
+    // console.log(API_URL);
     
     const onClick = () => {
         history.push('/auth');
@@ -14,7 +15,7 @@ const Home = () => {
         <div className="container">
             <div className="home" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/sdlc.png)`}}>
                 <div className="content-container">
-                    <h1 className="heading">Build Your Portfolio Now!</h1>
+                    <h1 className="heading">Your Portfolio Now!</h1>
                     <Button className="example" label="See Example" iconClass="fas fa-external-link-alt"/>
                     <ul className="steps">
                         <li className="step">

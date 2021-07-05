@@ -4,51 +4,64 @@ import useForm from "../../hooks/use-form";
 import useFileInput from '../../hooks/use-file-input';
 
 import ExperienceIcon from '../../icons/form-icons/ExperienceIcon.png';
+import TickIcon from '../../icons/tick.svg';
+import TagIcon from '../../icons/TagIcon.svg';
+import CrossIcon from '../../icons/cross.svg';
+
 import Button from "../Button";
 import FormInput from "../FormInput";
 import UpdateTags from "./UpdateTags";
 import FileInput from "./FileInput";
 import Error from "../Error";
+import useFormTag from "../../hooks/use-from-tag";
 
-const ExperienceForm = forwardRef(({experience***REMOVED*** closeModal}***REMOVED*** ref) => {
-    // global
+const ExperienceForm = forwardRef(({experience***REMOVED*** updateExperiences***REMOVED*** closeModal}***REMOVED*** ref) => {
+    /****************************************hooks***************************************************/
     const { values***REMOVED*** 
-            handleChange***REMOVED*** 
+            handleChange***REMOVED***
+            reinitializeForm***REMOVED*** 
             handleSubmit***REMOVED***
+            handleDiscard***REMOVED***
+            errors: formValidationErrors***REMOVED***
             changeSpecificValue
     ***REMOVED*** = useForm({
             initialValues: {...experience}***REMOVED***
+            requiredValues: [
+                'title'***REMOVED***
+                'brief'***REMOVED***
+                'detail'
+            ]***REMOVED***
             onSubmit: async () => {
-                console.log("submit exp form..."***REMOVED*** values);
+                var response = null;
+                if(images) {
+                    response = await uploadImages();
+
+                    response = response;
+***REMOVED***
+
+
+                var newImages = [];
+                if(response) {
+                    for(let img of response) {
+                        newImages.push(img.publicUrl)
+    ***REMOVED***
+***REMOVED***
+
+                await updateExperiences({
+                    ...values***REMOVED***
+                    img_url: newImages ? newImages : experience.img_url
+***REMOVED***);
+
+                closeModal();
 ***REMOVED***
 ***REMOVED***);
 
-    // tags specific
-    const addTag = (event) => {
-        const prevValues = values.tags ? values.tags : [];
-         changeSpecificValue("tags"***REMOVED*** [
-            ...prevValues***REMOVED***
-            tagValues.tag
-        ]);
 
+    /****************************************Tags specific***************************************************/
+    const addTag = async () => {
+        await updateTag();
         // to notify hook to clear input values
         return true;
-***REMOVED***
-    const deleteTag = async (event) => {
-        if(!event.target.classList.contains('minus-icon')) return;
-        event.stopPropagation();
-        event.preventDefault();
-
-        event.currentTarget.classList.toggle('hide');
-        const index = event.target.dataset.index;
-
-        setTimeout(() => {
-            console.log(index);
-            if(!index) return;
-
-            changeSpecificValue("tags"***REMOVED***
-                values.tags.filter((p***REMOVED*** i) => i != index))
-    ***REMOVED******REMOVED*** 200);
 ***REMOVED***
 
     const {
@@ -67,33 +80,20 @@ const ExperienceForm = forwardRef(({experience***REMOVED*** closeModal}***REMOVE
         onSubmit: addTag
 ***REMOVED***)
 
-    // additional tags specific
-    const addAdditionalTag = (event) => {
-        const prevValues = values.additional_tags ? values.additional_tags : [];
-         changeSpecificValue("additional_tags"***REMOVED*** [
-            ...prevValues***REMOVED***
-            additionalTagValues.tag
-        ]);
+    const { updateTag***REMOVED*** deleteTag } = useFormTag({
+        tags: values.tags***REMOVED***
+        tagValues: tagValues***REMOVED***
+        updateTags: (updatedValues) => {
+            changeSpecificValue('tags'***REMOVED*** updatedValues);
+    ***REMOVED***
+***REMOVED***)
 
+    /****************************************Additional Tags specific***************************************************/
+    const addAdditionalTag = async () => {
+        await updateAdditionalTag();
         // to notify hook to clear input values
         return true;
-***REMOVED***
-    const deleteAdditionalTag = async (event) => {
-        if(!event.target.classList.contains('minus-icon')) return;
-        event.stopPropagation();
-        event.preventDefault();
-
-        event.currentTarget.classList.toggle('hide');
-        const index = event.target.dataset.index;
-
-        setTimeout(() => {
-            console.log(index);
-            if(!index) return;
-
-            changeSpecificValue("additional_tags"***REMOVED***
-                values.additional_tags.filter((p***REMOVED*** i) => i != index))
-    ***REMOVED******REMOVED*** 200);
-***REMOVED***
+***REMOVED***;
 
     const {
         values: additionalTagValues***REMOVED***
@@ -111,33 +111,89 @@ const ExperienceForm = forwardRef(({experience***REMOVED*** closeModal}***REMOVE
         onSubmit: addAdditionalTag
 ***REMOVED***)
 
-    // images
+
+    const { updateTag: updateAdditionalTag***REMOVED*** deleteTag: deleteAdditionalTag } = useFormTag({
+        tags: values.additional_tags***REMOVED***
+        tagValues: additionalTagValues***REMOVED***
+        updateTags: (updatedValues) => {
+            changeSpecificValue('additional_tags'***REMOVED*** updatedValues)
+    ***REMOVED***
+***REMOVED***)
+
+    /****************************************Images***************************************************/
     const {
-        file***REMOVED***
+        files: images***REMOVED***
         handleChange: handleImgChange***REMOVED***
         errors: validationImgErrors***REMOVED***
-        uploadFile
+        uploadFile: uploadImages
 ***REMOVED*** = useFileInput({
         path: 'image/'***REMOVED***
         num_files:2
 ***REMOVED***);
     
+    // external links
+    const addExternalLink  = async () => {
+        // will be array
+        var response = await uploadExternal_linkIcon();
+        response = response[0];
 
-    const handleEsc = (event) => {
-        if(event.key === 'Escape') closeModal();
+        const newPorps = {
+            icon_url: response ? response.publicUrl || "" : ""***REMOVED***
+            filename: response ? response.filename || "" : ""
+    ***REMOVED***;
+
+        await updateExternalLinks(newPorps);
+
+        // to notify hook to clear input values
+        return true;
 ***REMOVED***;
-    
+
+    const {
+        values: externalLinkValues***REMOVED***
+        handleChange: externalLinkChange***REMOVED***
+        handleSubmit: externalLinkSubmit***REMOVED***
+        isSubmitting: isAddingExternal_link***REMOVED***
+        errors: externalLinkErrors
+***REMOVED*** = useForm({
+        initialValues: {
+            title: ""***REMOVED***
+            link: ""
+    ***REMOVED******REMOVED***
+        requiredValues: [
+            'title'***REMOVED***
+            'link'
+        ]***REMOVED***
+        onSubmit: addExternalLink
+***REMOVED***);
+
+    const { 
+        updateTag: updateExternalLinks***REMOVED*** 
+        deleteTag: deleteExternalLink 
+***REMOVED*** = useFormTag({
+        tags: values.external_links***REMOVED***
+        tagValues: externalLinkValues***REMOVED***
+        updateTags: (updatedValues) => {
+            changeSpecificValue('external_links'***REMOVED*** updatedValues)
+    ***REMOVED***
+***REMOVED***)
+
+    const {
+        files: externalLinkIcon***REMOVED***
+        handleChange: externalLinkIconChange***REMOVED***
+        uploadFile: uploadExternal_linkIcon
+***REMOVED*** = useFileInput({
+        path: 'icon/'
+***REMOVED***);
+
+    /****************************************Side Effects***************************************************/
 
     useEffect(() => {
-        window.addEventListener('keydown'***REMOVED*** handleEsc);
-        return () => {
-            window.removeEventListener('keydown'***REMOVED*** handleEsc);
-    ***REMOVED***
-***REMOVED******REMOVED*** []);
+        reinitializeForm(experience);
+***REMOVED******REMOVED*** [experience])
 
     return (
         <div ref={ref}>
-            <div className="overlay" id="app-overlay" onClick={closeModal}></div>
+            <div className="overlay" id="app-overlay"></div>
             <div className="edit-form-wrapper">
                 <header>
                     <img src={ExperienceIcon} alt="" />
@@ -164,7 +220,9 @@ const ExperienceForm = forwardRef(({experience***REMOVED*** closeModal}***REMOVE
 
                     <UpdateTags
                         title="Add Tags"
+                        helptext="These tags will be shown on main page"
                         tags={values.tags || []}
+                        defaultIcon={TagIcon}
                         onDelete={deleteTag}
                     >
 
@@ -194,7 +252,9 @@ const ExperienceForm = forwardRef(({experience***REMOVED*** closeModal}***REMOVE
 
                     <UpdateTags
                         title="Additional Tags"
+                        helptext="Will be seen on click-reveal page"
                         tags={values.additional_tags || []}
+                        defaultIcon={TagIcon}
                         onDelete={deleteAdditionalTag}
                     >
 
@@ -215,12 +275,74 @@ const ExperienceForm = forwardRef(({experience***REMOVED*** closeModal}***REMOVE
 
                     <FileInput
                         label="Upload Images"
-                        file={file}
+                        file={images}
                         multiple={true}
+                        className="long"
                         handleChange={handleImgChange}
                     />
 
                     <Error errors={validationImgErrors} />
+
+                    <UpdateTags
+                        title="External Links"
+                        helptext="Provide relevant links"
+                        tags={values.external_links}
+                        onDelete={deleteExternalLink}
+                    >
+                        <FormInput
+                            label="Title"
+                            name="title"
+                            type="text"
+                            value={externalLinkValues.title}
+                            handleChange={externalLinkChange}
+                        />
+
+                        <FormInput
+                            label="Link"
+                            name="link"
+                            type="url"
+                            value={externalLinkValues.link}
+                            handleChange={externalLinkChange}
+                        />
+
+                        <FileInput
+                            label="Upload Icon"
+                            file={externalLinkIcon}
+                            handleChange={externalLinkIconChange}
+                        />
+
+                        <Error errors={externalLinkErrors} />
+
+                        <Button
+                            label="Add"
+                            className = {isAddingExternal_link ? "disable" : ""}
+                            onClick={externalLinkSubmit}
+                        />
+
+                    </UpdateTags>
+
+                    <Error errors={formValidationErrors} />
+
+                    <div className="action-buttons">
+                        <Button
+                            label="Save" 
+                            className="form-button save-button white" 
+                            iconUrl={TickIcon}
+                            onClick={handleSubmit}
+                        />
+
+                        <Button
+                            label="Discard"
+                            className="form-button cancel"
+                            iconUrl={CrossIcon}
+                            onClick={
+                                (e) => {
+                                    handleDiscard(e);
+                                    closeModal();
+                ***REMOVED***
+            ***REMOVED***
+                        />
+                    </div>
 
                 </form>
             </div>

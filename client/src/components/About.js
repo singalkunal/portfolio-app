@@ -5,7 +5,7 @@ const About = ({ about ***REMOVED*** => {
     // const about = portfolio.about;
     const url = about.img_url;
     const desc = about.desc;
-    const profileLinks = about.profileLinks 
+    const profile_links = about.profile_links 
 
     return (
         <section className="about" id="about">
@@ -21,7 +21,7 @@ const About = ({ about ***REMOVED*** => {
         ***REMOVED***about.desc || desc}
                 </div>
                 
-                <ProfileLinks profileLinks={profileLinks}/>
+                <ProfileLinks profile_links={profile_links}/>
             </div>
         </section>
     )

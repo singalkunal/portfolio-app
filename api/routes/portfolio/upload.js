@@ -27,21 +27,44 @@ const uploadFile = async (bucket***REMOVED*** file_to_upload***REMOVED*** path) 
 ***REMOVED***
 };
 
+// router.post(
+//     '/api/upload'***REMOVED*** 
+//     ***REMOVED***
+//     ***REMOVED***
+//     upload.single('file')***REMOVED*** 
+//     ***REMOVED***
+//         const uid = req.currentUser.id;
+//         var path = uid + '/' + req.body.path;
+//         path = path || "images/"
+//         const bucket = req.app.locals.bucket;
+//         const file = req.file;
+
+//         const response = await uploadFile(bucket***REMOVED*** file***REMOVED*** path);
+//         res.send(response);
+    
+// ***REMOVED***
+
 router.post(
     '/api/upload'***REMOVED*** 
     ***REMOVED***
     ***REMOVED***
-    upload.single('file')***REMOVED*** 
+    upload.array('files')***REMOVED*** 
     ***REMOVED***
         const uid = req.currentUser.id;
         var path = uid + '/' + req.body.path;
         path = path || "images/"
         const bucket = req.app.locals.bucket;
-        const file = req.file;
+        const files = req.files;
 
-        const response = await uploadFile(bucket***REMOVED*** file***REMOVED*** path);
-        res.send(response);
-    
+
+        const responses = []
+
+        for (let file of files) {
+            const response = await uploadFile(bucket***REMOVED*** file***REMOVED*** path);
+            responses.push(response);
+    ***REMOVED***;
+
+        res.send(responses);
 ***REMOVED***
 
 router.post(

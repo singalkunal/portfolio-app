@@ -32,7 +32,7 @@ const ExternalLinks =({ showReveal***REMOVED*** experience***REMOVED*** => {
 ***REMOVED***       
 
 ***REMOVED***
-                experience.externalLinks.map(obj => {
+                (experience.external_links || []).map(obj => {
 
                     return <a href={obj.link} target="_blank" className="link">
                         <i className="icon"><img src={obj.icon_url} onError={onError} /></i>

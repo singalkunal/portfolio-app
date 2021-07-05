@@ -10,29 +10,42 @@ import Button from '../Button';
 import UpdateTags from './UpdateTags';
 
 import AboutIcon from '../../icons/form-icons/AboutIcon.png';
-import TickIcon from '../../icons/tick.png';
+import TickIcon from '../../icons/tick.svg';
+import CrossIcon from '../../icons/cross.svg';
+
 import Error from '../Error';
-import useRequest from '../../hooks/use-request';
+
+import useFormTag from '../../hooks/use-from-tag';
 
 const AboutForm = forwardRef(({ about***REMOVED*** closeModal***REMOVED*** updateAbout }***REMOVED*** ref) => {
+    // console.log(ObjectId().toHexString());
     // global
     const { values***REMOVED*** 
             handleChange***REMOVED*** 
             handleSubmit***REMOVED***
+            handleDiscard***REMOVED***
             changeSpecificValue
      ***REMOVED*** = useForm({
             initialValues: {...about}***REMOVED***
             onSubmit: async () => {
                 console.log('Submit about form...'***REMOVED*** values***REMOVED*** profileImg);
                 var response = null;
-                if(profileImg) response = await uploadProfileImg();
 
+                if(profileImg) {
+                    response = await uploadProfileImg(); 
+                    response = response[0];
+***REMOVED***
 
+                
+
+                console.log(values.img_url)
+                console.log(response)
                 await updateAbout({
                     ...values***REMOVED***
-                    img_url: response && response.publicUrl ? response.publicUrl : values.img_url
+                    img_url: response && response.publicUrl ? response.publicUrl : about.img_url
 ***REMOVED***);
 
+                console.log(values);
                 closeModal();
 ***REMOVED***
 ***REMOVED***);
@@ -41,45 +54,25 @@ const AboutForm = forwardRef(({ about***REMOVED*** closeModal***REMOVED*** updat
 
     // profile links specific
     const addProfileLink = async () => {
-        const response = await uploadIcon();
-        const newPorfileLink = {
-            ...profileLinkValues***REMOVED***
+        // will be array
+        var response = await uploadIcon();
+        response = response[0];
+
+    
+        const newProps = {
             icon_url: response ? response.publicUrl || "" : ""***REMOVED***
             filename: response ? response.filename || "" : ""
     ***REMOVED***;
 
-        const prevValues = values.profileLinks ? values.profileLinks : [];
-        changeSpecificValue("profileLinks"***REMOVED*** [
-            ...prevValues***REMOVED***
-***REMOVED***
-                ...newPorfileLink
-***REMOVED***
-        ]);
+        await updateProfileLinks(newProps);
 
         // to notify hook to clear input values
         return true;
 
 ***REMOVED***;
-
-    const deleteProfileLink = async (event) => {
-        if(!event.target.classList.contains('minus-icon')) return;
-        event.stopPropagation();
-        event.preventDefault();
-
-        event.currentTarget.classList.toggle('hide');
-        const index = event.target.dataset.index;
-
-        setTimeout(() => {
-            console.log(index);
-            if(!index) return;
-
-            changeSpecificValue("profileLinks"***REMOVED***
-                values.profileLinks.filter((p***REMOVED*** i) => i != index))
-    ***REMOVED******REMOVED*** 200);
-***REMOVED***
-    
     const {
         values: profileLinkValues***REMOVED***
+        changeSpecificValue: changeProfileLinkField***REMOVED***
         handleChange: profileLinkChange***REMOVED***
         handleSubmit: profileLinkSubmit***REMOVED***
         isSubmitting: isAddingLink***REMOVED***
@@ -94,9 +87,20 @@ const AboutForm = forwardRef(({ about***REMOVED*** closeModal***REMOVED*** updat
             "link"
         ]***REMOVED***
         onSubmit: addProfileLink
+***REMOVED***);
+
+    const {
+        updateTag: updateProfileLinks***REMOVED***
+        deleteTag: deleteProfileLink
+***REMOVED*** = useFormTag({
+        tags: values.profile_links***REMOVED***
+        tagValues: profileLinkValues***REMOVED***
+        updateTags: (updatedValues) => {
+            changeSpecificValue('profile_links'***REMOVED*** updatedValues);
+    ***REMOVED***
 ***REMOVED***)
 
-    const { file: icon***REMOVED*** 
+    const { files: icon***REMOVED*** 
             handleChange: handleIconChange***REMOVED*** 
             uploadFile: uploadIcon***REMOVED***
     ***REMOVED*** = useFileInput({
@@ -104,28 +108,19 @@ const AboutForm = forwardRef(({ about***REMOVED*** closeModal***REMOVED*** updat
 ***REMOVED***)
 
     const {
-        file: profileImg***REMOVED***
+        files: profileImg***REMOVED***
         handleChange: handleProfileImgChange***REMOVED***
         uploadFile: uploadProfileImg
 ***REMOVED*** = useFileInput({
         path: 'profileImg/'
 ***REMOVED***)
 
-    const handleEsc = (event) => {
-        if(event.key === 'Escape') closeModal();
-***REMOVED***;
     
 
-    useEffect(() => {
-        window.addEventListener('keydown'***REMOVED*** handleEsc);
-        return () => {
-            window.removeEventListener('keydown'***REMOVED*** handleEsc);
-    ***REMOVED***
-***REMOVED******REMOVED*** []);
 
     return (
         <div ref = {ref}>
-            <div className="overlay" id="app-overlay" onClick={closeModal}></div>
+            <div className="overlay" id="app-overlay"></div>
             <div className="edit-form-wrapper">
                 <header>
                     <img src={AboutIcon} alt="" />
@@ -160,7 +155,7 @@ const AboutForm = forwardRef(({ about***REMOVED*** closeModal***REMOVED*** updat
 
                     <UpdateTags
                         title="Profile Links"
-                        tags={values.profileLinks}
+                        tags={values.profile_links}
                         onDelete={deleteProfileLink}
                     >
 
@@ -201,11 +196,27 @@ const AboutForm = forwardRef(({ about***REMOVED*** closeModal***REMOVED*** updat
                         handleChange={handleProfileImgChange}
                     />
 
-                    <Button
-                        label="Save" 
-                        className="form-button save-button white" 
-                        iconUrl={TickIcon}
-                        onClick={handleSubmit} />
+                    <div className="action-buttons">
+                        <Button
+                            label="Save" 
+                            className="form-button save-button white" 
+                            iconUrl={TickIcon}
+                            onClick={handleSubmit}
+                        />
+
+                        <Button
+                            label="Discard"
+                            className="form-button cancel"
+                            iconUrl={CrossIcon}
+                            onClick={
+                                (e) => {
+                                    handleDiscard(e);
+                                    closeModal();
+                ***REMOVED***
+            ***REMOVED***
+                        />
+                    </div>
+
                 </form>
             </div>
         </div>

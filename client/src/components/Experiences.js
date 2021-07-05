@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useEffect***REMOVED*** useState } from 'react';
 import '../css/Experiences.css';
 import Experience from './Experience';
 
-const Experiences = ({ experiences***REMOVED*** editMode=false ***REMOVED*** => {
-    console.log(experiences)
+const Experiences = ({ 
+    experiences***REMOVED*** 
+    editMode=false***REMOVED*** 
+    onEditExp
+ ***REMOVED*** => {
     const bgColors =  ['#283250'***REMOVED*** '#174954'***REMOVED*** '#214656'***REMOVED*** '#6E8695'***REMOVED*** '#252323'***REMOVED*** '#462025'***REMOVED*** '#A39C8F'***REMOVED*** '#70798C'];
     const [faceClass***REMOVED*** _] = useState(['face-right'***REMOVED*** 'face-left']);
 
@@ -31,7 +34,7 @@ const Experiences = ({ experiences***REMOVED*** editMode=false ***REMOVED*** => 
                 process.env.PUBLIC_URL + '/images/thumbnail.png'***REMOVED***
                 process.env.PUBLIC_URL + '/images/timeout.png'
             ]***REMOVED***
-            "externalLinks": [
+            "external_links": [
     ***REMOVED***
                     "title": "Figma"***REMOVED***
                     "link": "https://www.github.com/singalkunal/HandGesture"***REMOVED***
@@ -76,7 +79,7 @@ const Experiences = ({ experiences***REMOVED*** editMode=false ***REMOVED*** => 
                 process.env.PUBLIC_URL + '/images/thumbnail.png'***REMOVED***
                 process.env.PUBLIC_URL + '/images/timeout.png'
             ]***REMOVED***
-            "externalLinks": [
+            "external_links": [
     ***REMOVED***
                     "title": "Figma"***REMOVED***
                     "link": "https://www.github.com/singalkunal/HandGesture"***REMOVED***
@@ -99,16 +102,20 @@ const Experiences = ({ experiences***REMOVED*** editMode=false ***REMOVED*** => 
     ***REMOVED***
     ];
 
+    useEffect(() => {
+***REMOVED******REMOVED*** [experiences])
     return (
         <section className="experiences" id="experiences">
 ***REMOVED***
-                experiencesDummy.map((experience***REMOVED*** index) => {
+                experiences.map((experience***REMOVED*** index) => {
                     return <Experience 
                                 experience={experience} 
                                 bgColor={bgColors[index%bgColors.length]} 
                                 faceClass={faceClass[index%2]} 
                                 editMode={editMode}
+                                onEditExp={onEditExp}
                                 key={experience.id || experience._id}
+                                id={experience.id || experience._id}
                             />
 ***REMOVED***)
 ***REMOVED***

@@ -3,12 +3,12 @@ import useRequest from "./use-request";
 
 const useFileInput = ({
     path***REMOVED***
-    num_files=1***REMOVED***
+    num_files=1***REMOVED*** // allowed number of files to upload
     onSubmit
 ***REMOVED*** => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
 
-    const [file***REMOVED*** setFile] = useState(null);
+    const [files***REMOVED*** setFiles] = useState(null);
     const [errors***REMOVED*** setErrors] = useState([]);
 
     const { doRequest:uploadRequest***REMOVED*** errors:uploadErrors } = useRequest({
@@ -17,34 +17,41 @@ const useFileInput = ({
 ***REMOVED***);
     
     const handleChange = (event) => {
-        const files = event.target.files;
+        const gotFiles = event.target.files;
 
-        if(files.length > num_files) {
+        if(gotFiles.length > num_files) {
             setErrors(prev => [{msg: `Select max ${num_files} files`}])
             return;
     ***REMOVED***
 
         setErrors([]);
 
-        if(num_files === 1) setFile(files[0]);
-        else setFile([...files])
+        setFiles([...gotFiles]);
 ***REMOVED***;
 
     const uploadFile = async () => {
         const data = new FormData();
         data.append('path'***REMOVED*** path);
-        data.append('file'***REMOVED*** file);
 
-        const response = await uploadRequest(data);
-        console.log('reached');
-        if(response) setFile(null);
+        var response = {};
+
+        if (files) {
+            for(let file of files) {
+                data.append('files'***REMOVED*** file)
+***REMOVED***;
+
+            response = await uploadRequest(data);
+
+            if(response) setFiles(null);
+    ***REMOVED***
+
         return response;
 ***REMOVED***
     const handleSubmit = async (event) => {
         onSubmit(event);
 ***REMOVED***;
 
-    return { file***REMOVED*** uploadErrors***REMOVED*** errors***REMOVED*** handleChange***REMOVED*** uploadFile***REMOVED*** handleSubmit };
+    return { files***REMOVED*** uploadErrors***REMOVED*** errors***REMOVED*** handleChange***REMOVED*** uploadFile***REMOVED*** handleSubmit };
 }
 
 export default useFileInput

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import '../css/Error.css';
 import useAsyncRef from '../hooks/use-async-ref';
 
-const Error = ({errors***REMOVED*** => {
+const Error = ({errors=[]***REMOVED*** => {
 
 
     return (

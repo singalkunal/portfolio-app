@@ -1,7 +1,13 @@
 .upd-tags-wrapper {
+    max-width: 100%;
     border-bottom: 2px solid black;
     padding: 10px 0;
     margin: 10px 0;
+}
+
+.upd-header {
+    font-weight: 600;
+    max-width: 100%;
 }
 .sub-form{
 
@@ -23,6 +29,24 @@
     background-color: #000;
     margin: 0 5px;
 }
+
+.upd-header .upd-title {
+    max-width: 100%;
+    overflow-x: scroll;
+}
+
+/* Hide scrollbar for Chrome***REMOVED*** Safari and Opera */
+.upd-header .upd-title::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE***REMOVED*** Edge and Firefox */
+  .upd-header .upd-title {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  } 
+
+
 .btn-reveal {
     cursor: pointer;
     padding-left: 10px;
@@ -31,4 +55,12 @@
 .form-tags {
     display: flex;
     flex-wrap: wrap;
+}
+
+p.helptext {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 10px;
+    /* font-style: italic; */
 }
