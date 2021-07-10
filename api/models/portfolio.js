@@ -29,7 +29,7 @@ const portfolioSchema = new mongoose.Schema({
     about: {
             firstname: {
                 type: String***REMOVED***
-                required: true
+                default : '**my name her**'
 ***REMOVED***
             lastname: {
                 type: String***REMOVED***
@@ -41,7 +41,7 @@ const portfolioSchema = new mongoose.Schema({
 ***REMOVED***
             desc: {
                 type: String***REMOVED***
-                required: true
+                default: "**my desc here**"
 ***REMOVED***
             profile_links:[profileLinkSchema]
 ***REMOVED******REMOVED***

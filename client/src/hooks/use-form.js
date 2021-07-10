@@ -58,7 +58,7 @@ const useForm = ({ initialValues***REMOVED*** onSubmit***REMOVED*** requiredValu
         const submitOrError = async () => {
             if(errors.length === 0 && isSubmitting) {
                 const init = await onSubmit();
-                console.log('init: ' + init + '-->' + initialValues);
+                // console.log('init: ' + init + '-->' + initialValues);
                 // clear input values
                 init && setValues(initialValues);
                 setisSubmitting(prev => false);

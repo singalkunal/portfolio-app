@@ -35,9 +35,9 @@
 }
 
 
-.edit-form-wrapper img {
+/* .edit-form-wrapper img {
     transform: scale(1.1);
-}
+} */
  /* Hide scrollbar for Chrome***REMOVED*** Safari and Opera */
  .edit-form-wrapper::-webkit-scrollbar {
     display: none;
@@ -74,6 +74,12 @@ textarea {
 #skills-form .form-tag i:first-of-type{
     width: unset;
     height: unset;
+}
+
+.skill-domain-form {
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .button.disable {

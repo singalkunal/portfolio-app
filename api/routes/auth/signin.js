@@ -1,6 +1,6 @@
 ***REMOVED***
 require('express-async-errors');
-const { body } = require('express-validator');
+const { body***REMOVED*** oneOf***REMOVED*** check } = require('express-validator');
 const jwt = require('jsonwebtoken');
 ***REMOVED***
 ***REMOVED***
@@ -12,9 +12,37 @@ const Password = require('../../services/password');
 
 router.post('/api/users/signin'***REMOVED*** 
 [
-    body('email')
-    .isEmail()
-    .withMessage('Enter a valid email')***REMOVED***
+    oneOf([
+        check('alias')
+        ***REMOVED***
+        .isEmail()
+        .withMessage('Not a valid email')
+        ***REMOVED***
+            return User.findOne({email: value***REMOVED***.then(user => {
+                if(!user) {
+                    return Promise.reject('No user found with provided email')
+***REMOVED***
+
+                req.body.user = user;
+***REMOVED***)
+    ***REMOVED***)
+        ***REMOVED***
+        check('alias')
+        ***REMOVED***
+        .isString()
+        .isLength({min: 1***REMOVED***
+        .withMessage('Username can\'t be empty')
+        ***REMOVED***
+            return User.findOne({username: value***REMOVED***.then(user => {
+                if(!user) {
+                    return Promise.reject('No user found with provided username')
+***REMOVED***
+
+                req.body.user = user;
+***REMOVED***)
+    ***REMOVED***)
+    ]***REMOVED***
+    'Please check email/username')***REMOVED***
     body('password')
     .trim()
     .isLength({min: 8***REMOVED*** max: 20***REMOVED***
@@ -22,9 +50,12 @@ router.post('/api/users/signin'***REMOVED***
 ]***REMOVED***
 validateRequest***REMOVED***
 ***REMOVED***
-    const { email***REMOVED*** password***REMOVED*** remember } = req.body;
+    // const { email***REMOVED*** password***REMOVED*** remember } = req.body;
 
-    const user = await User.findOne({email***REMOVED***
+    // const user = await User.findOne({email***REMOVED***
+
+    console.log(req.body);
+    const { user***REMOVED*** password***REMOVED*** remember } = req.body;
 
     if(!user) {
         throw new BadRequestError("User doesn't exists"***REMOVED*** 404***REMOVED*** 'email');
@@ -40,6 +71,7 @@ validateRequest***REMOVED***
         if(passwordMatch) {
             const jwtUser = jwt.sign({
                 id: user.id***REMOVED***
+                username: user.username***REMOVED***
                 email: user.email
 ***REMOVED*** process.env.JWT_KEY);
             

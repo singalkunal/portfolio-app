@@ -3,7 +3,11 @@
   "version": "0.1.0"***REMOVED***
   "private": true***REMOVED***
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35"***REMOVED***
+    "@fortawesome/free-brands-svg-icons": "^5.15.3"***REMOVED***
     "@fortawesome/free-regular-svg-icons": "^5.15.3"***REMOVED***
+    "@fortawesome/free-solid-svg-icons": "^5.15.3"***REMOVED***
+    "@fortawesome/react-fontawesome": "^0.1.14"***REMOVED***
     "@testing-library/jest-dom": "^5.12.0"***REMOVED***
     "@testing-library/react": "^11.2.7"***REMOVED***
     "@testing-library/user-event": "^12.8.3"***REMOVED***

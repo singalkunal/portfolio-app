@@ -9,8 +9,10 @@ const serviceAccount = require('./serviceAccountKey.json');
 
 const signupRouter =  require('./routes/auth/signup');
 const signinRouter = require('./routes/auth/signin');
+const signoutRouter = require('./routes/auth/signout');
 const currentUserRouter = require('./routes/auth/current-user');
 const getUserRouter = require('./routes/auth/get-user');
+const updateAccountRouter = require('./routes/auth/update');
 
 const getPortfolioRouter = require('./routes/portfolio/portfolio');
 const uploadRouter = require('./routes/portfolio/upload');
@@ -47,8 +49,10 @@ const PORT = process.env.PORT || 3080;
 
 app.use(signupRouter);
 app.use(signinRouter);
+app.use(signoutRouter)
 app.use(currentUserRouter);
 app.use(getUserRouter);
+app.use(updateAccountRouter);
 
 app.use(getPortfolioRouter);
 app.use(uploadRouter);

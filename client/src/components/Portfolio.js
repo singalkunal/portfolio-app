@@ -1,5 +1,5 @@
 import { useParams***REMOVED*** useLocation } from 'react-router-dom';
-import { useState***REMOVED*** useEffect } from 'react';
+import { useState***REMOVED*** useEffect***REMOVED*** useContext } from 'react';
 import useRequest from '../hooks/use-request';
 
 import About from './About';
@@ -11,11 +11,14 @@ import Load from './Load';
 import SomeError from './SomeError';
 
 import '../css/Portfolio.css';
+import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 
 const Portfolio = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
-    const { uid } = useParams();
+    const { username } = useParams();
     const location = useLocation();
+
+    const {uesrMail***REMOVED*** setUserMail} = useContext(LiveUpdateContext);
 
     const [showFab***REMOVED*** setShowFab] = useState(false);
     const [portfolio***REMOVED*** setPortfolio] = useState({***REMOVED***
@@ -27,7 +30,7 @@ const Portfolio = () => {
         method: 'get'
 ***REMOVED***)
     const { doRequest: fetchUser***REMOVED*** errors } = useRequest({
-        url: API_URL+'/api/users/details/' + uid***REMOVED***
+        url: API_URL+'/api/users/details/' + username***REMOVED***
         method: 'get'
 ***REMOVED***);
 
@@ -40,7 +43,7 @@ const Portfolio = () => {
             if(location.state) passedPortfolio = location.state.portfolio;
 
             const currentUser = await fetchCurrentUser();
-            if(currentUser.id === uid) setShowFab(true);
+            if(currentUser.username === username) setShowFab(true);
 
             if(passedPortfolio) {
                 console.log('passeed');
@@ -49,16 +52,22 @@ const Portfolio = () => {
 ***REMOVED***
             else {
                 console.log('nadda');
-                const user = await fetchUser();
+                const { user } = await fetchUser();
                 if(user) {
                     setIsError(false);
                     setPortfolio(user.portfolio);
 ***REMOVED***
 ***REMOVED***
+            
+            setUserMail(currentUser.email);
             setLoading(false);
     ***REMOVED***;
 
         fetchPortfolio();
+
+        return () => {
+            setUserMail(null);
+    ***REMOVED***;
 
 ***REMOVED******REMOVED*** []);
 

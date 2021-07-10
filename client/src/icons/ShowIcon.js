@@ -1,4 +1,4 @@
-const ShowIcon = ({ className ***REMOVED*** => {
+const ShowIcon = ({ className="" ***REMOVED*** => {
   return (
     <svg
       aria-hidden="true"
@@ -8,7 +8,7 @@ const ShowIcon = ({ className ***REMOVED*** => {
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
-      className={className + " svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"}
+      className={className + ""}
     >
       <g class="fa-group">
         <path

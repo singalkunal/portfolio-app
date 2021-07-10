@@ -4,9 +4,15 @@ const Password = require('../services/password');
 const portfolioSchema = require('./portfolio');
 
 const userSchema = new mongoose.Schema({
+    username: {
+        type: String***REMOVED***
+        required: true***REMOVED***
+        unique: true***REMOVED***
+***REMOVED******REMOVED***
     email: {
         type: String***REMOVED***
-        required: true
+        required: true***REMOVED***
+        unique: true
 ***REMOVED******REMOVED***
     password: {
         type: String

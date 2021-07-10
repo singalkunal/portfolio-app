@@ -9,11 +9,13 @@ const useRequest = ({url***REMOVED*** method***REMOVED*** body ***REMOVED*** => 
     // or can be provided at time of actual request (upd_body)
     // body at time of actual request will be given priority
     
-    const doRequest = async (upd_body=null) => {
+    const doRequest = async (upd_body=null***REMOVED*** upd_url=null) => {
         const latest_body = upd_body ? upd_body : body;
+        const latest_url = upd_url ? upd_url : url;
+
         axios.defaults.withCredentials = true;
     ***REMOVED***
-            const response = await axios[method](url***REMOVED*** latest_body);
+            const response = await axios[method](latest_url***REMOVED*** latest_body);
             setErrors([]);
             // console.log("Response: "***REMOVED*** response.data);
 

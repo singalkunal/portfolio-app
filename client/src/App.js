@@ -3,15 +3,22 @@ import { BrowserRouter***REMOVED*** Switch***REMOVED*** Route } from 'react-rout
 
 // import FilesUpload from './components/files-upload';
 import EditPage from './pages/Edit';
-import React from 'react';
+import React***REMOVED*** { useEffect***REMOVED*** useState } from 'react';
 import LiveUpdateContextProvider from './contexts/LiveUpdateContext';
 import Preview from './pages/Preview';
 import Account from './pages/Account'
 import Home from './pages/Home';
 import Auth from './pages/Auth';
+import Redirect from './pages/Redirect';
+import Forgot from './pages/Forgot';
+import Reset from './pages/Reset';
+
 // import SignUp from './pages/Sig'
 import Portfolio from './components/Portfolio';
 import SideBar from './components/SideBar';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
 
 function App() {
 
@@ -19,7 +26,7 @@ function App() {
     <BrowserRouter>
       <LiveUpdateContextProvider >
         <div className="app">
-          <h3>Navbar</h3>
+          <Navbar />
 
           <Switch>
             <Route exact path='/'>
@@ -29,33 +36,41 @@ function App() {
               <Auth />
             </Route>
 
+            <Route exact path='/auth/forgot'>
+              <Forgot />
+            </Route>
+
+            <Route exact path='/auth/reset'>
+              <Reset />
+            </Route>
+
+            <Route exact path="/redirect">
+              <Redirect />
+            </Route>
+
             <Route exact path="/account">
               <Account />
             </Route>
-            
+          
             <Route exact path='/portfolio/edit'>
               <SideBar />
               <EditPage />
             </Route>
-              
-            <Route exact path="/preview/:profileId">
-              <Preview /> 
-            </Route>
 
-            <Route exact path="/portfolio/:uid">
+            <Route exact path="/portfolio/:username">
               <SideBar />
               <Portfolio /> 
             </Route>
 
             <Route path="*">
-              No route found 
+              <div className="container">
+                <h1>No route found </h1>
+              </div>
             </Route>
 
           </Switch>
 
-          <section className="footer">
-            <h3>Footer</h3>
-          </section>
+            <Footer />
         </div>
       </LiveUpdateContextProvider>
     </BrowserRouter>

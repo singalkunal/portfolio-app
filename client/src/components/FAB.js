@@ -16,8 +16,8 @@ const FAB = ({ url***REMOVED*** iconClass="fas fa-edit" ***REMOVED*** => {
 
     // important to use all state values in single state
     const [state***REMOVED*** setState] = useState({
-        posx: 15***REMOVED***
-        posy: 75***REMOVED***
+        posx: 10***REMOVED***
+        posy: 80***REMOVED***
         relx: 0***REMOVED***
         rely: 0
 ***REMOVED***);

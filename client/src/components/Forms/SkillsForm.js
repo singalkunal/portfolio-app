@@ -8,6 +8,8 @@ import CrossIcon from '../../icons/cross.svg';
 import Button from '../Button';
 
 import SkillDomain from './SkillDomain';
+import { deleteById***REMOVED*** updateById } from '../../utils/general';
+import Error from '../Error';
 
 const SkillsForm = forwardRef(({
     skills***REMOVED***
@@ -17,6 +19,7 @@ const SkillsForm = forwardRef(({
 
     const [skillsById***REMOVED*** setSkillsById] = useState({***REMOVED***
     const [stopReInitializing***REMOVED*** setStopReInitializing] = useState(false);
+    const [errors***REMOVED*** setErrors] = useState([]); // errors by id
 
     useEffect(() => {
         skills.map(skill => {
@@ -46,11 +49,40 @@ const SkillsForm = forwardRef(({
         initialValues: {...skillsById}***REMOVED***
         onSubmit: () => {
             // console.log('Submit all skills: '***REMOVED*** values);
-            updateSkills(Object.values(values));
+            // validate domains
+
+            const skillsArr = Object.values(values);
+
+            // let good = false;
+            for(let skill of skillsArr) {
+                console.log(skill.domain);
+                if(!skill.domain || !skill.domain.length)  {
+                    return setErrors(prev => [...prev***REMOVED*** {
+                        msg: 'Domain can\'t be empty'***REMOVED***
+                        field: 'domain'
+    ***REMOVED***]);
+***REMOVED***
+***REMOVED***
+
+            
+            updateSkills(skillsArr);
             closeModal();
+            
     ***REMOVED***
 ***REMOVED***);
 
+    useEffect(() => {
+        console.log('Errors by id: '***REMOVED*** errors);
+***REMOVED******REMOVED*** [errors]);
+
+
+    const initNewDomain = () => {
+        console.log('Add new Domain...');
+        const newValues = {...values};
+        updateById(null***REMOVED*** {domain: ""***REMOVED*** relatedSkills: []}***REMOVED*** newValues);
+        console.log(newValues);
+        reinitializeForm(newValues);
+***REMOVED***
 
 
     const handleDomainTitleChange = (event) => {
@@ -63,6 +95,15 @@ const SkillsForm = forwardRef(({
             ...values[domainId]***REMOVED***
             [name]: value
 ***REMOVED***
+***REMOVED***
+
+    const deleteDomain = async (event) => {
+        console.log(event);
+        const id = event.currentTarget.dataset.id;
+        console.log(id);
+        
+        const newValues = await deleteById(id***REMOVED*** {...values***REMOVED***
+        reinitializeForm(newValues);
 ***REMOVED***
 
     const updateDomain = async (domainId***REMOVED*** updatedValues) => {
@@ -87,15 +128,29 @@ const SkillsForm = forwardRef(({
 
                 <form className="skills-form" id="skills-form">
         ***REMOVED***
-                        Object.entries(values).map(([_***REMOVED*** domain]) => {
-                            return <SkillDomain 
-                                domain={domain} 
-                                handleDomainTitleChange={handleDomainTitleChange}
-                                updateDomain={updateDomain}
-                                key={domain._id}
+                        <>
+                ***REMOVED***Object.entries(values).map(([_***REMOVED*** domain]) => {
+                                return <>
+                                    <SkillDomain 
+                                        domain={domain} 
+                                        handleDomainTitleChange={handleDomainTitleChange}
+                                        deleteDomain={deleteDomain}
+                                        updateDomain={updateDomain}
+                                        key={domain._id}
+                                    />
+
+                                </>
+            ***REMOVED***)}
+
+                            <Button
+                                label="Add new Domain"
+                                className="form-button save-button white"
+                                onClick={initNewDomain}
                             />
-        ***REMOVED***)
+                        </>
     ***REMOVED***
+
+                    <Error errors={errors} />
 
                     <div className="action-buttons">
                         <Button
@@ -117,6 +172,7 @@ const SkillsForm = forwardRef(({
             ***REMOVED***
                         />
                     </div>
+
                 </form>
             </div>
         </div>

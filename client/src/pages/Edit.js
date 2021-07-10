@@ -25,6 +25,7 @@ import Alert from '../components/Alert';
 import Skills from '../components/Skills';
 import SkillsForm from '../components/Forms/SkillsForm';
 import Error from '../components/Error';
+import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 
 const EditPage = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
@@ -39,6 +40,7 @@ const EditPage = () => {
 ***REMOVED***)
 
     const history = useHistory();
+    const { setShowFooterButton } = useContext(LiveUpdateContext)
     
 
     /****************************************states***************************************************/
@@ -147,6 +149,7 @@ const EditPage = () => {
     /****************************************Side Effects***************************************************/
 
     useEffect(() => {
+        setShowFooterButton(false);
         const fetchUser = async () => {
             const currentUser = await fetchCurrentUserDetails();
 

@@ -1,6 +1,8 @@
 import '../css/Home.css';
 import Button from '../components/Button';
 import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
+import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 
 const Home = () => {
     const history = useHistory();
@@ -10,6 +12,9 @@ const Home = () => {
     const onClick = () => {
         history.push('/auth');
 ***REMOVED***
+
+    const {userSignedIn} = useContext(LiveUpdateContext);
+    console.log(userSignedIn);
 
     return (
         <div className="container">
@@ -32,9 +37,17 @@ const Home = () => {
                         </li>
                     </ul>
                     <div className="buttons">
-                        <Button iconClass="fas fa-sign-in-alt" label="SignIn" onClick={onClick} />
-                        <Button iconClass="fas fa-user-plus" label="SignUp" onClick={onClick} />
-                    </div>
+       ***REMOVED***
+                       !userSignedIn
+                       ?
+                        <>
+                            <Button label="SignIn" onClick={onClick} />
+                            <Button label="SignUp" onClick={onClick} />
+                        </>
+                        :
+                        <Button label="My Account" onClick={() => history.push('/account')} />
+   ***REMOVED***
+                   </div>
                 </div>
             </div>
         </div>

@@ -14,7 +14,7 @@
 
 .container {
     width: 85%;
-    min-height: 80%;
+    min-height: 70%;
     display: flex;
     /* flex-direction: column; */
     justify-content: stretch;
@@ -89,8 +89,25 @@ i img {
     pointer-events: none !important;
 }
 
+.wrap-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.onlyicon-btn {
+    width: fit-content;
+    padding: 8px 5px !important; 
+    /* border-radius: 0 !important; */
+}
+
 @media only screen and (max-width: 620px){
     .footer{
         padding-bottom: 100px;
+***REMOVED***
+}
+
+@media only screen and (min-width: 500px){
+    .container {
+        min-height: 80%;
 ***REMOVED***
 }

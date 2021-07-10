@@ -1,20 +1,24 @@
 ***REMOVED***
+
 ***REMOVED***
 const User = require('../../models/user');
 
+
 ***REMOVED***
 ***REMOVED***
 
 ***REMOVED***
 
-router.get('/api/portfolio/:uid'***REMOVED*** ***REMOVED***
-    const { uid } = req.params;
-    const user = await User.findById(uid).exec();
+router.get('/api/portfolio/:username'***REMOVED*** ***REMOVED***
+    const { username } = req.params;
+    const user = await User.findOne({username***REMOVED***.exec();
 
+    
     if(!user) {
         throw new BadRequestError('Requested user not found...'***REMOVED*** 404);
 ***REMOVED***
 
+    
     res.send(user.portfolio);
 ***REMOVED***
 
@@ -22,8 +26,8 @@ router.put('/api/portfolio/edit'***REMOVED***
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***
-    const uid = req.currentUser.id;
-    const user = await User.findById(uid).exec();
+    const username = req.currentUser.username;
+    const user = await User.findOne({username***REMOVED***.exec();
 
     const { portfolio } = req.body;
 

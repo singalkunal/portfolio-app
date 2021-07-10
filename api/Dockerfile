@@ -5,4 +5,4 @@ COPY package.json .
 RUN npm install --only=prod
 
 EXPOSE 3080
-CMD ["npm"***REMOVED*** "start"]
+CMD ["npm"***REMOVED*** "run"***REMOVED*** "dev"]

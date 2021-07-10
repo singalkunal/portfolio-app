@@ -1,6 +1,7 @@
 form .form-group {
     padding: 10px;
     max-width: 100%;
+    min-width: 80%;
 }
 
 .form-group.checkbox {
@@ -29,9 +30,16 @@ textarea{
     border: 2px solid rgba(46***REMOVED*** 57***REMOVED*** 89***REMOVED*** 0.5);
 }
 
-input:focus***REMOVED***
-textarea:focus{
-    outline: 2px solid rgba(46***REMOVED*** 57***REMOVED*** 89***REMOVED*** 0.5);
+input:focus
+{
+    /* outline: 2px solid rgba(46***REMOVED*** 57***REMOVED*** 89***REMOVED*** 0.5); */
+    box-shadow: 0 0 1px 1pt rgb(46 57 89 / 50%);
+    outline: none !important;
+}
+
+
+input[type="checkbox"] {
+    box-shadow: none;
 }
 
 /* input:focus-visible{

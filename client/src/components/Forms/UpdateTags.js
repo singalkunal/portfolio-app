@@ -1,6 +1,6 @@
 import { useState***REMOVED*** useEffect***REMOVED*** useRef } from 'react';
 import Plus from '../../icons/form-icons/Plus.svg';
-import Minus from '../../icons/form-icons/minus_square.svg';
+import Minus from '../../icons/minus_square.svg';
 
 import { randomeBytes } from 'crypto';
 
@@ -9,15 +9,18 @@ import FileInput from './FileInput';
 import '../../css/UpdateTags.css';
 import FormTag from './FormTag';
 import FormInput from '../FormInput';
+import Button from '../Button';
 
 const UpdateTags = ({
     title***REMOVED***
     editableTitle***REMOVED*** // true if want to inlude form-input to edit title
     handleTitle***REMOVED***   // method that will handle title change
     nameTitle***REMOVED***     // form name of title (only if editableTitle=true)
+    placeholderTitle=""***REMOVED*** // form placeholder for title (only if editableTItle=true)
     helptext=null***REMOVED***
     defaultIcon=""***REMOVED***
     labelName="label"***REMOVED***
+    noSeparation=false***REMOVED*** // true/false -> to provide border bottom
     tags=[]***REMOVED***
     dataid***REMOVED***
     onDelete***REMOVED***
@@ -45,7 +48,7 @@ const UpdateTags = ({
     ***REMOVED***;
 
     return (
-        <section className="upd-tags-wrapper" style={{height:"fit-content"}}>
+        <section className={"upd-tags-wrapper " + (noSeparation ?  "noseparation" : "")} style={{height:"fit-content"}}>
             <header className="upd-header">
                 <div className="line"></div>
                 <span className="upd-title">{title}</span>
@@ -60,6 +63,7 @@ const UpdateTags = ({
                     type="text"
                     name={nameTitle}
                     value={title}
+                    placeholder={placeholderTitle}
                     handleChange={handleTitle}
                     dataid={dataid}
                 />
@@ -83,6 +87,7 @@ const UpdateTags = ({
             <form ref={ref} className="sub-form">
     ***REMOVED*** children }
             </form>
+            
         </section>
     )
 }

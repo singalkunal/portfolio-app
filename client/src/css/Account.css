@@ -67,6 +67,9 @@ li a {
     width: 100%;
 }
 
+.link {
+    cursor: pointer;
+}
 .link:hover{
     background-color: var(--bg-primary_);
     color: #ffffff;

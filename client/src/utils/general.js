@@ -1,7 +1,19 @@
 import ObjectId from 'bson-objectid';
 
+const deleteObjectById = async (id***REMOVED*** obj) => {
+    console.log('delete'***REMOVED*** id***REMOVED*** obj);
+    if(obj[id]) {
+        delete obj[id];
+        console.log('ues');
+***REMOVED***
+    return obj;
+}
 export const deleteById = async (id***REMOVED*** arr=[]) => {
     console.log(id***REMOVED*** arr);
+    if(!(arr instanceof Array)) {
+        return deleteObjectById(id***REMOVED*** arr);
+***REMOVED***
+
     arr = arr.filter(obj => (obj._id !== id && obj.id !== id));
     console.log(arr);
 
@@ -9,7 +21,10 @@ export const deleteById = async (id***REMOVED*** arr=[]) => {
 };
 
 const updateObjById = (id***REMOVED*** updObj***REMOVED*** obj) => {
-    obj[id] = updObj;
+    obj[id] = {
+        ...updObj***REMOVED***
+        _id: id
+***REMOVED***;
 }
 
 // will push as new entry if not exists

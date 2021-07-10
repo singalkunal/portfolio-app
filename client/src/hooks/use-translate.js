@@ -12,7 +12,7 @@ const useTranslate = () => {
         icon: 'fas fa-sign-in-alt'
         
 ***REMOVED***
-    const out_data = {
+    const up_data = {
         type: 'up'***REMOVED***
         banner: 'Welcome vro'***REMOVED***
         desc: 'Already have an account?'***REMOVED***
@@ -28,23 +28,44 @@ const useTranslate = () => {
     // console.log(data);
 
 
-    const translate = () => {
+    const translate = (event***REMOVED*** overlay***REMOVED*** form) => {
         console.log('translate')
         const container = document.querySelector('.auth.form-container');
+        var width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
 
+        const widthThres = 1000;
         if(trans) {
+            
+
+
+            if(width <= widthThres) {
+                form.style.transform = `translateY(0)`;
+                overlay.style.transform = `translateY(0)`;
+***REMOVED***
             container.classList.remove('hover');
-            setTimeout(() => {
-                container.classList.remove('changegrid');
-***REMOVED***20)
             setData(in_data);
+
+            // setTimeout(() => {
+            //     container.classList.remove('hover');
+            // }***REMOVED*** 200);
     ***REMOVED***
         else {
+
+            if(width <= widthThres) {
+                form.style.transform = `translateY(${-overlay.offsetHeight}px)`;
+                overlay.style.transform = `translateY(${form.offsetHeight}px)`;
+***REMOVED***
+
             container.classList.add('hover');
-            setTimeout(() => {
-                container.classList.add('changegrid');
-***REMOVED***20)
-            setData(out_data);
+
+            // setTimeout(() => {
+            //     // form.style.transform = `translateY(0)`;
+            //     // overlay.style.transform = `translateY(0)`;
+            //     form.style.transform = `translateY(0)`;
+            //     overlay.style.transform = `translateY(0)`;
+            //     container.classList.add('hover');
+            // }***REMOVED*** 200);
+            setData(up_data);
     ***REMOVED***
 
         setTrans(!trans);

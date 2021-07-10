@@ -7,9 +7,13 @@ import UpdateTags from "./UpdateTags"
 import PlusIcon from '../../icons/form-icons/Plus-dark.svg';
 import useFormTag from "../../hooks/use-from-tag";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+
 const SkillDomain = ({
     domain***REMOVED***
     handleDomainTitleChange***REMOVED***
+    deleteDomain***REMOVED***
     updateDomain
 ***REMOVED*** => {
 
@@ -46,6 +50,8 @@ const SkillDomain = ({
                 tags={domain.relatedSkills}
                 editableTitle={true}
                 nameTitle="domain"
+                placeholderTitle="Domain"
+                noSeparation={true}
                 handleTitle={handleDomainTitleChange}
                 dataid={domain._id}
                 onDelete={deleteTag}
@@ -66,6 +72,17 @@ const SkillDomain = ({
                     onClick={handleSubmit}
                 />
             </UpdateTags>
+
+            <div className="wrap-right">
+                <Button 
+                    className="domain-delete cancel onlyicon-btn"
+                    id={domain._id || domain.id}
+                    onClick={deleteDomain}
+                >
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                </Button>
+            </div>
+
         </div>
     )
 }

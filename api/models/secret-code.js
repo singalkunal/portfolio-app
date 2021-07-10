@@ -11,9 +11,15 @@ const secretCode = new mongoose.Schema({
         type: String***REMOVED***
         required: true***REMOVED***
 ***REMOVED******REMOVED***
+    username: {
+        type: String***REMOVED***
+        required: true***REMOVED***
+        unique: true
+***REMOVED******REMOVED***
     email: {
         type: String***REMOVED***
-        required: true
+        required: true***REMOVED***
+        unique: true
 ***REMOVED******REMOVED***
     userId: {
         type: mongoose.Schema.Types.ObjectId***REMOVED***

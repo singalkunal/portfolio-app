@@ -5,7 +5,7 @@ const UserIcon = ({ className ***REMOVED*** => {
       focusable="false"
       data-prefix="fas"
       data-icon="user-circle"
-      className={className + " svg-icon svg-inline--fa fa-user-circle fa-w-16"}
+      className={className + " svg-icon"}
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 496 512"

@@ -5,6 +5,15 @@
     margin: 10px 0;
 }
 
+.skill-domain-form .upd-tags-wrapper {
+    padding: 0;
+    margin: 0;
+}
+
+.upd-tags-wrapper.noseparation{
+    border-bottom: 0;
+}
+
 .upd-header {
     font-weight: 600;
     max-width: 100%;

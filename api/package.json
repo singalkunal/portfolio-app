@@ -14,6 +14,7 @@
     "axios": "^0.21.1"***REMOVED***
     "cookie-session": "^1.4.0"***REMOVED***
     "cors": "^2.8.5"***REMOVED***
+    "countapi-js": "^1.0.2"***REMOVED***
     "crypto": "^1.0.1"***REMOVED***
     "dotenv": "^10.0.0"***REMOVED***
     "express": "^4.17.1"***REMOVED***
