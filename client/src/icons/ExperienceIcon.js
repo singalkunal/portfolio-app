@@ -1,8 +1,8 @@
-const ExperienceIcon = ({ className='' ***REMOVED*** => {
+const ExperienceIcon = ({ className='' }) => {
   return (
     <svg
       className={className + " svg-icon"}
-      style={{verticalAlign: "middle"***REMOVED*** fill: "currentColor"***REMOVED***overflow: "hidden"}}
+      style={{verticalAlign: "middle", fill: "currentColor",overflow: "hidden"}}
       viewBox="0 0 1024 1024"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

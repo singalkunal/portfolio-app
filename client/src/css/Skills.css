@@ -31,7 +31,7 @@ section#skills {
     margin: 0 10px 10px 10px;
 
     padding: 15px;
-    border: 1px solid rgba(255***REMOVED***255***REMOVED***255***REMOVED***0.1);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 10px;
     min-width: 250px;
 }
@@ -40,18 +40,18 @@ section#skills {
     font-weight: 500;
 
     padding: 10px;
-    background-color: rgba(255***REMOVED***255***REMOVED***255***REMOVED*** 0.2);
+    background-color: rgba(255,255,255, 0.2);
     border-radius: 10px;
     margin: 10px 0;
 
-    border: 1px solid rgba(255***REMOVED***255***REMOVED***255***REMOVED***0.5);
+    border: 1px solid rgba(255,255,255,0.5);
 
     width: fit-content;
 }
 
 .skill-domain .each-skill {
     font-size: 14px;
-    background-color: rgba(255***REMOVED***255***REMOVED***255***REMOVED***0.1);
+    background-color: rgba(255,255,255,0.1);
     padding: 5px 8px;
     margin: 10px 0;
     border-radius: 5px;
@@ -76,18 +76,18 @@ section#skills {
 
         background-size: cover;
 
-***REMOVED***
+    }
 
     .skill-domain {
         padding: 15px;
-        border: 1px solid rgba(255***REMOVED***255***REMOVED***255***REMOVED***0.1);
+        border: 1px solid rgba(255,255,255,0.1);
         border-radius: 10px;
-***REMOVED***
+    }
     .skill-header{
         font-size: 20px;
-***REMOVED***
+    }
 
     .skill-domain .each-skill {
         font-size: 16px;
-***REMOVED***
+    }
 }

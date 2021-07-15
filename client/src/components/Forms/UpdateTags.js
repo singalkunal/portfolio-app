@@ -1,4 +1,4 @@
-import { useState***REMOVED*** useEffect***REMOVED*** useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Plus from '../../icons/form-icons/Plus.svg';
 import Minus from '../../icons/minus_square.svg';
 
@@ -12,22 +12,22 @@ import FormInput from '../FormInput';
 import Button from '../Button';
 
 const UpdateTags = ({
-    title***REMOVED***
-    editableTitle***REMOVED*** // true if want to inlude form-input to edit title
-    handleTitle***REMOVED***   // method that will handle title change
-    nameTitle***REMOVED***     // form name of title (only if editableTitle=true)
-    placeholderTitle=""***REMOVED*** // form placeholder for title (only if editableTItle=true)
-    helptext=null***REMOVED***
-    defaultIcon=""***REMOVED***
-    labelName="label"***REMOVED***
-    noSeparation=false***REMOVED*** // true/false -> to provide border bottom
-    tags=[]***REMOVED***
-    dataid***REMOVED***
-    onDelete***REMOVED***
+    title,
+    editableTitle, // true if want to inlude form-input to edit title
+    handleTitle,   // method that will handle title change
+    nameTitle,     // form name of title (only if editableTitle=true)
+    placeholderTitle="", // form placeholder for title (only if editableTItle=true)
+    helptext=null,
+    defaultIcon="",
+    labelName="label",
+    noSeparation=false, // true/false -> to provide border bottom
+    tags=[],
+    dataid,
+    onDelete,
     children
-***REMOVED*** => {
-    const [showInputs***REMOVED*** setShowInputs] = useState(false);
-    const helptexts = ['Click to expand'***REMOVED*** helptext];
+}) => {
+    const [showInputs, setShowInputs] = useState(false);
+    const helptexts = ['Click to expand', helptext];
     const ref = useRef(null);
 
     const onClick = () => {
@@ -40,12 +40,12 @@ const UpdateTags = ({
 
         if (subform.style.maxHeight){
             subform.style.maxHeight = null;
-      ***REMOVED*** else {
+          } else {
             subform.style.maxHeight = "400px";
-      ***REMOVED*** 
+          } 
 
         
-    ***REMOVED***;
+        };
 
     return (
         <section className={"upd-tags-wrapper " + (noSeparation ?  "noseparation" : "")} style={{height:"fit-content"}}>
@@ -55,8 +55,8 @@ const UpdateTags = ({
                 <img className="btn-reveal" src={showInputs ? Minus : Plus} alt="" onClick={onClick}/>
                 <div className="line"></div>
             </header>
-***REMOVED***helptexts[+showInputs] && <p className="helptext">{helptexts[+showInputs]}</p>}
-***REMOVED***
+            {helptexts[+showInputs] && <p className="helptext">{helptexts[+showInputs]}</p>}
+            {
                 editableTitle 
                 && 
                 <FormInput
@@ -67,10 +67,10 @@ const UpdateTags = ({
                     handleChange={handleTitle}
                     dataid={dataid}
                 />
-***REMOVED***
+            }
             <div className="form-tags">
-    ***REMOVED***
-                    tags.map((tag***REMOVED*** index) => {
+                {
+                    tags.map((tag, index) => {
 
                         return <FormTag 
                                     label={tag[labelName] || tag.title || tag.label || tag.tag}
@@ -80,12 +80,12 @@ const UpdateTags = ({
                                     id = {tag._id}
                                     onDelete={onDelete}
                                />
-    ***REMOVED***)
-***REMOVED***
+                    })
+                }
             </div>
 
             <form ref={ref} className="sub-form">
-    ***REMOVED*** children }
+                { children }
             </form>
             
         </section>

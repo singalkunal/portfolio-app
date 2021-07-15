@@ -1,9 +1,9 @@
 import { useLocation } from "react-router"
 
 const Redirect = ({ 
-    header='Can\'t fetch the page you requested for...'***REMOVED***
+    header='Can\'t fetch the page you requested for...',
     helptext='Be patient try in some time'
-***REMOVED*** => {
+}) => {
 
     const location = useLocation();
     const { state } = location;

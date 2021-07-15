@@ -1,6 +1,6 @@
 import * as Icon from '../icons/SideBarIcons';
 
-const SideBarLink = ({ icon***REMOVED*** title ***REMOVED*** => {
+const SideBarLink = ({ icon, title }) => {
   return (
     <li>
         <a href="#" className="link">

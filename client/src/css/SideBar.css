@@ -1,13 +1,13 @@
 :root {
     /* --bg-primary: #23232e; */
-    --bg-primary: rgba(35***REMOVED*** 35***REMOVED*** 46***REMOVED*** 0.95);
+    --bg-primary: rgba(35, 35, 46, 0.95);
     --bg-secondary: #141418;
     --text-primary: #b6b6b6;
     --text-secondary: #ececec;
     --transition-type: 200ms ease-in-out;
 }
 
-div***REMOVED*** a{
+div, a{
     box-sizing: border-box;
 }
 
@@ -93,84 +93,84 @@ svg {
         height: 80%;
         width: 56px;
 
-***REMOVED***
+    }
 
     .logo{
         display: block;
         /* background-color: var(--bg-secondary); */
         margin-bottom: 16px;
-***REMOVED***
+    }
 
     .logo svg{
         transition: transform var(--transition-type);
         cursor: pointer;
-***REMOVED***
+    }
     .logo svg:hover{
         background-color: var(--bg-secondary);
-***REMOVED***
+    }
 
     .logo-text{
         color: var(--text-secondary);
         font-weight: bold;
         font-size: 18px;
 
-***REMOVED***
+    }
     .nav-item .link-text{
         color: var(--text-primary);
         font-weight: 500;
-***REMOVED***
+    }
 
-    .logo-text***REMOVED***
+    .logo-text,
     .link-text{
         padding-left: 20px;
     
         width: 150px;
         display: none;
         opacity: 0;
-        transition: opacity var(--transition-type)***REMOVED*** width var(--transition-type);
+        transition: opacity var(--transition-type), width var(--transition-type);
 
-***REMOVED***
+    }
     .sidebar-link{
         display: flex;
         align-items: center;
         max-width: none;
-***REMOVED***
+    }
 
     .nav-item:last-of-type{
         margin-top: auto;
         /* background-color: var(--bg-secondary); */
-***REMOVED***
+    }
 
     .sidebar.expand{
         width: 200px;
         transition: width var(--transition-type);
-***REMOVED***
+    }
 
     .sidebar.expand .logo svg{
         transform: rotate(-180deg);
-***REMOVED***
+    }
 
     /* .sidebar.expand .sidebar-link{
         width: 100%;
-***REMOVED*** */
+    } */
 
     .sidebar.expand .link-text{
         /* opacity: 1; */
         display: block;
-***REMOVED***
+    }
 
     .nav-item:hover{
         color: white !important;
         background-color: var(--bg-secondary);
         /* fill: var(--text-secondary); */
-***REMOVED***
+    }
 
     
     
     .visible{
         opacity: 1;
         width: 120px;
-***REMOVED***
+    }
 
 
 }

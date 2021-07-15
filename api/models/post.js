@@ -1,37 +1,37 @@
-***REMOVED***
+const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
     user: {   // this will contain post (portfolio)
-        type: mongoose.Schema.Types.ObjectId***REMOVED*** 
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
-***REMOVED******REMOVED***
+    },
     likesCount: {
-        type: Number***REMOVED***
+        type: Number,
         default: 0
-***REMOVED******REMOVED***
+    },
     likes: [{
-        type: mongoose.Schema.Types.ObjectId***REMOVED***
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-***REMOVED***]***REMOVED***
+    }],
     commentsCount: {
-        type: Number***REMOVED***
+        type: Number,
         default: 0
-***REMOVED******REMOVED***
+    },
     comments: [{
-        type: mongoose.Schema.Types.ObjectId***REMOVED***
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Comment'
-***REMOVED***]***REMOVED***
+    }],
 
-    createdAt: Number***REMOVED***
-    updatedAt: Number***REMOVED***
-}***REMOVED***
+    createdAt: Number,
+    updatedAt: Number,
+},
 {
     timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }
-}***REMOVED***
+},
 {
     toJSON: {
         versionKey: false
-***REMOVED***
-***REMOVED***
+    }
+})
 
-module.exports = mongoose.model('Post'***REMOVED*** postSchema);
+module.exports = mongoose.model('Post', postSchema);

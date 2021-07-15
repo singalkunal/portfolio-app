@@ -1,5 +1,5 @@
 import useRequest from "../hooks/use-request";
-import { useContext***REMOVED*** useEffect***REMOVED*** useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
 
 import useForm from "../hooks/use-form"
@@ -15,75 +15,75 @@ const { default: FormInput } = require("../components/FormInput")
 
 const styles = {
     "wrapme": {
-        boxShadow: "0 0 20px rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.2)"***REMOVED***
-        padding: "20px"***REMOVED***
+        boxShadow: "0 0 20px rgba(0,0,0,0.2)",
+        padding: "20px",
         borderRadius: "15px"
-***REMOVED******REMOVED***
+    },
 
     "header": {
-        backgroundColor: "var(--bg-primary)"***REMOVED***
-        padding: "20px"***REMOVED***
-        marginBottom: "20px"***REMOVED***
-        borderRadius: "15px"***REMOVED***
-***REMOVED******REMOVED***
+        backgroundColor: "var(--bg-primary)",
+        padding: "20px",
+        marginBottom: "20px",
+        borderRadius: "15px",
+    },
 
     "headerText": {
-        fontSize: "24px"***REMOVED***
-        fontWeight: 600***REMOVED***
+        fontSize: "24px",
+        fontWeight: 600,
         color: "white"
-***REMOVED***
+    }
 
 }
 const Forgot = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
-    const [shownErrors***REMOVED*** setShownErrors] = useState([]);
+    const [shownErrors, setShownErrors] = useState([]);
     const history = useHistory();
     
     const { 
-        values***REMOVED***
-        handleChange***REMOVED***
-        handleSubmit***REMOVED***
+        values,
+        handleChange,
+        handleSubmit,
         isSubmitting
- ***REMOVED*** = useForm({
+     } = useForm({
          initialValues: {
              alias: ""
-     ***REMOVED******REMOVED***
+         },
          onSubmit: async () => {
-             console.log('Submit'***REMOVED*** values);
+             console.log('Submit', values);
              setShownErrors([]);
              const res = await doRequest();
 
              if(res) {
                  history.push(
-                     '/redirect'***REMOVED***
-         ***REMOVED***
-                         header: 'Successfully sent reset link'***REMOVED***
+                     '/redirect',
+                     {
+                         header: 'Successfully sent reset link',
                          helptext: 'Check your email for further instructions..'
-     ***REMOVED***
-         ***REMOVED***
+                     }
+                 );
 
- ***REMOVED***
+             }
              console.log(res);
-     ***REMOVED***
- ***REMOVED***);
+         }
+     });
 
-     const {doRequest***REMOVED*** errors} = useRequest({
-        url: API_URL+'/api/users/forgot'***REMOVED***
-        method: "post"***REMOVED***
+     const {doRequest, errors} = useRequest({
+        url: API_URL+'/api/users/forgot',
+        method: "post",
         body: {
             alias: values.alias
-    ***REMOVED***
-***REMOVED***);
+        }
+    });
 
     useEffect(() => {
         if(errors && errors.length) {
             setShownErrors(errors);
-    ***REMOVED***
-***REMOVED******REMOVED*** [errors]);
+        }
+    }, [errors]);
 
     return (
         <div className="container">
-***REMOVED***
+            {
                 <form style={styles.wrapme}>
                 <header style={styles.header}>
                     <span className="text" style={styles.headerText}>Reset password</span>
@@ -105,7 +105,7 @@ const Forgot = () => {
                     onClick={handleSubmit}
                 />
             </form>
-***REMOVED***
+            }
         </div>
     )
 }

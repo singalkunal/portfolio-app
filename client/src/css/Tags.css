@@ -1,19 +1,19 @@
 .tag {
-    background-color: rgba(255***REMOVED***255***REMOVED***255***REMOVED***0.3);
+    background-color: rgba(255,255,255,0.3);
     width: fit-content;
     padding: 5px 10px;
     border-radius: 10px;
 
-    transform: scale(1) translate3d(0***REMOVED*** 0***REMOVED*** 0);
+    transform: scale(1) translate3d(0, 0, 0);
     transition : transform 20ms ease-in-out;
 }
 
 .tag:hover{
-    transform: scale(1.1) translate3d(0***REMOVED*** 0***REMOVED*** 10px);
-    background-color: rgba(200***REMOVED***200***REMOVED***200***REMOVED***0.3);
+    transform: scale(1.1) translate3d(0, 0, 10px);
+    background-color: rgba(200,200,200,0.3);
 }
 
-.exp-container .tags***REMOVED***
+.exp-container .tags,
 .modal-container .tags {
     display: flex;
     /* flex-direction: column; */
@@ -31,10 +31,10 @@
     .exp-container .tags{
         justify-content:flex-start;
         margin: 0 0 20px 0;
-***REMOVED***
+    }
 
     /* .modal-container .tags{
         justify-content:flex-start;
         margin: 0;
-***REMOVED*** */
+    } */
 }

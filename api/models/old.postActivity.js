@@ -1,38 +1,38 @@
-***REMOVED***
+const mongoose = require('mongoose');
 
 const postActivitySchema = new mongoose.Schema({
     postId: { // will be userId
-        type: mongoose.Schema.Types.ObjectId***REMOVED***
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-***REMOVED******REMOVED***
+    },
     likes: {
-        type: Number***REMOVED***
+        type: Number,
         default: 0
-***REMOVED******REMOVED***
+    },
     comments: {
-        type: Number***REMOVED***
+        type: Number,
         default: 0
-***REMOVED******REMOVED***
+    },
     views: {
-        type: Number***REMOVED***
+        type: Number,
         default: 0
-***REMOVED******REMOVED***
-    createdAt: Number***REMOVED***
+    },
+    createdAt: Number,
     updatedAt: Number
-}***REMOVED***
+},
 {
     timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }
-}***REMOVED***
+},
 {
     toJSON: {
-        transform(doc***REMOVED*** ret) {
+        transform(doc, ret) {
             delete ret.password;
             ret.id = ret._id;
             delete ret._id;
-    ***REMOVED******REMOVED***
+        },
 
         versionKey: false
-***REMOVED***
-***REMOVED***
+    }
+});
 
-module.exports = mongoose.model('PostActivity'***REMOVED*** postActivitySchema);
+module.exports = mongoose.model('PostActivity', postActivitySchema);

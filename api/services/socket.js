@@ -1,15 +1,15 @@
 let io;
 
 module.exports = {
-    init: httpServer => io = require('socket.io')(httpServer***REMOVED*** {
+    init: httpServer => io = require('socket.io')(httpServer, {
         cors: {
-            origin: [process.env.REACT_APP_URL***REMOVED*** 'http://localhost:3000'***REMOVED*** 'http://portfolioapp.dev']
-    ***REMOVED***
-***REMOVED***)***REMOVED***
+            origin: [process.env.REACT_APP_URL, 'http://localhost:3000', 'http://portfolioapp.dev']
+        }
+    }),
     getIO: () => {
         if(!io) {
             throw new Error('Socket.io not initialized...');
-    ***REMOVED***
+        }
         return io;
-***REMOVED***
+    }
 }

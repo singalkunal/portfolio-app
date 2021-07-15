@@ -1,62 +1,62 @@
-***REMOVED***
-***REMOVED***
+const express = require('express');
+const BadRequestError = require('../../errors/bad-request-error');
 
-***REMOVED***
-***REMOVED***
+const currentUser = require('../../middlewares/current-user');
+const RequireAuth = require('../../middlewares/require-auth');
 const User = require('../../models/user');
 
 const countapi = require('countapi-js');
 
-***REMOVED***
+const router = express.Router();
 
-router.get('/api/users/currentuser'***REMOVED*** 
-***REMOVED***
-(req***REMOVED*** res) => {
+router.get('/api/users/currentuser', 
+currentUser,
+(req, res) => {
     res.send(req.currentUser || null);
-***REMOVED***
+});
 
-router.get('/api/users/currentuser/details'***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+router.get('/api/users/currentuser/details',
+currentUser,
+RequireAuth,
+async (req, res) => {
     const user = await User.findById(req.currentUser._id).exec();
     
     if(!user) {
-        throw new BadRequestError('Requested user deatils can\'t be found...'***REMOVED*** 404);
-***REMOVED***
+        throw new BadRequestError('Requested user deatils can\'t be found...', 404);
+    }
 
-***REMOVED***
-        res.json({viewCount: 0***REMOVED*** user***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    try {
+        res.json({viewCount: 0, user});
+    }
+    catch(err) {
+        console.log(err);
         throw new BadRequestError('Server error...');
-***REMOVED***
+    }
 
 
-***REMOVED***
+});
 
-router.delete('/api/users/currentuser/delete'***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+router.delete('/api/users/currentuser/delete',
+currentUser,
+RequireAuth,
+async (req, res) => {
+    try {
         await User.findByIdAndDelete(req.currentUser._id).exec();
         req.session = null;
         res.status(200).send(true);
-***REMOVED***
-***REMOVED***
-***REMOVED***
-        throw new BadRequestError('Error deleting user...'***REMOVED*** 500);
-***REMOVED***
-***REMOVED***
+    }
+    catch(err) {
+        console.log(err);
+        throw new BadRequestError('Error deleting user...', 500);
+    }
+});
 
-router.get('/api/users/opensocket'***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-    res.status(200).send({jwt: req.session.jwt***REMOVED***
+router.get('/api/users/opensocket',
+currentUser,
+RequireAuth,
+async (req, res) => {
+    res.status(200).send({jwt: req.session.jwt});
     
-***REMOVED***
+});
 
-***REMOVED***
+module.exports = router;

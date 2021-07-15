@@ -15,5 +15,5 @@ export const Container = styled.div`
 
     @media only screen and (min-width: 500px) {
         min-height: 80%;
-***REMOVED***
+    }
 `

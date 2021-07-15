@@ -1,140 +1,140 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
+const express = require('express');
+const mongoose = require('mongoose');
+const { body, param } = require('express-validator');
 
-***REMOVED***
+const Post = require('../../models/post');
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
+const currentUser = require('../../middlewares/current-user');
+const RequireAuth = require('../../middlewares/require-auth');
+const BadRequestError = require('../../errors/bad-request-error');
 
-***REMOVED***
+const router = express.Router();
 
 // post portfolio as a new post (if not already exists) on community page
-router.post('/api/portfolio/post'***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-    var post = await Post.findOne({user: id***REMOVED***.exec();
+router.post('/api/portfolio/post',
+currentUser,
+RequireAuth,
+async (req, res) => {
+    const id = req.currentUser._id;
+    var post = await Post.findOne({user: id}).exec();
 
     if(post) {
-        throw new BadRequestError('Already posted...'***REMOVED*** 400);
-***REMOVED***
+        throw new BadRequestError('Already posted...', 400);
+    }
 
     post = new Post({
         user: id
-***REMOVED***);
+    });
 
     post = await post.save();
 
-    res.status(201).json({post***REMOVED***
+    res.status(201).json({post});
     
-***REMOVED***
+});
 
-router.put("/api/post/like/:postId"***REMOVED*** 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+router.put("/api/post/like/:postId", 
+currentUser,
+RequireAuth,
+param('postId')
+.exists(),
+async (req, res) => {
+    const { postId } = req.params;
+    const userId = req.currentUser._id;
+    try {
         var result = await Post.updateOne(
-***REMOVED***
-                _id: postId***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+            {
+                _id: postId,
+                likes: {$ne: userId} // userId is not in likedBy
+            },
+            {
+                $inc: {
+                    likesCount: 1
+                },
+                $push: {
+                    likes: userId
+                }
+            }
+        ).exec();
 
-***REMOVED***
-***REMOVED***
+        // if like was already there -> unlike now
+        if(!result.nModified) {
             result = await Post.updateOne(
-    ***REMOVED***
+                {
                     _id: postId
-    ***REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-***REMOVED***
-        ***REMOVED***
-***REMOVED***
-***REMOVED***
-    ***REMOVED***
-***REMOVED***
-    ***REMOVED***
-            return res.status(200).json({likes: -1***REMOVED***
-    ***REMOVED***
+                },
+                {
+                    $inc: {
+                        likesCount: -1
+                    },
+                    $pullAll: {
+                        likes: [userId]
+                    }
+                }
+            ).exec();
+            return res.status(200).json({likes: -1})
+        }
 
-        res.status(200).json({likes: 1***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+        res.status(200).json({likes: 1});
+    }
+    catch(err) {
+        console.log(err);
+        throw new BadRequestError('Unable to process like...');
+    }
 
     
-***REMOVED***
+});
 
-router.get('/api/post/get'***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+router.get('/api/post/get',
+currentUser,
+RequireAuth,
+async (req, res) => {
+    const userId = req.currentUser._id;
 
     console.log(userId);
 
-***REMOVED***
+    try {
         var posts = await Post
                 .aggregate([
-        ***REMOVED***
-        ***REMOVED***
-        ***REMOVED***
-        ***REMOVED***
-        ***REMOVED***
-        ***REMOVED***
-        ***REMOVED***
-                            from: 'users'***REMOVED***
-                            localField: 'user'***REMOVED***
-        ***REMOVED***
+                    {
+                        $set: {
+                            'liked': {$in: [mongoose.Types.ObjectId(userId), '$likes']}
+                        }
+                    },
+                    {
+                        $lookup: {
+                            from: 'users',
+                            localField: 'user',
+                            foreignField: '_id',
                             as: 'user'
-        ***REMOVED***
-        ***REMOVED***
-        ***REMOVED***
+                        }
+                    },
+                    {
                         $unwind: "$user"
-        ***REMOVED***
+                    },
 
-        ***REMOVED***
-        ***REMOVED***
-                            'desc': "$user.portfolio.about.desc"***REMOVED***
+                    {
+                        $set: {
+                            'desc': "$user.portfolio.about.desc",
                             'img_url': "$user.portfolio.about.img_url"
-        ***REMOVED***
-        ***REMOVED***
-        ***REMOVED***
-        ***REMOVED***
-                            "user.email": 0***REMOVED***
-                            "user.password": 0***REMOVED***
-                            "user.portfolio": 0***REMOVED***
-        ***REMOVED***
-        ***REMOVED***
+                        }
+                    },
+                    {
+                        $project: {
+                            "user.email": 0,
+                            "user.password": 0,
+                            "user.portfolio": 0,
+                        }
+                    },
                 ])
                 .exec();
                 
-        res.status(200).json({posts***REMOVED***
-***REMOVED***
+        res.status(200).json({posts});
+    }
 
-***REMOVED***
-***REMOVED***
+    catch(err) {
+        console.log(err);
         throw new BadRequestError('Unable to fetch posts');
-***REMOVED***
-***REMOVED***
+    }
+});
 
-***REMOVED***
+module.exports = router;

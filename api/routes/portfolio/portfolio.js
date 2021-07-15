@@ -1,53 +1,53 @@
-***REMOVED***
+const express = require('express');
 
-***REMOVED***
+const BadRequestError = require('../../errors/bad-request-error');
 const User = require('../../models/user');
 
 
-***REMOVED***
-***REMOVED***
+const currentUser = require('../../middlewares/current-user');
+const RequireAuth = require('../../middlewares/require-auth');
 
-***REMOVED***
+const router = express.Router();
 
-router.get('/api/portfolio/:username'***REMOVED*** ***REMOVED***
+router.get('/api/portfolio/:username', async (req, res) => {
     const { username } = req.params;
-    const user = await User.findOne({username***REMOVED***.exec();
+    const user = await User.findOne({username}).exec();
 
     
     if(!user) {
-        throw new BadRequestError('Requested user not found...'***REMOVED*** 404);
-***REMOVED***
+        throw new BadRequestError('Requested user not found...', 404);
+    }
 
     
     res.send(user.portfolio);
-***REMOVED***
+});
 
-router.put('/api/portfolio/edit'***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+router.put('/api/portfolio/edit',
+currentUser,
+RequireAuth,
+async (req, res) => {
     const username = req.currentUser.username;
-    const user = await User.findOne({username***REMOVED***.exec();
+    const user = await User.findOne({username}).exec();
 
     const { portfolio } = req.body;
 
     if(user.portfolio._id != portfolio._id) {
-        throw new BadRequestError('Can\'t update portfolio'***REMOVED*** 500);
-***REMOVED***
+        throw new BadRequestError('Can\'t update portfolio', 500);
+    }
 
-    Object.assign(user.portfolio***REMOVED*** portfolio);
+    Object.assign(user.portfolio, portfolio);
 
-***REMOVED***
+    try {
         await user.save();
-***REMOVED***
+    }
     catch(err){
-***REMOVED***
-        throw new BadRequestError('Can\'t update portfolio'***REMOVED*** 500);
-***REMOVED***
+        console.log(err);
+        throw new BadRequestError('Can\'t update portfolio', 500);
+    }
 
     res.status(200).send(true);
 
-***REMOVED***
+});
 
 
-***REMOVED***
+module.exports = router;

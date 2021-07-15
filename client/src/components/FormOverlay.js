@@ -1,9 +1,9 @@
 import '../css/FormOverlay.css';
 
-const FormOverlay = ({ children ***REMOVED*** => {
+const FormOverlay = ({ children }) => {
     return (
         <>
-***REMOVED*** children }
+            { children }
         </>
     )
 }

@@ -1,14 +1,14 @@
-import { useContext***REMOVED*** useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 
 import FaIconLink from './FaIconLink';
-import { faHome***REMOVED*** faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
 
 export const StyledNavbar = styled.nav` 
     width: 100%;
     display: flex;
-    /* grid-template-columns: repeat(3***REMOVED*** 1fr); */
+    /* grid-template-columns: repeat(3, 1fr); */
 
     align-items: center;
     justify-content: space-between;
@@ -32,7 +32,7 @@ export const StyledNavItem = styled.div`
         padding: 0 20px;
         border-right: 1px solid #c4c4c4;
         border-left: 1px solid #c4c4c4;
-***REMOVED***
+    }
 
     /* border-right: 1px solid #c4c4c4;
     border-left: 1px solid #c4c4c4; */
@@ -41,12 +41,12 @@ export const StyledNavItem = styled.div`
 `
 
 const Navbar = ({
-    heading="Community"***REMOVED***
+    heading="Community",
     isDummy=false
-***REMOVED*** => {
+}) => {
     return (
         <>
-***REMOVED***
+        {
             !isDummy
             &&
             <StyledNavbar>
@@ -54,7 +54,7 @@ const Navbar = ({
                 <StyledNavItem><span className="head">{heading}</span></StyledNavItem>
                 <StyledNavItem><FaIconLink icon={faEnvelopeSquare} external link={`mailto:${process.env.REACT_APP_EMAIL}`}/></StyledNavItem>
             </StyledNavbar>
-    ***REMOVED***
+        }
         </>
     )
 }

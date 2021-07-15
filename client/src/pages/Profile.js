@@ -2,22 +2,22 @@ import { useParams } from 'react-router-dom';
 import useRequest from '../hooks/use-request';
 const Profile = () => {
     const { uid } = useParams();
-    const { doRequest***REMOVED*** errors } =  useRequest({
-        url: 'http://localhost:3080/api/users/currentuser'***REMOVED***
-        method: 'get'***REMOVED***
+    const { doRequest, errors } =  useRequest({
+        url: 'http://localhost:3080/api/users/currentuser',
+        method: 'get',
         onSuccess: (res) => {
-            console.log("Response:"***REMOVED*** res);
-    ***REMOVED***
-***REMOVED***);
+            console.log("Response:", res);
+        }
+    });
 
     const onSubmit = async (e) => {
-    ***REMOVED***
+        try {
             await doRequest();
-    ***REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-***REMOVED***
+        }
+        catch(err) {
+            console.log(err);
+        }
+    }
 
     return (
         <div>

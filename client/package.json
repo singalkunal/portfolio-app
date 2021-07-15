@@ -1,51 +1,51 @@
 {
-  "name": "client"***REMOVED***
-  "version": "0.1.0"***REMOVED***
-  "private": true***REMOVED***
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.35"***REMOVED***
-    "@fortawesome/free-brands-svg-icons": "^5.15.3"***REMOVED***
-    "@fortawesome/free-regular-svg-icons": "^5.15.3"***REMOVED***
-    "@fortawesome/free-solid-svg-icons": "^5.15.3"***REMOVED***
-    "@fortawesome/react-fontawesome": "^0.1.14"***REMOVED***
-    "@testing-library/jest-dom": "^5.12.0"***REMOVED***
-    "@testing-library/react": "^11.2.7"***REMOVED***
-    "@testing-library/user-event": "^12.8.3"***REMOVED***
-    "axios": "^0.21.1"***REMOVED***
-    "bson-objectid": "^2.0.1"***REMOVED***
-    "node-sass": "^6.0.0"***REMOVED***
-    "react": "^17.0.2"***REMOVED***
-    "react-dom": "^17.0.2"***REMOVED***
-    "react-router-dom": "^5.2.0"***REMOVED***
-    "react-scripts": "4.0.3"***REMOVED***
-    "react-spinners": "^0.11.0"***REMOVED***
-    "react-tooltip": "^4.2.21"***REMOVED***
-    "react-transition-group": "^4.4.2"***REMOVED***
-    "socket.io-client": "^4.1.3"***REMOVED***
-    "styled-components": "^5.3.0"***REMOVED***
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-regular-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.1",
+    "bson-objectid": "^2.0.1",
+    "node-sass": "^6.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "react-spinners": "^0.11.0",
+    "react-tooltip": "^4.2.21",
+    "react-transition-group": "^4.4.2",
+    "socket.io-client": "^4.1.3",
+    "styled-components": "^5.3.0",
     "web-vitals": "^1.1.2"
-  }***REMOVED***
+  },
   "scripts": {
-    "start": "react-scripts start"***REMOVED***
-    "build": "react-scripts build"***REMOVED***
-    "test": "react-scripts test"***REMOVED***
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
-  }***REMOVED***
+  },
   "eslintConfig": {
     "extends": [
-      "react-app"***REMOVED***
+      "react-app",
       "react-app/jest"
     ]
-  }***REMOVED***
+  },
   "browserslist": {
     "production": [
-      ">0.2%"***REMOVED***
-      "not dead"***REMOVED***
+      ">0.2%",
+      "not dead",
       "not op_mini all"
-    ]***REMOVED***
+    ],
     "development": [
-      "last 1 chrome version"***REMOVED***
-      "last 1 firefox version"***REMOVED***
+      "last 1 chrome version",
+      "last 1 firefox version",
       "last 1 safari version"
     ]
   }

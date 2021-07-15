@@ -42,7 +42,7 @@ a {
 }
 .navbar i{
     display: block;
-    color: rgba(0***REMOVED*** 0***REMOVED*** 0***REMOVED*** 0.6);
+    color: rgba(0, 0, 0, 0.6);
     margin-right: 5px;
 }
 
@@ -59,18 +59,18 @@ a {
     .main-nav-item:first-of-type{
         margin-right: auto;
         /* justify-content: none; */
-***REMOVED***
+    }
 
     /* .special {
         margin-right: 25px;
-***REMOVED*** */
+    } */
 
     .main-nav-item {
         margin: 0 15px;
-***REMOVED***
+    }
     #home {
         width: 40px;
-***REMOVED***
+    }
 
     
 }

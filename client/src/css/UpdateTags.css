@@ -44,12 +44,12 @@
     overflow-x: scroll;
 }
 
-/* Hide scrollbar for Chrome***REMOVED*** Safari and Opera */
+/* Hide scrollbar for Chrome, Safari and Opera */
 .upd-header .upd-title::-webkit-scrollbar {
     display: none;
   }
   
-  /* Hide scrollbar for IE***REMOVED*** Edge and Firefox */
+  /* Hide scrollbar for IE, Edge and Firefox */
   .upd-header .upd-title {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */

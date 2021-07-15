@@ -1,21 +1,21 @@
-import { deleteById***REMOVED*** updateById } from "../utils/general";
+import { deleteById, updateById } from "../utils/general";
 
 const useFormTag = ({
-    tags***REMOVED***
-    tagValues***REMOVED*** // tag which have to be updated
+    tags,
+    tagValues, // tag which have to be updated
     updateTags // calback function
-***REMOVED*** => {
-    const updateTag = async (newProps={***REMOVED*** => {
+}) => {
+    const updateTag = async (newProps={}) => {
         var prevValues = tags ? tags : [];
         prevValues = [...prevValues] // clone
 
         console.log(prevValues);
-        await updateById(null***REMOVED*** {...tagValues***REMOVED*** ...newProps}***REMOVED*** prevValues);
+        await updateById(null, {...tagValues, ...newProps}, prevValues);
         console.log(prevValues);
         updateTags(prevValues);
 
         return true;
-***REMOVED***;
+    };
 
     const deleteTag = async (event) => {
         if(!event.target.classList.contains('minus-icon')) return;
@@ -27,16 +27,16 @@ const useFormTag = ({
 
         var prevValues = [...tags];
         console.log(prevValues);
-        prevValues = await deleteById(id***REMOVED*** prevValues);
+        prevValues = await deleteById(id, prevValues);
         console.log(prevValues);
 
         // timeout to pad time for animation
         setTimeout(() => {
             updateTags(prevValues);
-    ***REMOVED******REMOVED*** 200);
-***REMOVED***;
+        }, 200);
+    };
 
-    return { updateTag***REMOVED*** deleteTag };
+    return { updateTag, deleteTag };
 }
 
 export default useFormTag

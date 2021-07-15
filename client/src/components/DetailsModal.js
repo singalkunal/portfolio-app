@@ -1,20 +1,20 @@
-import { useEffect***REMOVED*** useRef***REMOVED*** forwardRef } from 'react';
+import { useEffect, useRef, forwardRef } from 'react';
 import '../css/DetailsModal.css';
 
 import Tags from './Tags';
 import ExternalLinks from './ExternalLinks';
 
-const DetailsModal = forwardRef(({ experience***REMOVED*** closeModal }***REMOVED*** ref) => {
+const DetailsModal = forwardRef(({ experience, closeModal }, ref) => {
     const handleEsc = (event) => {
         if(event.key === 'Escape') closeModal();
-***REMOVED***;
+    };
 
     useEffect(() => {
-        window.addEventListener('keydown'***REMOVED*** handleEsc);
+        window.addEventListener('keydown', handleEsc);
         return () => {
-            window.removeEventListener('keydown'***REMOVED*** handleEsc);
-    ***REMOVED***
-***REMOVED******REMOVED*** []);
+            window.removeEventListener('keydown', handleEsc);
+        }
+    }, []);
 
 
     // useEffect(() => {
@@ -24,14 +24,14 @@ const DetailsModal = forwardRef(({ experience***REMOVED*** closeModal }***REMOVE
     //     if(isModalOpen) {
     //         for (element of modal.children) {
     //             element.classList.add(activeClass);
-    //     ***REMOVED***
-    // ***REMOVED***
+    //         }
+    //     }
     //     else {
     //         for (element of modal.children) {
     //             element.classList.remove(activeClass);
-    //     ***REMOVED***
-    // ***REMOVED***
-    // }***REMOVED*** [isModalOpen]);
+    //         }
+    //     }
+    // }, [isModalOpen]);
 
     return (
         <div ref = {ref}>
@@ -49,17 +49,17 @@ const DetailsModal = forwardRef(({ experience***REMOVED*** closeModal }***REMOVE
                     </div>
 
                     <div className="modal-images">
-            ***REMOVED***
+                        {
                             experience.img_url.map(url => {
                                 return <img src={url} alt="Can't load image" />
-            ***REMOVED***)
-        ***REMOVED***
+                            })
+                        }
                     </div>
                     <Tags tags={experience.additional_tags}/>
                 </div>
             </div>
         </div>
     )
-***REMOVED***
+});
 
 export default DetailsModal

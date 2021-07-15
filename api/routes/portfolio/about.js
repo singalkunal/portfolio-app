@@ -1,28 +1,28 @@
-***REMOVED***
-***REMOVED***
+const express = require('express');
+const router = express.Router();
 
-***REMOVED***
-***REMOVED***
+const currentUser = require('../../middlewares/current-user');
+const RequireAuth = require('../../middlewares/require-auth');
 
-***REMOVED***
+const BadRequestError = require('../../errors/bad-request-error');
 
 const User = require('../../models/user');
 
-router.put('/api/portfolio/edit/about'***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+router.put('/api/portfolio/edit/about',
+currentUser,
+RequireAuth,
+async (req, res) => {
     const about = req.body;
     const user = await User.findById(req.currentUser._id).exec();
     user.portfolio.about = about;
     try{
         await user.save();
-***REMOVED*** catch(err) {
-***REMOVED***
+    } catch(err) {
+        console.log(err);
         throw new BadRequestError('Can\'t complete request...');
-***REMOVED***
+    }
 
     res.sendStatus(200);
-***REMOVED***
+});
 
-***REMOVED***
+module.exports = router;

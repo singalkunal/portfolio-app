@@ -77,7 +77,7 @@
     max-width: 30px;
 }
 .profileLinks a:hover {
-    /* color: rgb(10***REMOVED*** 10***REMOVED*** 10***REMOVED*** 0.8); */
+    /* color: rgb(10, 10, 10, 0.8); */
     color: black;
     background-color: #E4E9F2;
     border-radius: 10px;
@@ -95,22 +95,22 @@
 @media screen and (min-width: 1000px) {
     .about {
         flex-direction: row;
-***REMOVED***
+    }
     .profileImg img {
         box-shadow: 30px 30px #E4E9F2;
         max-width: 80%;
-***REMOVED***
+    }
     .about .intro {
         align-items:flex-start;
         width: 50%;
         font-size: 50px;
-***REMOVED***    
+    }    
 
     .intro .desc {
         font-size: 18px;
-***REMOVED***
+    }
 
     .profileLinks {
         align-items: flex-start;
-***REMOVED***
+    }
 }

@@ -18,7 +18,7 @@ form .form-group {
 input{
     min-height: 30px;
     border-radius: 8px;
-    border: 2px solid rgba(46***REMOVED*** 57***REMOVED*** 89***REMOVED*** 0.5);
+    border: 2px solid rgba(46, 57, 89, 0.5);
 } 
 
 .inputwithicon input {
@@ -27,12 +27,12 @@ input{
 
 textarea{
     border-radius: 8px;
-    border: 2px solid rgba(46***REMOVED*** 57***REMOVED*** 89***REMOVED*** 0.5);
+    border: 2px solid rgba(46, 57, 89, 0.5);
 }
 
 input:focus
 {
-    /* outline: 2px solid rgba(46***REMOVED*** 57***REMOVED*** 89***REMOVED*** 0.5); */
+    /* outline: 2px solid rgba(46, 57, 89, 0.5); */
     box-shadow: 0 0 1px 1pt rgb(46 57 89 / 50%);
     outline: none !important;
 }
@@ -59,10 +59,10 @@ input[type="checkbox"] {
     position: absolute;
     top: 10px;
     left: 5px;
-    color: rgba(100***REMOVED***100***REMOVED***100***REMOVED***0.7);
+    color: rgba(100,100,100,0.7);
 }
 
 /* .inputwithicon.focus{
     border: 1px solid var(--bg-primary_);
-    box-shadow: 0 0 5px rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.2);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
 } */

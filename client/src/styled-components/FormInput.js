@@ -28,32 +28,32 @@ const StyledTextIcon = styled.span`
 `
 
 const FormInput = ({
-    label***REMOVED*** 
-    labelRightIcon***REMOVED***
-    labelRightOnClick***REMOVED***
-    dataid=""***REMOVED***
-    name***REMOVED*** 
-    type***REMOVED*** 
-    value***REMOVED*** 
-    placeholder=""***REMOVED***
-    rightText***REMOVED***
-    rightOnClick***REMOVED***
-    handleChange***REMOVED*** 
+    label, 
+    labelRightIcon,
+    labelRightOnClick,
+    dataid="",
+    name, 
+    type, 
+    value, 
+    placeholder="",
+    rightText,
+    rightOnClick,
+    handleChange, 
     className
-***REMOVED*** => {
+}) => {
     return (
         <div className={className}>
-***REMOVED***
+            {
                 label 
                 && 
                 <FormLabel>
                     <span>{label}</span>
-        ***REMOVED***
+                    {
                         labelRightIcon 
                         &&
                         <FontAwesomeIcon icon={labelRightIcon} onClick={labelRightOnClick} />}
                 </FormLabel>
-***REMOVED***
+            }
             <InputWithIcon>
                 <StyledInput 
                     type={type}

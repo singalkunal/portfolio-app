@@ -1,4 +1,4 @@
-import { forwardRef***REMOVED*** useEffect***REMOVED*** useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 
 import useForm from '../../hooks/use-form';
 import useFileInput from '../../hooks/use-file-input';
@@ -17,38 +17,38 @@ import Error from '../Error';
 
 import useFormTag from '../../hooks/use-from-tag';
 
-const AboutForm = forwardRef(({ about***REMOVED*** closeModal***REMOVED*** updateAbout }***REMOVED*** ref) => {
+const AboutForm = forwardRef(({ about, closeModal, updateAbout }, ref) => {
     // console.log(ObjectId().toHexString());
     // global
-    const { values***REMOVED*** 
-            handleChange***REMOVED*** 
-            handleSubmit***REMOVED***
-            handleDiscard***REMOVED***
+    const { values, 
+            handleChange, 
+            handleSubmit,
+            handleDiscard,
             changeSpecificValue
-     ***REMOVED*** = useForm({
-            initialValues: {...about}***REMOVED***
+         } = useForm({
+            initialValues: {...about},
             onSubmit: async () => {
-                console.log('Submit about form...'***REMOVED*** values***REMOVED*** profileImg);
+                console.log('Submit about form...', values, profileImg);
                 var response = null;
 
                 if(profileImg) {
                     response = await uploadProfileImg(); 
                     response = response[0];
-***REMOVED***
+                }
 
                 
 
                 console.log(values.img_url)
                 console.log(response)
                 await updateAbout({
-                    ...values***REMOVED***
+                    ...values,
                     img_url: response && response.publicUrl ? response.publicUrl : about.img_url
-***REMOVED***);
+                });
 
                 console.log(values);
                 closeModal();
-***REMOVED***
-***REMOVED***);
+            }
+    });
 
     
 
@@ -60,60 +60,60 @@ const AboutForm = forwardRef(({ about***REMOVED*** closeModal***REMOVED*** updat
 
     
         const newProps = {
-            icon_url: response ? response.publicUrl || "" : ""***REMOVED***
+            icon_url: response ? response.publicUrl || "" : "",
             filename: response ? response.filename || "" : ""
-    ***REMOVED***;
+        };
 
         await updateProfileLinks(newProps);
 
         // to notify hook to clear input values
         return true;
 
-***REMOVED***;
+    };
     const {
-        values: profileLinkValues***REMOVED***
-        changeSpecificValue: changeProfileLinkField***REMOVED***
-        handleChange: profileLinkChange***REMOVED***
-        handleSubmit: profileLinkSubmit***REMOVED***
-        isSubmitting: isAddingLink***REMOVED***
+        values: profileLinkValues,
+        changeSpecificValue: changeProfileLinkField,
+        handleChange: profileLinkChange,
+        handleSubmit: profileLinkSubmit,
+        isSubmitting: isAddingLink,
         errors
-***REMOVED*** = useForm({
+    } = useForm({
         initialValues: {
-            title: ""***REMOVED***
+            title: "",
             link: ""
-    ***REMOVED******REMOVED***
+        },
         requiredValues:[
-            "title"***REMOVED***
+            "title",
             "link"
-        ]***REMOVED***
+        ],
         onSubmit: addProfileLink
-***REMOVED***);
+    });
 
     const {
-        updateTag: updateProfileLinks***REMOVED***
+        updateTag: updateProfileLinks,
         deleteTag: deleteProfileLink
-***REMOVED*** = useFormTag({
-        tags: values.profile_links***REMOVED***
-        tagValues: profileLinkValues***REMOVED***
+    } = useFormTag({
+        tags: values.profile_links,
+        tagValues: profileLinkValues,
         updateTags: (updatedValues) => {
-            changeSpecificValue('profile_links'***REMOVED*** updatedValues);
-    ***REMOVED***
-***REMOVED***)
+            changeSpecificValue('profile_links', updatedValues);
+        }
+    })
 
-    const { files: icon***REMOVED*** 
-            handleChange: handleIconChange***REMOVED*** 
-            uploadFile: uploadIcon***REMOVED***
-    ***REMOVED*** = useFileInput({
+    const { files: icon, 
+            handleChange: handleIconChange, 
+            uploadFile: uploadIcon,
+        } = useFileInput({
         path: 'icon/'
-***REMOVED***)
+    })
 
     const {
-        files: profileImg***REMOVED***
-        handleChange: handleProfileImgChange***REMOVED***
+        files: profileImg,
+        handleChange: handleProfileImgChange,
         uploadFile: uploadProfileImg
-***REMOVED*** = useFileInput({
+    } = useFileInput({
         path: 'profileImg/'
-***REMOVED***)
+    })
 
     
 
@@ -212,8 +212,8 @@ const AboutForm = forwardRef(({ about***REMOVED*** closeModal***REMOVED*** updat
                                 (e) => {
                                     handleDiscard(e);
                                     closeModal();
-                ***REMOVED***
-            ***REMOVED***
+                                }
+                            }
                         />
                     </div>
 
@@ -221,6 +221,6 @@ const AboutForm = forwardRef(({ about***REMOVED*** closeModal***REMOVED*** updat
             </div>
         </div>
     )
-***REMOVED***
+});
 
 export default AboutForm

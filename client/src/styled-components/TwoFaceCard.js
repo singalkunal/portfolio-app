@@ -24,17 +24,17 @@ export const FaceCardFront = styled(Card)`
 export const FaceCardBack = styled(Card)`
     &.transition-enter{
         opacity: 0;
-***REMOVED***
+    }
 
     &.transition-enter-active{
         opacity: 1;
-        transition: all ${props => props.faceCardTransitionTime || 500 }ms cubic-bezier(0.16***REMOVED*** 1***REMOVED*** 0.3***REMOVED*** 1);
-***REMOVED***
+        transition: all ${props => props.faceCardTransitionTime || 500 }ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
     &.transition-exit-active{
         opacity: 0;
-        transition: all ${props => props.faceCardTransitionTime || 500 }ms cubic-bezier(0.16***REMOVED*** 1***REMOVED*** 0.3***REMOVED*** 1);
-***REMOVED***
+        transition: all ${props => props.faceCardTransitionTime || 500 }ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
 `
 export const StyledTwoFaceCard = styled.div`
     width: 100%;
@@ -46,12 +46,12 @@ export const StyledTwoFaceCard = styled.div`
     background-color: transparent;
 `
 
-const TwoFaceCard = ({ children***REMOVED*** flipped ***REMOVED*** => {
+const TwoFaceCard = ({ children, flipped }) => {
     return (
         <StyledTwoFaceCard>
-***REMOVED***/* <FaceCardInner flipped={flipped} > */}
-    ***REMOVED***children}
-***REMOVED***/* </FaceCardInner> */}
+            {/* <FaceCardInner flipped={flipped} > */}
+                {children}
+            {/* </FaceCardInner> */}
         </StyledTwoFaceCard>
     )
 }

@@ -1,5 +1,5 @@
-import { useParams***REMOVED*** useLocation } from 'react-router-dom';
-import { useState***REMOVED*** useEffect***REMOVED*** useContext } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
 import useRequest from '../hooks/use-request';
 
 import About from './About';
@@ -19,21 +19,21 @@ const Portfolio = () => {
     const { username } = useParams();
     const location = useLocation();
 
-    const {signedInUser***REMOVED*** setShowMail } = useContext(LiveUpdateContext);
+    const {signedInUser, setShowMail } = useContext(LiveUpdateContext);
 
-    const [showFab***REMOVED*** setShowFab] = useState(false);
-    const [portfolio***REMOVED*** setPortfolio] = useState({***REMOVED***
-    const [loading***REMOVED*** setLoading] = useState(true);
-    const [isError***REMOVED*** setIsError] = useState(true);
+    const [showFab, setShowFab] = useState(false);
+    const [portfolio, setPortfolio] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [isError, setIsError] = useState(true);
 
-    const { doRequest: fetchCurrentUser***REMOVED*** errors: curerr } = useRequest({
-        url: API_URL+'/api/users/currentuser'***REMOVED***
+    const { doRequest: fetchCurrentUser, errors: curerr } = useRequest({
+        url: API_URL+'/api/users/currentuser',
         method: 'get'
-***REMOVED***)
-    const { doRequest: fetchUser***REMOVED*** errors } = useRequest({
-        url: API_URL+'/api/users/details/' + username***REMOVED***
+    })
+    const { doRequest: fetchUser, errors } = useRequest({
+        url: API_URL+'/api/users/details/' + username,
         method: 'get'
-***REMOVED***);
+    });
 
     // set portfolio
     // Case 1: portfoio is already passed from account page
@@ -49,62 +49,62 @@ const Portfolio = () => {
                 console.log('passeed');
                 setIsError(false);
                 setPortfolio(passedPortfolio);
-***REMOVED***
+            }
             else {
                 console.log('nadda');
-            ***REMOVED***
+                try {
                     const { user } = await fetchUser();
                     if(user) {
                         setShowMail(user.email);
                         setIsError(false);
                         setPortfolio(user.portfolio);
-    ***REMOVED***
-***REMOVED***
-            ***REMOVED***
+                    }
+                }
+                catch(err) {
                     setIsError(true);
-***REMOVED***
-***REMOVED***
+                }
+            }
             
             setLoading(false);
-    ***REMOVED***;
+        };
 
         fetchPortfolio();
 
         return () => {
             setShowMail(null);
-    ***REMOVED***;
+        };
 
-***REMOVED******REMOVED*** []);
+    }, []);
 
     useEffect(() => {
         if(errors && errors.length) {
             console.log(errors)
             setIsError(true);
             setLoading(false);
-    ***REMOVED***
+        }
         else if(curerr && curerr.length) {
             console.log(curerr);
             setIsError(true);
             setLoading(false);
-    ***REMOVED***
+        }
         else {
             // setIsError(false);
-    ***REMOVED***
-***REMOVED******REMOVED*** [errors***REMOVED*** curerr])
+        }
+    }, [errors, curerr])
 
     return (
 
         <>
             <div className="container">
                 <Load loading={loading}>
-                    <SomeError isError={isError} errorHeader="Error!!" errors={[...errors***REMOVED*** ...curerr]}>
+                    <SomeError isError={isError} errorHeader="Error!!" errors={[...errors, ...curerr]}>
                         <About about={portfolio.about} />
                         <Experiences experiences={portfolio.experiences} />
                         <Skills skills={portfolio.skills} />
                     </SomeError>
                 </Load>
             </div>
-***REMOVED***showFab && <FAB url="/portfolio/edit" />}
+            {showFab && <FAB url="/portfolio/edit" />}
         </>
     )
 }

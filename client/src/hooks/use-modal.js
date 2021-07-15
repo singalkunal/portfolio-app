@@ -1,7 +1,7 @@
-import { useState***REMOVED*** useEffect***REMOVED*** useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-const useModal = ({activeClass***REMOVED*** => {
-    const [isModalOpen***REMOVED*** setIsModalOpen] = useState(false);
+const useModal = ({activeClass}) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const modalContainerRef = useRef(null); // ref to container element containing overlay and modal
 
     const openModal = () => {
@@ -16,8 +16,8 @@ const useModal = ({activeClass***REMOVED*** => {
 
         for (let element of modal.children) {
             element.classList.add(activeClass);
-    ***REMOVED***
-***REMOVED***
+        }
+    }
 
     const closeModal = () => {
         console.log('close modal called');
@@ -31,10 +31,10 @@ const useModal = ({activeClass***REMOVED*** => {
 
         for (let element of modal.children) {
             element.classList.remove(activeClass);
-    ***REMOVED***
-***REMOVED***
+        }
+    }
 
-    return { isModalOpen***REMOVED*** modalContainerRef***REMOVED*** openModal***REMOVED*** closeModal }
+    return { isModalOpen, modalContainerRef, openModal, closeModal }
 };
 
 export default useModal;

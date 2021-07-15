@@ -1,18 +1,18 @@
 import ObjectId from 'bson-objectid';
 
-const deleteObjectById = async (id***REMOVED*** obj) => {
-    console.log('delete'***REMOVED*** id***REMOVED*** obj);
+const deleteObjectById = async (id, obj) => {
+    console.log('delete', id, obj);
     if(obj[id]) {
         delete obj[id];
         console.log('ues');
-***REMOVED***
+    }
     return obj;
 }
-export const deleteById = async (id***REMOVED*** arr=[]) => {
-    console.log(id***REMOVED*** arr);
+export const deleteById = async (id, arr=[]) => {
+    console.log(id, arr);
     if(!(arr instanceof Array)) {
-        return deleteObjectById(id***REMOVED*** arr);
-***REMOVED***
+        return deleteObjectById(id, arr);
+    }
 
     arr = arr.filter(obj => (obj._id !== id && obj.id !== id));
     console.log(arr);
@@ -20,29 +20,29 @@ export const deleteById = async (id***REMOVED*** arr=[]) => {
     return arr;
 };
 
-const updateObjById = (id***REMOVED*** updObj***REMOVED*** obj) => {
+const updateObjById = (id, updObj, obj) => {
     obj[id] = {
-        ...updObj***REMOVED***
+        ...updObj,
         _id: id
-***REMOVED***;
+    };
 }
 
 // will push as new entry if not exists
-export const updateById = (id=null***REMOVED*** updObj***REMOVED*** arr=[]) => {
+export const updateById = (id=null, updObj, arr=[]) => {
     if(!id) {
         id = ObjectId().toHexString();
-***REMOVED***
+    }
 
     if(!(arr instanceof Array)) {
-        return updateObjById(id***REMOVED*** updObj***REMOVED*** arr);
-***REMOVED***
+        return updateObjById(id, updObj, arr);
+    }
 
     const idx = arr.findIndex(obj => (obj._id === id || obj.id === id));
     if(idx === -1) {
         arr.push({
-            ...updObj***REMOVED***
+            ...updObj,
             _id: id
-***REMOVED***
-***REMOVED***
+        });
+    }
     else arr[idx] = updObj;
 }

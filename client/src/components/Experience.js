@@ -6,13 +6,13 @@ import Button from './Button';
 import { useEffect } from 'react';
 
 const Experience = ({ 
-    experience***REMOVED*** 
-    bgColor***REMOVED*** 
-    faceClass***REMOVED*** 
-    editMode***REMOVED***
-    id=""***REMOVED***
+    experience, 
+    bgColor, 
+    faceClass, 
+    editMode,
+    id="",
     onEditExp=null
-***REMOVED*** => {
+}) => {
     // editMode is boolean 
     // if user is in editing mode (editMode = True) then show edit buttons
 
@@ -21,37 +21,37 @@ const Experience = ({
         var width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
 
         if(width < 1000) return;
-        const [img1***REMOVED*** img2] = e.currentTarget.querySelectorAll('img');
+        const [img1, img2] = e.currentTarget.querySelectorAll('img');
 
         if(img1) {
-            img1.style.transform = "translate3d(10px***REMOVED*** 10px***REMOVED*** -5px)"
+            img1.style.transform = "translate3d(10px, 10px, -5px)"
             img1.style.transition = "transform 330ms ease-in-out"
-    ***REMOVED***
+        }
 
         if(img2) {
-            img2.style.transform = "translate3d(-10px***REMOVED*** -10px***REMOVED*** 5px)"
+            img2.style.transform = "translate3d(-10px, -10px, 5px)"
             img2.style.transition = "transform 330ms ease-in-out"
-    ***REMOVED***
+        }
 
-***REMOVED***;
+    };
 
     const imgrmHover = (e) => {
         var width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
 
         if(width < 1000) return;
 
-        const [img1***REMOVED*** img2] = e.currentTarget.querySelectorAll('img');
+        const [img1, img2] = e.currentTarget.querySelectorAll('img');
 
         if(img1) {
-            img1.style.transform = "translate3d(0***REMOVED*** 0***REMOVED*** 0)"
+            img1.style.transform = "translate3d(0, 0, 0)"
             img1.style.transition = "transform 330ms ease-in-out"
-    ***REMOVED***
+        }
 
         if(img2) {
-            img2.style.transform = "translate3d(0***REMOVED*** 0***REMOVED*** 0)"
+            img2.style.transform = "translate3d(0, 0, 0)"
             img2.style.transition = "transform 330ms ease-in-out"
-    ***REMOVED***
-***REMOVED***;
+        }
+    };
     
     return (        
             <div id={id}>   
@@ -65,15 +65,15 @@ const Experience = ({
                         </div>
 
                         <div className="exp-images" onMouseOver={imgHover} onMouseLeave={imgrmHover}>
-                ***REMOVED***
+                            {
                                 experience.img_url.map(url => {
                                     return <img src={url} alt="Can't load image" />
-                ***REMOVED***)
-            ***REMOVED***
+                                })
+                            }
                         </div>
                         <Tags tags={experience.tags}/>
                     </div>
-        ***REMOVED***
+                    {
                         editMode 
                         &&
                         <Button 
@@ -83,7 +83,7 @@ const Experience = ({
                             id={id}
                             onClick={onEditExp}
                         ></Button>
-    ***REMOVED***
+                    }
                 </div>
             </div>
     )

@@ -5,9 +5,9 @@ import UserIcon from './UserIcon';
 import ShowIcon from './ShowIcon';
 
 export {
-    InfoIcon***REMOVED***
-    ExperienceIcon***REMOVED***
-    SkillsIcon***REMOVED***
-    UserIcon***REMOVED***
+    InfoIcon,
+    ExperienceIcon,
+    SkillsIcon,
+    UserIcon,
     ShowIcon
 };

@@ -1,6 +1,6 @@
 import useRequest from "../hooks/use-request";
-import { useContext***REMOVED*** useEffect***REMOVED*** useState } from "react";
-import { useHistory***REMOVED*** useLocation***REMOVED*** useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from "react";
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 import useForm from "../hooks/use-form"
 
@@ -14,30 +14,30 @@ const { default: FormInput } = require("../components/FormInput")
 
 const styles = {
     "wrapme": {
-        boxShadow: "0 0 20px rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.2)"***REMOVED***
-        padding: "20px"***REMOVED***
+        boxShadow: "0 0 20px rgba(0,0,0,0.2)",
+        padding: "20px",
         borderRadius: "15px"
-***REMOVED******REMOVED***
+    },
 
     "header": {
-        backgroundColor: "var(--bg-primary)"***REMOVED***
-        padding: "20px"***REMOVED***
-        marginBottom: "20px"***REMOVED***
-        borderRadius: "15px"***REMOVED***
-***REMOVED******REMOVED***
+        backgroundColor: "var(--bg-primary)",
+        padding: "20px",
+        marginBottom: "20px",
+        borderRadius: "15px",
+    },
 
     "headerText": {
-        fontSize: "24px"***REMOVED***
-        fontWeight: 600***REMOVED***
+        fontSize: "24px",
+        fontWeight: 600,
         color: "white"
-***REMOVED***
+    }
 
 }
 
 
 const Reset = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
-    const [shownErrors***REMOVED*** setShownErrors] = useState([]);
+    const [shownErrors, setShownErrors] = useState([]);
     const query = new URLSearchParams(useLocation().search);
 
     const history = useHistory();
@@ -45,52 +45,52 @@ const Reset = () => {
     const {signedInUser} = useContext(LiveUpdateContext);
     
     const { 
-        values***REMOVED***
-        handleChange***REMOVED***
-        handleSubmit***REMOVED***
+        values,
+        handleChange,
+        handleSubmit,
         isSubmitting
- ***REMOVED*** = useForm({
+     } = useForm({
          initialValues: {
              password: ""
-     ***REMOVED******REMOVED***
+         },
          onSubmit: async () => {
-             console.log('Submit'***REMOVED*** values);
+             console.log('Submit', values);
              setShownErrors([]);
              const res = await doRequest();
 
              if(res) {
                  history.push(
-                     '/redirect'***REMOVED***
-         ***REMOVED***
-                         header: 'Password changed successfully'***REMOVED***
+                     '/redirect',
+                     {
+                         header: 'Password changed successfully',
                          helptext: 'You may close this window now...'
-     ***REMOVED***
-         ***REMOVED***
+                     }
+                 );
 
- ***REMOVED***
+             }
             //  console.log(res);
-     ***REMOVED***
- ***REMOVED***);
+         }
+     });
 
-     const {doRequest***REMOVED*** errors} = useRequest({
-        url: API_URL+'/api/users/reset'***REMOVED***
-        method: "post"***REMOVED***
+     const {doRequest, errors} = useRequest({
+        url: API_URL+'/api/users/reset',
+        method: "post",
         body: {
-            email: query.get('email')***REMOVED***
-            code: query.get('code')***REMOVED***
+            email: query.get('email'),
+            code: query.get('code'),
             password: values.password
-    ***REMOVED***
-***REMOVED***);
+        }
+    });
 
     useEffect(() => {
         if(errors && errors.length) {
             setShownErrors(errors);
-    ***REMOVED***
-***REMOVED******REMOVED*** [errors]);
+        }
+    }, [errors]);
 
     return (
         <div className="container">
-***REMOVED***
+            {
                 !signedInUser 
                 ?
                 <form style={styles.wrapme}>
@@ -117,7 +117,7 @@ const Reset = () => {
 
             :
             <h3>Must sign out first</h3>
-***REMOVED***
+            }
         </div>
     )
 }

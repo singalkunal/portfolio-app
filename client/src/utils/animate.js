@@ -1,4 +1,4 @@
-export const animateValue = (start***REMOVED*** end***REMOVED*** duration***REMOVED*** obj***REMOVED*** attr***REMOVED*** suffix="") => {
+export const animateValue = (start, end, duration, obj, attr, suffix="") => {
     // const progress = progressRef.current;
     // if(!progress) return;
 
@@ -16,6 +16,6 @@ export const animateValue = (start***REMOVED*** end***REMOVED*** duration***REMO
         obj[attr] = current + suffix;
         if (current === end) {
             clearInterval(timer);
-    ***REMOVED***
-***REMOVED******REMOVED*** stepTime);
+        }
+    }, stepTime);
 };

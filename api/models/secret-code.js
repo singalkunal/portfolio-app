@@ -1,40 +1,40 @@
-***REMOVED***
+const mongoose = require('mongoose');
 
 const secretCode = new mongoose.Schema({
-//     hash: (128 bit)***REMOVED***
-//     userId***REMOVED***
-//     email***REMOVED***
-//     password***REMOVED***
+//     hash: (128 bit),
+//     userId,
+//     email,
+//     password,
 // expiresAt: Date
 
     code: {
-        type: String***REMOVED***
-        required: true***REMOVED***
-***REMOVED******REMOVED***
+        type: String,
+        required: true,
+    },
     username: {
-        type: String***REMOVED***
-        required: true***REMOVED***
+        type: String,
+        required: true,
         unique: true
-***REMOVED******REMOVED***
+    },
     email: {
-        type: String***REMOVED***
-        required: true***REMOVED***
+        type: String,
+        required: true,
         unique: true
-***REMOVED******REMOVED***
+    },
     userId: {
-        type: mongoose.Schema.Types.ObjectId***REMOVED***
+        type: mongoose.Schema.Types.ObjectId,
         required: true
-***REMOVED******REMOVED***
+    },
     expiresAt: {
         type: Date
-***REMOVED***
-***REMOVED***
+    }
+});
 
-secretCode.pre('save'***REMOVED*** function(next) {
+secretCode.pre('save', function(next) {
     const mins = 30
     const now = new Date()
     this.expiresAt = new Date(now.getTime() + mins * 60 * 1000);
     next();
-***REMOVED***
+});
 
-module.exports = mongoose.model('SecretCode'***REMOVED*** secretCode);
+module.exports = mongoose.model('SecretCode', secretCode);

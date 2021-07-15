@@ -1,15 +1,15 @@
 const jwt = require('jsonwebtoken');
 
-const currentUser = (req***REMOVED*** res***REMOVED*** next) => {
+const currentUser = (req, res, next) => {
     if(req.session && req.session.jwt) {
-    ***REMOVED***
-            const payload = jwt.verify(req.session.jwt***REMOVED*** process.env.JWT_KEY);
+        try {
+            const payload = jwt.verify(req.session.jwt, process.env.JWT_KEY);
             req.currentUser = payload;
-    ***REMOVED***
-    ***REMOVED***
+        }
+        catch(err) {
             console.log('Error verifying token...');
-    ***REMOVED***
-***REMOVED***
+        }
+    }
     next();
 }
 

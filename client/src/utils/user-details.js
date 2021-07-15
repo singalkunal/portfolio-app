@@ -7,7 +7,7 @@ export default function calcPercentageCompleted(user) {
     // console.log(portfolio.about);
     if(!portfolio || !portfolio.about) {
         return 0;
-***REMOVED***
+    }
 
     console.log(portfolio);
     var num_fields_provided = 0  
@@ -17,7 +17,7 @@ export default function calcPercentageCompleted(user) {
     if(portfolio.about.lastname) num_fields_provided += 1;
     if(portfolio.about.imgUrl) num_fields_provided += 1;
 
-    num_fields_provided += Math.min(3***REMOVED*** portfolio.about.profile_links.length) + Math.min(3***REMOVED*** portfolio.experiences.length) +  Math.min(3***REMOVED*** portfolio.skills.length);
+    num_fields_provided += Math.min(3, portfolio.about.profile_links.length) + Math.min(3, portfolio.experiences.length) +  Math.min(3, portfolio.skills.length);
 
     return (Math.floor(num_fields_provided * 100 / 13))
 }

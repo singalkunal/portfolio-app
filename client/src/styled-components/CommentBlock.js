@@ -1,5 +1,5 @@
-import { useEffect***REMOVED*** useState } from 'react';
-import { useParams***REMOVED***useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams,useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 
@@ -34,12 +34,12 @@ const MyContainer = styled(Container)`
     background-color: white;
     &.transition-enter {
         opacity: 0;
-***REMOVED***
+    }
 
     &.transition-enter-active {
         transition: opacity 1000ms ease-in-out;
         opacity: 1;
-***REMOVED***
+    }
 `
 
 const CommentBlockWrapper = styled.div`
@@ -49,16 +49,16 @@ const CommentBlockWrapper = styled.div`
 
 `
 
-const CommentBlock = ({postId***REMOVED*** setCommentFor***REMOVED*** => {
+const CommentBlock = ({postId, setCommentFor}) => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
     // const { postId } = useParams();
-    const [comments***REMOVED*** setComments] = useState([]);
+    const [comments, setComments] = useState([]);
     const history = useHistory();
 
-    const { doRequest: getComments***REMOVED*** errors } = useRequest({
-        url: `${API_URL}/api/comments/${postId}`***REMOVED***
+    const { doRequest: getComments, errors } = useRequest({
+        url: `${API_URL}/api/comments/${postId}`,
         method: 'get'
-***REMOVED***);
+    });
 
     useEffect(() => {
         
@@ -67,18 +67,18 @@ const CommentBlock = ({postId***REMOVED*** setCommentFor***REMOVED*** => {
             if(res) {
                 setComments(res.comments);
 
-***REMOVED***
-    ***REMOVED***
+            }
+        }
 
         fetchComments();
         return ()  => {
             setCommentFor(null);
-    ***REMOVED***
-***REMOVED******REMOVED*** []);
+        }
+    }, []);
 
     useEffect(() => {
-        window.scrollTo(0***REMOVED***0);
-***REMOVED***);
+        window.scrollTo(0,0);
+    });
 
     return (
         <>
@@ -92,15 +92,15 @@ const CommentBlock = ({postId***REMOVED*** setCommentFor***REMOVED*** => {
             />
             
             <CommentBlockWrapper>
-    ***REMOVED***
+                {
                     comments.map(comment => {
-                        // {console.log('mapping '***REMOVED*** comment)}
+                        // {console.log('mapping ', comment)}
                         return <Comment 
                             key={comment._id}
                             comment={comment}
                         />
-    ***REMOVED***)
-***REMOVED***
+                    })
+                }
             </CommentBlockWrapper>
         </MyContainer>
 

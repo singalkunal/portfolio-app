@@ -1,55 +1,55 @@
-***REMOVED***
+const express = require('express');
 const { randomBytes } = require('crypto');
 const multer = require('multer');
-***REMOVED***
-***REMOVED***
-***REMOVED***
+const BadRequestError = require('../../errors/bad-request-error');
+const currentUser = require('../../middlewares/current-user');
+const RequireAuth = require('../../middlewares/require-auth');
 
-***REMOVED***
+const router = express.Router();
 const upload = multer();
 
-const uploadFile = async (bucket***REMOVED*** file_to_upload***REMOVED*** path) => {
+const uploadFile = async (bucket, file_to_upload, path) => {
     const filename = randomBytes(16).toString('hex') + '-' + file_to_upload.originalname;
     path += filename
     // const path = 'images/'+filename;
     const file = bucket.file(path);
 
-***REMOVED***
+    try {
         await file.save(file_to_upload.buffer);
-        // console.log('File saved: '***REMOVED*** path)
+        // console.log('File saved: ', path)
         await file.makePublic();
     
-        return {publicUrl: file.publicUrl()***REMOVED*** filename:path};
-***REMOVED***
-***REMOVED***
-***REMOVED***
-        throw new BadRequestError('Error uploading file'***REMOVED*** 500);
-***REMOVED***
+        return {publicUrl: file.publicUrl(), filename:path};
+    }
+    catch(err) {
+        console.log(err);
+        throw new BadRequestError('Error uploading file', 500);
+    }
 };
 
 // router.post(
-//     '/api/upload'***REMOVED*** 
-//     ***REMOVED***
-//     ***REMOVED***
-//     upload.single('file')***REMOVED*** 
-//     ***REMOVED***
+//     '/api/upload', 
+//     currentUser,
+//     RequireAuth,
+//     upload.single('file'), 
+//     async (req, res) => {
 //         const uid = req.currentUser._id;
 //         var path = uid + '/' + req.body.path;
 //         path = path || "images/"
 //         const bucket = req.app.locals.bucket;
 //         const file = req.file;
 
-//         const response = await uploadFile(bucket***REMOVED*** file***REMOVED*** path);
+//         const response = await uploadFile(bucket, file, path);
 //         res.send(response);
     
-// ***REMOVED***
+// });
 
 router.post(
-    '/api/upload'***REMOVED*** 
-    ***REMOVED***
-    ***REMOVED***
-    upload.array('files')***REMOVED*** 
-    ***REMOVED***
+    '/api/upload', 
+    currentUser,
+    RequireAuth,
+    upload.array('files'), 
+    async (req, res) => {
         const uid = req.currentUser._id;
         var path = uid + '/' + req.body.path;
         path = path || "images/"
@@ -60,35 +60,35 @@ router.post(
         const responses = []
 
         for (let file of files) {
-            const response = await uploadFile(bucket***REMOVED*** file***REMOVED*** path);
+            const response = await uploadFile(bucket, file, path);
             responses.push(response);
-    ***REMOVED***;
+        };
 
         res.send(responses);
-***REMOVED***
+});
 
 router.post(
-    '/api/delete'***REMOVED*** 
-    ***REMOVED***
-    ***REMOVED***
-    ***REMOVED***
+    '/api/delete', 
+    currentUser,
+    RequireAuth,
+    async (req, res) => {
         const { filename } = req.body;
         const bucket = req.app.locals.bucket;
 
         const file = bucket.file(filename);
-        const data = await file***REMOVED***;
+        const data = await file.exists();
 
         if(!data[0]) {
             return res.statusCode(404);
-    ***REMOVED***
-    ***REMOVED***
+        }
+        try {
             await file.delete();
             console.log('Deleted...');
-    ***REMOVED***
+        }
 
-    ***REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-***REMOVED***
+        catch(err) {
+            console.log(err);
+        }
+})
 
-***REMOVED***
+module.exports = router;

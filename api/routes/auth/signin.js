@@ -1,91 +1,91 @@
-***REMOVED***
+const express = require('express');
 require('express-async-errors');
-const { body***REMOVED*** oneOf***REMOVED*** check } = require('express-validator');
+const { body, oneOf, check } = require('express-validator');
 const jwt = require('jsonwebtoken');
-***REMOVED***
-***REMOVED***
+const BadRequestError = require('../../errors/bad-request-error');
+const validateRequest = require('../../middlewares/validate-request');
 
 const User = require('../../models/user');
 const Password = require('../../services/password');
 
-***REMOVED***
+const router = express.Router();
 
-router.post('/api/users/signin'***REMOVED*** 
+router.post('/api/users/signin', 
 [
     oneOf([
         check('alias')
-        ***REMOVED***
+        .exists()
         .isEmail()
         .withMessage('Not a valid email')
-        ***REMOVED***
-            return User.findOne({email: value***REMOVED***.then(user => {
+        .custom((value, { req }) => {
+            return User.findOne({email: value}).then(user => {
                 if(!user) {
                     return Promise.reject('No user found with provided email')
-***REMOVED***
+                }
 
                 req.body.user = user;
-***REMOVED***)
-    ***REMOVED***)
-        ***REMOVED***
+            })
+        })
+        ,
         check('alias')
-        ***REMOVED***
+        .exists()
         .isString()
-        .isLength({min: 1***REMOVED***
+        .isLength({min: 1})
         .withMessage('Username can\'t be empty')
-        ***REMOVED***
-            return User.findOne({username: value***REMOVED***.then(user => {
+        .custom((value, { req }) => {
+            return User.findOne({username: value}).then(user => {
                 if(!user) {
                     return Promise.reject('No user found with provided username')
-***REMOVED***
+                }
 
                 req.body.user = user;
-***REMOVED***)
-    ***REMOVED***)
-    ]***REMOVED***
-    'Please check email/username')***REMOVED***
+            })
+        })
+    ],
+    'Please check email/username'),
     body('password')
     .trim()
-    .isLength({min: 8***REMOVED*** max: 20***REMOVED***
+    .isLength({min: 8, max: 20})
     .withMessage('Password must be of minimum 8 characters')
-]***REMOVED***
-validateRequest***REMOVED***
-***REMOVED***
-    // const { email***REMOVED*** password***REMOVED*** remember } = req.body;
+],
+validateRequest,
+async (req, res) => {
+    // const { email, password, remember } = req.body;
 
-    // const user = await User.findOne({email***REMOVED***
+    // const user = await User.findOne({email});
 
-    const { user***REMOVED*** password***REMOVED*** remember } = req.body;
+    const { user, password, remember } = req.body;
 
     if(!user) {
-        throw new BadRequestError("User doesn't exists"***REMOVED*** 404***REMOVED*** 'email');
-***REMOVED***
+        throw new BadRequestError("User doesn't exists", 404, 'email');
+    }
 
     if(!user.active) {
-        throw new BadRequestError('Check your email for verification...'***REMOVED*** 500);
-***REMOVED***
+        throw new BadRequestError('Check your email for verification...', 500);
+    }
 
-***REMOVED***
-        const passwordMatch = await Password.verify(password***REMOVED*** user.password);
+    try {
+        const passwordMatch = await Password.verify(password, user.password);
         if(passwordMatch) {
             const jwtUser = jwt.sign({
-                _id: user._id***REMOVED***
-                username: user.username***REMOVED***
+                _id: user._id,
+                username: user.username,
                 email: user.email
-***REMOVED*** process.env.JWT_KEY);
+            }, process.env.JWT_KEY);
             
             req.session.jwt = jwtUser;
             if(remember) req.sessionOptions.maxAge = 30 * 24 * 60 * 60 * 1000;
             // console.log(req.session);
-            return res.status(200).json({user***REMOVED***
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
-        console.log('error signing in: '***REMOVED*** err);
-***REMOVED***
+            return res.status(200).json({user});
+        }
+    }
+    catch(err) {
+        console.log('error signing in: ', err);
+    }
 
-    throw new BadRequestError('Incorrect password'***REMOVED*** 400***REMOVED*** 'password');
+    throw new BadRequestError('Incorrect password', 400, 'password');
     
 
-***REMOVED***
+})
 
-***REMOVED***
+module.exports = router;

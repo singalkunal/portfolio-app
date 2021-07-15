@@ -1,4 +1,4 @@
-import { forwardRef***REMOVED*** useEffect } from "react"
+import { forwardRef, useEffect } from "react"
 
 import useForm from "../../hooks/use-form";
 import useFileInput from '../../hooks/use-file-input';
@@ -15,46 +15,46 @@ import FileInput from "./FileInput";
 import Error from "../Error";
 import useFormTag from "../../hooks/use-from-tag";
 
-const ExperienceForm = forwardRef(({experience***REMOVED*** updateExperiences***REMOVED*** closeModal}***REMOVED*** ref) => {
+const ExperienceForm = forwardRef(({experience, updateExperiences, closeModal}, ref) => {
     /****************************************hooks***************************************************/
-    const { values***REMOVED*** 
-            handleChange***REMOVED***
-            reinitializeForm***REMOVED*** 
-            handleSubmit***REMOVED***
-            handleDiscard***REMOVED***
-            errors: formValidationErrors***REMOVED***
+    const { values, 
+            handleChange,
+            reinitializeForm, 
+            handleSubmit,
+            handleDiscard,
+            errors: formValidationErrors,
             changeSpecificValue
-    ***REMOVED*** = useForm({
-            initialValues: {...experience}***REMOVED***
+        } = useForm({
+            initialValues: {...experience},
             requiredValues: [
-                'title'***REMOVED***
-                'brief'***REMOVED***
+                'title',
+                'brief',
                 'detail'
-            ]***REMOVED***
+            ],
             onSubmit: async () => {
                 var response = null;
                 if(images) {
                     response = await uploadImages();
 
                     response = response;
-***REMOVED***
+                }
 
 
                 var newImages = [];
                 if(response) {
                     for(let img of response) {
                         newImages.push(img.publicUrl)
-    ***REMOVED***
-***REMOVED***
+                    }
+                }
 
                 await updateExperiences({
-                    ...values***REMOVED***
+                    ...values,
                     img_url: newImages ? newImages : experience.img_url
-***REMOVED***);
+                });
 
                 closeModal();
-***REMOVED***
-***REMOVED***);
+            }
+    });
 
 
     /****************************************Tags specific***************************************************/
@@ -62,74 +62,74 @@ const ExperienceForm = forwardRef(({experience***REMOVED*** updateExperiences***
         await updateTag();
         // to notify hook to clear input values
         return true;
-***REMOVED***
+    }
 
     const {
-        values: tagValues***REMOVED***
-        handleChange: tagChange***REMOVED***
-        handleSubmit: tagSubmit***REMOVED***
-        isSubmitting: isAddingTag***REMOVED***
+        values: tagValues,
+        handleChange: tagChange,
+        handleSubmit: tagSubmit,
+        isSubmitting: isAddingTag,
         errors
-***REMOVED*** = useForm({
+    } = useForm({
         initialValues: {
             tag: ""
-    ***REMOVED******REMOVED***
+        },
         requiredValues: [
             "tag"
-        ]***REMOVED***
+        ],
         onSubmit: addTag
-***REMOVED***)
+    })
 
-    const { updateTag***REMOVED*** deleteTag } = useFormTag({
-        tags: values.tags***REMOVED***
-        tagValues: tagValues***REMOVED***
+    const { updateTag, deleteTag } = useFormTag({
+        tags: values.tags,
+        tagValues: tagValues,
         updateTags: (updatedValues) => {
-            changeSpecificValue('tags'***REMOVED*** updatedValues);
-    ***REMOVED***
-***REMOVED***)
+            changeSpecificValue('tags', updatedValues);
+        }
+    })
 
     /****************************************Additional Tags specific***************************************************/
     const addAdditionalTag = async () => {
         await updateAdditionalTag();
         // to notify hook to clear input values
         return true;
-***REMOVED***;
+    };
 
     const {
-        values: additionalTagValues***REMOVED***
-        handleChange: additionalTagChange***REMOVED***
-        handleSubmit: additionalTagSubmit***REMOVED***
-        isSubmitting: isAddingAdditionalTag***REMOVED***
+        values: additionalTagValues,
+        handleChange: additionalTagChange,
+        handleSubmit: additionalTagSubmit,
+        isSubmitting: isAddingAdditionalTag,
         errors: additionalTagErrors
-***REMOVED*** = useForm({
+    } = useForm({
         initialValues: {
             tag: ""
-    ***REMOVED******REMOVED***
+        },
         requiredValues: [
             "tag"
-        ]***REMOVED***
+        ],
         onSubmit: addAdditionalTag
-***REMOVED***)
+    })
 
 
-    const { updateTag: updateAdditionalTag***REMOVED*** deleteTag: deleteAdditionalTag } = useFormTag({
-        tags: values.additional_tags***REMOVED***
-        tagValues: additionalTagValues***REMOVED***
+    const { updateTag: updateAdditionalTag, deleteTag: deleteAdditionalTag } = useFormTag({
+        tags: values.additional_tags,
+        tagValues: additionalTagValues,
         updateTags: (updatedValues) => {
-            changeSpecificValue('additional_tags'***REMOVED*** updatedValues)
-    ***REMOVED***
-***REMOVED***)
+            changeSpecificValue('additional_tags', updatedValues)
+        }
+    })
 
     /****************************************Images***************************************************/
     const {
-        files: images***REMOVED***
-        handleChange: handleImgChange***REMOVED***
-        errors: validationImgErrors***REMOVED***
+        files: images,
+        handleChange: handleImgChange,
+        errors: validationImgErrors,
         uploadFile: uploadImages
-***REMOVED*** = useFileInput({
-        path: 'image/'***REMOVED***
+    } = useFileInput({
+        path: 'image/',
         num_files:2
-***REMOVED***);
+    });
     
     // external links
     const addExternalLink  = async () => {
@@ -138,58 +138,58 @@ const ExperienceForm = forwardRef(({experience***REMOVED*** updateExperiences***
         response = response[0];
 
         const newPorps = {
-            icon_url: response ? response.publicUrl || "" : ""***REMOVED***
+            icon_url: response ? response.publicUrl || "" : "",
             filename: response ? response.filename || "" : ""
-    ***REMOVED***;
+        };
 
         await updateExternalLinks(newPorps);
 
         // to notify hook to clear input values
         return true;
-***REMOVED***;
+    };
 
     const {
-        values: externalLinkValues***REMOVED***
-        handleChange: externalLinkChange***REMOVED***
-        handleSubmit: externalLinkSubmit***REMOVED***
-        isSubmitting: isAddingExternal_link***REMOVED***
+        values: externalLinkValues,
+        handleChange: externalLinkChange,
+        handleSubmit: externalLinkSubmit,
+        isSubmitting: isAddingExternal_link,
         errors: externalLinkErrors
-***REMOVED*** = useForm({
+    } = useForm({
         initialValues: {
-            title: ""***REMOVED***
+            title: "",
             link: ""
-    ***REMOVED******REMOVED***
+        },
         requiredValues: [
-            'title'***REMOVED***
+            'title',
             'link'
-        ]***REMOVED***
+        ],
         onSubmit: addExternalLink
-***REMOVED***);
+    });
 
     const { 
-        updateTag: updateExternalLinks***REMOVED*** 
+        updateTag: updateExternalLinks, 
         deleteTag: deleteExternalLink 
-***REMOVED*** = useFormTag({
-        tags: values.external_links***REMOVED***
-        tagValues: externalLinkValues***REMOVED***
+    } = useFormTag({
+        tags: values.external_links,
+        tagValues: externalLinkValues,
         updateTags: (updatedValues) => {
-            changeSpecificValue('external_links'***REMOVED*** updatedValues)
-    ***REMOVED***
-***REMOVED***)
+            changeSpecificValue('external_links', updatedValues)
+        }
+    })
 
     const {
-        files: externalLinkIcon***REMOVED***
-        handleChange: externalLinkIconChange***REMOVED***
+        files: externalLinkIcon,
+        handleChange: externalLinkIconChange,
         uploadFile: uploadExternal_linkIcon
-***REMOVED*** = useFileInput({
+    } = useFileInput({
         path: 'icon/'
-***REMOVED***);
+    });
 
     /****************************************Side Effects***************************************************/
 
     useEffect(() => {
         reinitializeForm(experience);
-***REMOVED******REMOVED*** [experience])
+    }, [experience])
 
     return (
         <div ref={ref}>
@@ -339,8 +339,8 @@ const ExperienceForm = forwardRef(({experience***REMOVED*** updateExperiences***
                                 (e) => {
                                     handleDiscard(e);
                                     closeModal();
-                ***REMOVED***
-            ***REMOVED***
+                                }
+                            }
                         />
                     </div>
 
@@ -349,6 +349,6 @@ const ExperienceForm = forwardRef(({experience***REMOVED*** updateExperiences***
             
         </div>
     )
-***REMOVED***
+});
 
 export default ExperienceForm

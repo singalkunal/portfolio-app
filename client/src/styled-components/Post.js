@@ -1,20 +1,20 @@
-import { useContext***REMOVED*** useEffect***REMOVED*** useRef***REMOVED*** useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components/macro';
-import { Link***REMOVED*** useHistory***REMOVED*** useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
-import TwoFaceCard***REMOVED*** { FaceCardFront***REMOVED*** FaceCardBack } from './TwoFaceCard';
-import { StyledAttributes***REMOVED*** StyledAttribute } from './Attributes';
+import TwoFaceCard, { FaceCardFront, FaceCardBack } from './TwoFaceCard';
+import { StyledAttributes, StyledAttribute } from './Attributes';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp***REMOVED*** faHeart***REMOVED*** faComment } from '@fortawesome/free-regular-svg-icons';
-import { faThumbsUp as fasThumbsUp***REMOVED*** faHeart as fasHeart***REMOVED*** faEllipsisH***REMOVED*** faExternalLinkAlt***REMOVED*** faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
+import { faThumbsUp as fasThumbsUp, faHeart as fasHeart, faEllipsisH, faExternalLinkAlt, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 import { CSSTransition } from 'react-transition-group'
 import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 
 const cssVariables = {
-    postTransitionTime: 1000***REMOVED*** // ms
+    postTransitionTime: 1000, // ms
     faceCardTransitionTime: 500
 };
 
@@ -31,7 +31,7 @@ const PostImage = styled.div`
         height: 100%;
 
         border-radius: 15px;
-***REMOVED***
+    }
 `
 
 const PostOverlay = styled.div`
@@ -44,7 +44,7 @@ const PostOverlay = styled.div`
     width: 100%;
     height: 100%;
 
-    background-color: rgba(18***REMOVED*** 18***REMOVED*** 18***REMOVED*** 0.85);
+    background-color: rgba(18, 18, 18, 0.85);
     color: white;
     border-radius: 15px;
 
@@ -59,7 +59,7 @@ const OverlayAttributes = styled(StyledAttributes)`
 
     & ${StyledAttribute} {
         padding: 10px 0;
-***REMOVED***
+    }
 `
 
 
@@ -77,24 +77,24 @@ export const StyledPost = styled.div`
     &.transition-appear{
         /* transform: opacity(0.1); */
         opacity: 0.1;
-***REMOVED***
+    }
 
     &.transition-appear-active {
         /* transform: opacity(1); */
         opacity: 1;
-        transition: all ${cssVariables.postTransitionTime}ms cubic-bezier(0.16***REMOVED*** 1***REMOVED*** 0.3***REMOVED*** 1);
-***REMOVED***
+        transition: all ${cssVariables.postTransitionTime}ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
 `
 
 const Post = ({ 
-    showCommentForMe***REMOVED***
-    onLike***REMOVED***
-    onComment***REMOVED***
+    showCommentForMe,
+    onLike,
+    onComment,
     post={}
-***REMOVED*** => {
+}) => {
     const history = useHistory();
 
-    const [flipped***REMOVED*** setFlipped] = useState(false);
+    const [flipped, setFlipped] = useState(false);
 
     
     return (
@@ -144,7 +144,7 @@ const Post = ({
                                         onClick={() => {
                                             setFlipped(false);
                                             showCommentForMe(post._id)
-                        ***REMOVED***}
+                                        }}
                                     />
                                 </OverlayAttributes>                
                             </PostOverlay>
@@ -177,11 +177,11 @@ const PostHeader = styled.header`
     & span {
         font-size: 14px;
         font-weight: 500;
-***REMOVED***
+    }
 
     /* & svg path{
         width: 24px !important;
-***REMOVED*** */
+    } */
 `
 
 

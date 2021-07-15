@@ -1,7 +1,7 @@
 import '../css/About.css';
 import ProfileLinks from './ProfileLinks';
 
-const About = ({ about ***REMOVED*** => {
+const About = ({ about }) => {
     // const about = portfolio.about;
     const url = about.img_url;
     const desc = about.desc;
@@ -14,11 +14,11 @@ const About = ({ about ***REMOVED*** => {
             </div>
             <div className="intro">
                 <div className="banner">
-                    <div className="wave">Hi***REMOVED*** I am</div>
+                    <div className="wave">Hi, I am</div>
                     <div className="name"> {about.firstname  ? about.firstname + ' ' + about.lastname : 'No name'}</div>
                 </div>
                 <div className="desc">
-        ***REMOVED***about.desc || desc}
+                    {about.desc || desc}
                 </div>
                 
                 <ProfileLinks profile_links={profile_links}/>

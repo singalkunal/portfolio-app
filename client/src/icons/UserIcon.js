@@ -1,4 +1,4 @@
-const UserIcon = ({ className ***REMOVED*** => {
+const UserIcon = ({ className }) => {
   return (
     <svg
       aria-hidden="true"

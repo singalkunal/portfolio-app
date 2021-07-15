@@ -1,35 +1,35 @@
-import { useRef***REMOVED*** useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as Icon from '../icons/SideBarIcons';
 import '../css/SideBar.css'
 
 const SideBar = () => {
-    const [expand***REMOVED*** setExpand] = useState(false);
+    const [expand, setExpand] = useState(false);
     const sidebarRef = useRef(null)
     const links = [
-***REMOVED***
-            icon: process.env.PUBLIC_URL + '/info_circle_outline.svg'***REMOVED***
+        {
+            icon: process.env.PUBLIC_URL + '/info_circle_outline.svg',
             title: "About"
-    ***REMOVED******REMOVED***
-***REMOVED***
-            icon: process.env.PUBLIC_URL + '/info_circle_outline.svg'***REMOVED***
+        },
+        {
+            icon: process.env.PUBLIC_URL + '/info_circle_outline.svg',
             title: "About"
-    ***REMOVED******REMOVED***
-***REMOVED***
-            icon: process.env.PUBLIC_URL + '/info_circle_outline.svg'***REMOVED***
+        },
+        {
+            icon: process.env.PUBLIC_URL + '/info_circle_outline.svg',
             title: "About"
-    ***REMOVED******REMOVED***
-***REMOVED***
-            icon: process.env.PUBLIC_URL + '/info_circle_outline.svg'***REMOVED***
+        },
+        {
+            icon: process.env.PUBLIC_URL + '/info_circle_outline.svg',
             title: "About"
-    ***REMOVED******REMOVED***
+        },
     ];
 
-    const [width***REMOVED*** height] = ["24px"***REMOVED*** "16px"];
+    const [width, height] = ["24px", "16px"];
 
     const handlHover = (e) => {
 
-***REMOVED***
+    }
 
     const onClick = () => {
         var width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
@@ -46,21 +46,21 @@ const SideBar = () => {
             setTimeout(()=> {
                 for(let elem of elems){
                     elem.classList["add"]('visible');
-***REMOVED***
-***REMOVED*** 20);
-    ***REMOVED***
+                }
+            }, 20);
+        }
         else if(expand) {
             const elems = sidebar.querySelectorAll('.link-text');
             sidebar.classList.remove('expand');
             setTimeout(()=> {
                 for(let elem of elems){
                     elem.classList.remove('visible');
-***REMOVED***
-***REMOVED*** 20);
-    ***REMOVED***
+                }
+            }, 20);
+        }
 
         setExpand(!expand);
-***REMOVED***
+    }
     return (
         <div ref={sidebarRef} className="sidebar">
             <div className="sidebar-link logo" onClick={onClick}>

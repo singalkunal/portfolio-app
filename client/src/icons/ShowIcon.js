@@ -1,4 +1,4 @@
-const ShowIcon = ({ className="" ***REMOVED*** => {
+const ShowIcon = ({ className="" }) => {
   return (
     <svg
       aria-hidden="true"

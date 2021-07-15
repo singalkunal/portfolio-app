@@ -1,4 +1,4 @@
-const SkillsIcon = ({ className = "" ***REMOVED*** => {
+const SkillsIcon = ({ className = "" }) => {
   return (
     <svg
       className={className + " svg-icon"}

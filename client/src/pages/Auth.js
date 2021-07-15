@@ -1,6 +1,6 @@
-import { useContext***REMOVED*** useEffect***REMOVED*** useRef***REMOVED*** useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import useTranslate from '../hooks/use-translate';
-import { Redirect***REMOVED*** useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 // custom hooks
 import useRequest from '../hooks/use-request';
@@ -18,66 +18,66 @@ import '../css/Auth.css';
 
 const Auth = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
-    const { translate***REMOVED*** data } = useTranslate();
+    const { translate, data } = useTranslate();
 
-    const { setSignedInUser***REMOVED*** setShowFooterButton } = useContext(LiveUpdateContext);
+    const { setSignedInUser, setShowFooterButton } = useContext(LiveUpdateContext);
 
     const formOverlayRef = useRef(null);
     const formRef = useRef(null);
     
     const onSignin = async () => {
-        const { email***REMOVED*** password } = values; // email can be username or password
+        const { email, password } = values; // email can be username or password
 
-        console.log(email***REMOVED*** password);
-    ***REMOVED***
+        console.log(email, password);
+        try {
             const res = await signinRequest();
             console.log(res);
             if(res) {
-                console.log('Successfully signed in...'***REMOVED*** res);
+                console.log('Successfully signed in...', res);
                 setSignedInUser(res.user);
                 history.push('/account');
-***REMOVED***
-    ***REMOVED***
-    ***REMOVED***console.log('Error while signing in: '***REMOVED*** err)}
-***REMOVED***
+            }
+        }
+        catch(err) {console.log('Error while signing in: ', err)}
+    }
 
     const onSignup = async () => {
-    ***REMOVED***
+        try {
             const res = await signupRequest();
             if(res) {
                 console.log('Successfully signed up...');
                 console.log(res);
                 history.push({
-                    pathname: '/redirect'***REMOVED***
+                    pathname: '/redirect',
                     state: {
-                        header: 'Thank you for registering with us...'***REMOVED***
+                        header: 'Thank you for registering with us...',
                         helptext: 'Check you email for verification...'
-    ***REMOVED***
-***REMOVED***);
-***REMOVED***
-    ***REMOVED***
-    ***REMOVED***console.log('Error while signing up: '***REMOVED*** err)}
-***REMOVED***
+                    }
+                });
+            }
+        }
+        catch(err) {console.log('Error while signing up: ', err)}
+    }
 
-    const { values***REMOVED*** reinitializeForm***REMOVED*** handleChange***REMOVED*** handleSubmit } = useForm({
+    const { values, reinitializeForm, handleChange, handleSubmit } = useForm({
         initialValues: {
-            username: ""***REMOVED***
-            email: ""***REMOVED***
-            password: ""***REMOVED***
+            username: "",
+            email: "",
+            password: "",
             remember: false
-    ***REMOVED******REMOVED***
+        },
         onSubmit: (event) => {
-            console.log('Submit: '***REMOVED*** values);
+            console.log('Submit: ', values);
             data.type === 'in' ? onSignin(event) : onSignup(event);
-    ***REMOVED***
-***REMOVED***);
+        }
+    });
 
     const onTranslate = (event) => {
         console.log(formOverlayRef.current)
         console.log(formRef.current)
 
         // // const overlayOffset = 
-        console.log(formRef.current.offsetTop***REMOVED*** formOverlayRef.current.offsetTop - formRef.current.offsetTop);
+        console.log(formRef.current.offsetTop, formOverlayRef.current.offsetTop - formRef.current.offsetTop);
 
         
 
@@ -85,34 +85,34 @@ const Auth = () => {
         const overlay = formOverlayRef.current;
         const form = formRef.current;
 
-        translate(event***REMOVED*** formOverlayRef.current***REMOVED*** formRef.current);
+        translate(event, formOverlayRef.current, formRef.current);
         reinitializeForm({
-            username: ""***REMOVED***
-            email: ""***REMOVED*** // email can be username or password in case of signin
-            password: ""***REMOVED***
+            username: "",
+            email: "", // email can be username or password in case of signin
+            password: "",
             remember: false
-    ***REMOVED***)
-***REMOVED***
+        })
+    }
 
-    const [errors***REMOVED*** setErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
     const history = useHistory();
 
     // requests
-    const { doRequest: signinRequest***REMOVED*** errors: signinerrors } = useRequest({
-        url: API_URL+'/api/users/signin'***REMOVED***
-        method: 'post'***REMOVED***
+    const { doRequest: signinRequest, errors: signinerrors } = useRequest({
+        url: API_URL+'/api/users/signin',
+        method: 'post',
         body: { 
-            alias: values.email***REMOVED***
-            password: values.password***REMOVED***
+            alias: values.email,
+            password: values.password,
             remember: values.remember
-    ***REMOVED***
-***REMOVED***);
+        }
+    });
 
-    const { doRequest: signupRequest***REMOVED*** errors: signuperrors } = useRequest({
-        url: API_URL+'/api/users/signup'***REMOVED***
-        method: 'post'***REMOVED***
+    const { doRequest: signupRequest, errors: signuperrors } = useRequest({
+        url: API_URL+'/api/users/signup',
+        method: 'post',
         body: { ...values }
-***REMOVED***);
+    });
 
 
     // const onEmailChange = (e) => setEmail(e.target.value);
@@ -120,22 +120,22 @@ const Auth = () => {
 
     const forgotPassword = () => {
         history.push('/auth/forgot');
-***REMOVED***
+    }
 
 
     useEffect(() => {
         setShowFooterButton(false);
         return () => {
             setShowFooterButton(true);
-    ***REMOVED***
-***REMOVED******REMOVED*** []);
+        }
+    }, []);
     
     // html data to render form
     useEffect(() => {
         // setEmail('');
         // setPassword('');
         setErrors([]);
-***REMOVED******REMOVED*** [data])
+    }, [data])
 
     useEffect(() => {
         const e = data.type === 'in' ? signinerrors : signuperrors;
@@ -145,22 +145,22 @@ const Auth = () => {
             const formContainer = document.querySelector(".auth.form-container");
             formContainer.classList.add('alert');
             var showAlert = "";
-            e.map(({msg***REMOVED*** _***REMOVED*** => {
+            e.map(({msg, _}) => {
                 if(msg) showAlert += '\n\u2022 ' + msg
-***REMOVED***);
+            });
 
             setTimeout(() => {
                 formContainer.classList.remove('alert');
-***REMOVED*** 1000);
+            }, 1000);
 
             if(!showAlert.length) showAlert = "Please try again in some time..."
             alert(showAlert);
             setErrors([]);
             return;
-    ***REMOVED***
+        }
 
         setErrors(e ? e : ['Please try again in some time...']);
-***REMOVED******REMOVED*** [signinerrors***REMOVED*** signuperrors])
+    }, [signinerrors, signuperrors])
 
     return (
         <div className="wrapper">
@@ -182,7 +182,7 @@ const Auth = () => {
                         </header>
 
                         <form>
-                ***REMOVED***
+                            {
                                 data.type === 'up' && 
                                 <FormInput
                                     label="Username"
@@ -191,7 +191,7 @@ const Auth = () => {
                                     value={values.username}
                                     handleChange={handleChange}
                                 />
-            ***REMOVED***
+                            }
                             <FormInput 
                                 label={data.type == 'up' ? "Email" : 'Email / Username'}
                                 name="email"
@@ -209,7 +209,7 @@ const Auth = () => {
                                 handleChange={handleChange}
                             />
 
-                ***REMOVED***
+                            {
                                 data.type === 'in' && 
                                 <FormInput 
                                     label="Remember me for a month"
@@ -219,7 +219,7 @@ const Auth = () => {
                                     value={values.remember}
                                     handleChange={handleChange}
                                 />
-            ***REMOVED***
+                            }
                             <span className={data.type + " helptext"} onClick={forgotPassword}> {data.helptext}</span>
                             <Error errors={errors} />
                             <Button label={data.title} iconClass={data.icon} className="form-button" onClick={handleSubmit}/>

@@ -3,8 +3,8 @@
 }
 
 #account-app-overlay {
-    /* background-color: rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.2); */
-    background-image: linear-gradient(rgba(0***REMOVED*** 0***REMOVED*** 0***REMOVED*** 0.15)***REMOVED*** #ffffff);
+    /* background-color: rgba(0,0,0,0.2); */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.15), #ffffff);
     position: fixed;
     top: 0;
     right: 0;
@@ -21,7 +21,7 @@
 }
 
 .account {
-    box-shadow: 0 0 20px rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.2);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
     padding: 20px;
     border-radius: 20px;
     width: 80%;
@@ -38,7 +38,7 @@
 }
 
 .account header {
-    border-bottom: 2px solid rgba(0***REMOVED*** 0***REMOVED*** 0***REMOVED*** 0.5);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
 }
 .account header .title {
     font-size: 20px;
@@ -59,7 +59,7 @@ ul{
 }
 
 .views {
-    color: rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.8);
+    color: rgba(0,0,0,0.8);
 }
 li a {
     text-decoration: none;
@@ -88,14 +88,14 @@ progress
 {
     border: 0;
     border-radius: 20px;
-    background-color: rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.13);
+    background-color: rgba(0,0,0,0.13);
     width: 100%;
 }
 
 ::-webkit-progress-bar {
     border: 0;
     border-radius: 20px;
-    background-color: rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.13);
+    background-color: rgba(0,0,0,0.13);
     width: 100%;
 }
 

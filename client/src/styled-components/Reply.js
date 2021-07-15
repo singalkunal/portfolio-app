@@ -10,7 +10,7 @@ const ReplyHead = styled.div`
 
     & span {
         font-size: 13px;
-***REMOVED***
+    }
 `
 
 const ReplyMain = styled.main`
@@ -20,7 +20,7 @@ const ReplyMain = styled.main`
 `
 const Reply = ({
     reply
-***REMOVED*** => {
+}) => {
     return (
         <StyledReply>
             <ReplyHead>
@@ -28,7 +28,7 @@ const Reply = ({
             </ReplyHead>
 
             <ReplyMain>
-    ***REMOVED***reply.text}
+                {reply.text}
             </ReplyMain>
         </StyledReply>
     )

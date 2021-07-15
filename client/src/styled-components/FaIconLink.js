@@ -11,21 +11,21 @@ export const FaIcon = styled(FontAwesomeIcon) `
 
     &:hover{
         ${props => props.hover}
-***REMOVED***
+    }
 `
 const FaIconLink = ({
-    icon***REMOVED***
-    link=""***REMOVED***
-    width***REMOVED***
-    height***REMOVED***
-    onHover={transform: "scale(1.1)"}***REMOVED***
+    icon,
+    link="",
+    width,
+    height,
+    onHover={transform: "scale(1.1)"},
     external
-***REMOVED*** => {
+}) => {
     console.log(external);
     return (
 
         <>
-***REMOVED***
+        {
             external
             ?
             <a href={link}>
@@ -45,7 +45,7 @@ const FaIconLink = ({
                     hover={onHover}
                 />
             </Link>
-    ***REMOVED***
+        }
         </>
     )
 }

@@ -1,15 +1,15 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
+const express = require('express');
+const currentUser = require('../../middlewares/current-user');
+const RequireAuth = require('../../middlewares/require-auth');
 
-***REMOVED***
+const router = express.Router();
 
-router.delete('/api/users/signout'***REMOVED***
-***REMOVED***
-***REMOVED***
-(req***REMOVED*** res) => {
+router.delete('/api/users/signout',
+currentUser,
+RequireAuth,
+(req, res) => {
     req.session = null;
     res.sendStatus(200);
-***REMOVED***
+});
 
-***REMOVED***
+module.exports = router;

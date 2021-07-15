@@ -19,7 +19,7 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%***REMOVED*** -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
     transition : all 200ms ease-in-out;
     z-index: 10;
 
@@ -38,12 +38,12 @@
 /* .edit-form-wrapper img {
     transform: scale(1.1);
 } */
- /* Hide scrollbar for Chrome***REMOVED*** Safari and Opera */
+ /* Hide scrollbar for Chrome, Safari and Opera */
  .edit-form-wrapper::-webkit-scrollbar {
     display: none;
   }
   
-  /* Hide scrollbar for IE***REMOVED*** Edge and Firefox */
+  /* Hide scrollbar for IE, Edge and Firefox */
   .edit-form-wrapper {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
@@ -51,7 +51,7 @@
 
 
 .edit-form-wrapper.active {
-    transform: translate(-50%***REMOVED*** -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .edit-form-wrapper .form-group {
@@ -59,8 +59,8 @@
     flex-direction: column;
 }
 
-.edit-form-wrapper input[type=text]***REMOVED***
-.edit-form-wrapper input[type=url]***REMOVED***
+.edit-form-wrapper input[type=text],
+.edit-form-wrapper input[type=url],
 .edit-form-wrapper textarea{
     min-width: 300px;
     padding-left: 10px;
@@ -89,13 +89,13 @@ textarea {
     pointer-events: none;
 }
 
-.button.add-skill***REMOVED***
+.button.add-skill,
 .button.add-skill:hover {
     padding: 5px 10px;
     background-color: var(--btn-secondary);
-    color: rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.8);
-    box-shadow: 0 0 5px rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.2);
-    border: 1px solid rgba(0***REMOVED***0***REMOVED***0***REMOVED***0.3);
+    color: rgba(0,0,0,0.8);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    border: 1px solid rgba(0,0,0,0.3);
 }
 
 
@@ -141,8 +141,8 @@ textarea {
     /* max-height: none; */
 }
 
-#about-form***REMOVED***
-#experience-from***REMOVED***
+#about-form,
+#experience-from,
 #skills-form {
     max-width: 100%;
 }
@@ -151,5 +151,5 @@ textarea {
 @media only screen and (min-width: 400px) {
     .edit-form-wrapper{
         max-height: 90%;
-***REMOVED***
+    }
 }

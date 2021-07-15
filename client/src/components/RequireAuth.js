@@ -4,8 +4,8 @@ import Redirect from "../pages/Redirect";
 import Load from "./Load";
 import SomeError from "./SomeError";
 
-const RequireAuth = ({ children ***REMOVED*** => {
-const { signedInUser***REMOVED*** globalLoading } = useContext(LiveUpdateContext);
+const RequireAuth = ({ children }) => {
+const { signedInUser, globalLoading } = useContext(LiveUpdateContext);
     const redirectTime = 3;
     return (
         <>
@@ -17,7 +17,7 @@ const { signedInUser***REMOVED*** globalLoading } = useContext(LiveUpdateContext
                     redirectTime={redirectTime}
                     path="/auth"
                 >
-        ***REMOVED***children}
+                    {children}
                 </SomeError>
             </Load>
         </>

@@ -1,9 +1,9 @@
 import { forwardRef } from "react";
 import Button from "./Button";
 
-const Alert = forwardRef(({ closeModal***REMOVED*** isPositive***REMOVED*** onProceed }***REMOVED*** ref) => {
-    const msgs = ['Changes will be lost...'***REMOVED*** 'Changes will be saved...']
-    const classes = ['cancel'***REMOVED*** 'save'];
+const Alert = forwardRef(({ closeModal, isPositive, onProceed }, ref) => {
+    const msgs = ['Changes will be lost...', 'Changes will be saved...']
+    const classes = ['cancel', 'save'];
 
     return (
         <div ref={ref}>
@@ -28,6 +28,6 @@ const Alert = forwardRef(({ closeModal***REMOVED*** isPositive***REMOVED*** onPr
             </div>
         </div>
     )
-***REMOVED***
+});
 
 export default Alert

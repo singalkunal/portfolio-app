@@ -4,7 +4,7 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%***REMOVED*** -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
     transition : 200ms ease-in-out;
     z-index: 10;
 
@@ -17,19 +17,19 @@
     padding: 20px 5px;
 }
 
- /* Hide scrollbar for Chrome***REMOVED*** Safari and Opera */
+ /* Hide scrollbar for Chrome, Safari and Opera */
  .details-modal::-webkit-scrollbar {
     display: none;
   }
   
-  /* Hide scrollbar for IE***REMOVED*** Edge and Firefox */
+  /* Hide scrollbar for IE, Edge and Firefox */
   .details-modal {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   } 
 
 .details-modal.active {
-    transform: translate(-50%***REMOVED*** -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .modal-container{
@@ -65,7 +65,7 @@
 }
 
 .close-btn:hover{
-    background-color: rgba(200***REMOVED***200***REMOVED***200***REMOVED***0.5);
+    background-color: rgba(200,200,200,0.5);
     border-radius: 25px;
 }
 
@@ -86,12 +86,12 @@
     .details-modal{
         width: 80%;
         max-width: none;
-***REMOVED***
+    }
 
     .modal-container{
         width: 60%;
         margin: 0 5%;
-***REMOVED***
+    }
 
     .modal-images{
         display: grid;
@@ -99,10 +99,10 @@
         position: absolute;
         top: 0;
         right: 0;
-***REMOVED***
+    }
 
     .modal-images img {
         
-***REMOVED***
+    }
      
 }

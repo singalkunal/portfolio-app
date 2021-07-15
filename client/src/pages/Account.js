@@ -1,5 +1,5 @@
-import { useHistory***REMOVED*** useParams***REMOVED*** Link } from "react-router-dom"
-import { useContext***REMOVED*** useEffect***REMOVED*** useRef***REMOVED*** useState } from 'react';
+import { useHistory, useParams, Link } from "react-router-dom"
+import { useContext, useEffect, useRef, useState } from 'react';
 import useRequest from "../hooks/use-request";
 
 import Load from '../components/Load';
@@ -16,25 +16,25 @@ const Account = () => {
     const redirectTime = 5 // redirection time (in seconds) on error
     const history = useHistory();
 
-    const [user***REMOVED*** setUser] = useState({***REMOVED***
+    const [user, setUser] = useState({});
     const { setSignedInUser } = useContext(LiveUpdateContext);
 
-    const [loading***REMOVED*** setLoading] = useState(true);
-    const [isError***REMOVED*** setIsError] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
 
-    const [viewCount***REMOVED*** setViewCount] = useState('NA');
+    const [viewCount, setViewCount] = useState('NA');
     const progressRef = useRef(null);
 
 
-    const { doRequest: deleteAccount***REMOVED*** errors: deleteAccountErrors } = useRequest({
-        method: 'delete'***REMOVED***
+    const { doRequest: deleteAccount, errors: deleteAccountErrors } = useRequest({
+        method: 'delete',
         url: API_URL + '/api/users/currentuser/delete'
-***REMOVED***);
+    });
 
-    const { doRequest: getUserDetails***REMOVED*** errors: getUserDetailsErrors } = useRequest({
-        url: API_URL+"/api/users/currentuser/details"***REMOVED***
+    const { doRequest: getUserDetails, errors: getUserDetailsErrors } = useRequest({
+        url: API_URL+"/api/users/currentuser/details",
         method: 'get'
-***REMOVED***);
+    });
 
     
 
@@ -44,8 +44,8 @@ const Account = () => {
             setSignedInUser(null);
             setUser(null);
             history.push('/');
-    ***REMOVED***
-***REMOVED***;
+        }
+    };
 
 
     // check if current signed in user
@@ -63,21 +63,21 @@ const Account = () => {
 
 
                 const p = calcPercentageCompleted(currentUser);
-                console.log("% = "***REMOVED*** p);
-                animateValue(0***REMOVED*** p***REMOVED*** 2000***REMOVED*** document.getElementById('bar')***REMOVED*** "value");
-                animateValue(0***REMOVED*** p***REMOVED*** 2000***REMOVED*** progressRef.current***REMOVED*** "textContent"***REMOVED*** "% Profile completed");    
+                console.log("% = ", p);
+                animateValue(0, p, 2000, document.getElementById('bar'), "value");
+                animateValue(0, p, 2000, progressRef.current, "textContent", "% Profile completed");    
                 // asynchronously animate certain fields
-***REMOVED***
+            }
             else {
                 setLoading(false);
                 setIsError(true);
-***REMOVED***
+            }
 
-    ***REMOVED***
+        }
 
         fetchAndAnimate();
 
-***REMOVED******REMOVED*** [])
+    }, [])
 
     
 
@@ -86,7 +86,7 @@ const Account = () => {
             <div id="account-app-overlay"></div>
             <Load loading={loading}>
                 <SomeError isError={isError || !user} redirect redirectTime={+redirectTime} path="/auth">
-        ***REMOVED***
+                    {
                         user
                         &&
                         <div className="account">
@@ -113,16 +113,16 @@ const Account = () => {
 
                                 <li className="link">
                                     <Link to={{
-                                        pathname:"/portfolio/" + user.username***REMOVED***
+                                        pathname:"/portfolio/" + user.username,
                                         state: {
                                             portfolio: user.portfolio
-                        ***REMOVED***
-                    ***REMOVED***}
+                                        }
+                                    }}
                                     >
                                         <i className="far fa-file-alt"></i>
                                         <span className="text">My Portfolio</span>
                                     </Link>
-                        ***REMOVED***/* <a href="">
+                                    {/* <a href="">
                                     
                                     </a> */}
                                 </li>
@@ -136,15 +136,15 @@ const Account = () => {
                                 </li>
 
                                 <li className="link" onClick={onDeleteAccount}>
-                        ***REMOVED***/* <a href=""> */}
+                                    {/* <a href=""> */}
                                         <i className="fas fa-trash-alt"></i>
                                         <span className="text">Delete Account</span>
-                        ***REMOVED***/* </a> */}
+                                    {/* </a> */}
                                 </li>
 
                             </ul>
                         </div>
-    ***REMOVED***
+                    }
                 </SomeError>
             </Load>
         </div>

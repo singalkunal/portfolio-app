@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-const ProfileLinks = ({ profile_links ***REMOVED*** => {
+const ProfileLinks = ({ profile_links }) => {
     const onError = (event) => {
         event.preventDefault();
 
@@ -9,10 +9,10 @@ const ProfileLinks = ({ profile_links ***REMOVED*** => {
         const text = event.target.nextElementSibling;
         img.style.display = "none";
         text.style.display = "block";
-***REMOVED***
+    }
     return (
         <div className="profileLinks">
-***REMOVED***
+            {
                 profile_links.map(profile => {
                     var classes = profile.classes
                     return  <a href={profile.link}
@@ -23,8 +23,8 @@ const ProfileLinks = ({ profile_links ***REMOVED*** => {
                         <img src={profile.icon_url}  onError={onError} />
                         <div style={{display:"none"}}>{profile.title}</div>
                     </a>
-***REMOVED***)
-***REMOVED***
+                })
+            }
         </div>
     )
 }

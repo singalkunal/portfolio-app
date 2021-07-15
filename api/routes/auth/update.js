@@ -1,9 +1,9 @@
-***REMOVED***
+const express = require('express');
 require('express-async-errors');
-const { body***REMOVED*** query***REMOVED*** oneOf***REMOVED*** check } = require('express-validator');
+const { body, query, oneOf, check } = require('express-validator');
 
-***REMOVED***
-***REMOVED***
+const BadRequestError = require('../../errors/bad-request-error');
+const validateRequest = require('../../middlewares/validate-request');
 const validator = require('validator');
 
 const { randomBytes } = require('crypto');
@@ -13,156 +13,156 @@ const sgMail = require('@sendgrid/mail');
 const SecretCode = require('../../models/secret-code');
 const User = require('../../models/user');
 
-***REMOVED***
+const router = express.Router();
 
-router.post('/api/users/forgot'***REMOVED***
+router.post('/api/users/forgot',
 [
     oneOf([
         check('alias')
-        ***REMOVED***
+        .exists()
         .isEmail()
         .withMessage('Not a valid email')
-        ***REMOVED***
-            return User.findOne({email: value***REMOVED***.then(user => {
+        .custom((value, { req }) => {
+            return User.findOne({email: value}).then(user => {
                 if(!user) {
                     return Promise.reject('No user found with provided email')
-***REMOVED***
+                }
 
                 req.body.user = user;
-***REMOVED***)
-    ***REMOVED***)
-        ***REMOVED***
+            })
+        })
+        ,
         check('alias')
-        ***REMOVED***
-        .isLength({min: 1***REMOVED***
+        .exists()
+        .isLength({min: 1})
         .withMessage('Username can\'t be empty')
-        ***REMOVED***
-            return User.findOne({username: value***REMOVED***.then(user => {
+        .custom((value, { req }) => {
+            return User.findOne({username: value}).then(user => {
                 if(!user) {
                     return Promise.reject('No user found with provided username')
-***REMOVED***
+                }
 
                 req.body.user = user;
-***REMOVED***)
-    ***REMOVED***)
-    ]***REMOVED***
+            })
+        })
+    ],
     'Please provide valid email or username')
-]***REMOVED***
-validateRequest***REMOVED***
-***REMOVED***
+],
+validateRequest,
+async (req, res) => {
     req.session = null;
-    const { user***REMOVED***  } = req.body;
+    const { user,  } = req.body;
 
     if(!user) {
-        throw new BadRequestError('User doesn\'t exists'***REMOVED*** 404);
-***REMOVED***
+        throw new BadRequestError('User doesn\'t exists', 404);
+    }
 
     // delete if any verification code existed before
-    await SecretCode.deleteOne({username: user.username***REMOVED***.exec();
+    await SecretCode.deleteOne({username: user.username}).exec();
 
     const code = new SecretCode({
-        code: randomBytes(64).toString('hex')***REMOVED***
-        username: user.username***REMOVED***
-        email: user.email***REMOVED***
+        code: randomBytes(64).toString('hex'),
+        username: user.username,
+        email: user.email,
         userId: user._id
-***REMOVED***);
+    });
 
     await code.save();
 
     if(!process.env.SENDGRID_API_KEY) {
         console.log('SENDGRID_API_KEY not defined...');
-        throw new BadRequestError('Can\'t send verification code...'***REMOVED*** 401);
-***REMOVED***
+        throw new BadRequestError('Can\'t send verification code...', 401);
+    }
 
     var base64email = Buffer.from(user.email).toString('base64');
-    console.log(Buffer.from(base64email***REMOVED*** 'base64').toString('utf-8'));
+    console.log(Buffer.from(base64email, 'base64').toString('utf-8'));
 
     const msg = {
         from: {
-            name: 'Portfolio App'***REMOVED***
+            name: 'Portfolio App',
             email: process.env.EMAIL || 'portfolio.app@yandex.ru'
-    ***REMOVED******REMOVED***
-        to: user.email***REMOVED***
-        subject: 'Portfolio App - Reset your password'***REMOVED***
+        },
+        to: user.email,
+        subject: 'Portfolio App - Reset your password',
         text: `
-            Hello***REMOVED***
+            Hello,
             Please copy and paste below url in browser to rest your password
             http://${process.env.REACT_APP_URL}/auth/reset?code=${code.code}&email=${base64email}
-        `***REMOVED***
+        `,
         html: `
             <h1>Hello</h1>
             <p>Please click the link below to rest your password. Code is valid only for 30 mins </p>
             <a href = http://${process.env.REACT_APP_URL}/auth/reset?code=${code.code}&email=${base64email}>Reset your password</a>
         `
-***REMOVED***
+    }
 
-***REMOVED***
+    try {
         await sgMail.send(msg);
         res.status(200).send(true);
-***REMOVED***
-***REMOVED***
-        throw new BadRequestError('Can\'t send verification code... Try again in some time'***REMOVED*** 500);
-***REMOVED***
-***REMOVED***
+    }
+    catch(err) {
+        throw new BadRequestError('Can\'t send verification code... Try again in some time', 500);
+    }
+});
 
-router.post('/api/users/reset'***REMOVED*** 
+router.post('/api/users/reset', 
 [
     body('email')
-    ***REMOVED***
-    .custom((value***REMOVED*** {req***REMOVED*** => {
-        req.body.userEmail = Buffer.from(value***REMOVED*** 'base64').toString('ascii');
+    .exists()
+    .custom((value, {req}) => {
+        req.body.userEmail = Buffer.from(value, 'base64').toString('ascii');
         return true;
-***REMOVED***)***REMOVED***
+    }),
     body('userEmail')
-    ***REMOVED***
+    .exists()
     .isEmail()
-    .withMessage('Invalid email...')***REMOVED***
+    .withMessage('Invalid email...'),
     body('password')
-    ***REMOVED***
-    .isLength({min: 8***REMOVED***
-    .withMessage('Passwrod must be of min 8 length')***REMOVED***
+    .exists()
+    .isLength({min: 8})
+    .withMessage('Passwrod must be of min 8 length'),
     body('code')
     .exists('Unique code doesn\'t exists' )
-]***REMOVED***
-validateRequest***REMOVED***
-***REMOVED***
+],
+validateRequest,
+async (req, res) => {
     // console.log(req.query);
     req.session = null;
 
-    var { code***REMOVED*** userEmail: email***REMOVED*** password } = req.body;
+    var { code, userEmail: email, password } = req.body;
     const now = Date.now();
 
-    const secretcode = await SecretCode.findOne({code***REMOVED***
+    const secretcode = await SecretCode.findOne({code});
 
     if(!secretcode || secretcode.email !== email) {
         return res.status(400).send('<h1>Verification failed</h1>');
-***REMOVED***
+    }
 
     if(secretcode.expiresAt.getTime() <= now) {
-        throw new BadRequestError('Verification code exprired'***REMOVED*** 400);
-***REMOVED***
+        throw new BadRequestError('Verification code exprired', 400);
+    }
 
     const user = await User.findById(secretcode.userId);
     if(!user) {
         return res.status(400).send('<h1>Verification failed</h1>');
-***REMOVED***
+    }
 
     user.active = true;
     user.password = password;
 
-***REMOVED***
+    try {
         await user.save();
-***REMOVED***
-***REMOVED***
-        console.log('====>'***REMOVED*** err);
-        throw new BadRequestError('Error updating user...'***REMOVED*** 500);
-***REMOVED***
+    }
+    catch(err) {
+        console.log('====>', err);
+        throw new BadRequestError('Error updating user...', 500);
+    }
 
 
-    await SecretCode.deleteOne({code***REMOVED***
+    await SecretCode.deleteOne({code});
 
     res.status(200).send('Verified');
-***REMOVED***
+})
 
 
-***REMOVED***
+module.exports = router;

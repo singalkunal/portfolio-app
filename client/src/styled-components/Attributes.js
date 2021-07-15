@@ -2,13 +2,13 @@ import styled from 'styled-components/macro';
 import { FaIcon } from './FaIconLink';
 
 const Attribute = ({
-    className***REMOVED***
-    icon***REMOVED***
-    iconWidth***REMOVED***
-    iconHeight***REMOVED***
-    label***REMOVED***
+    className,
+    icon,
+    iconWidth,
+    iconHeight,
+    label,
     onClick
-***REMOVED*** => {
+}) => {
     return (
         <li className={className} onClick={onClick}>
             <FaIcon
@@ -27,10 +27,10 @@ export const StyledAttribute = styled(Attribute)`
     padding: 0 10px;
     & span {
         font-size: ${props => props.fontSize || "16px"};
-***REMOVED***
+    }
     &:hover {
         cursor: pointer;
-***REMOVED***
+    }
 `
 
 export const StyledAttributes = styled.ul`

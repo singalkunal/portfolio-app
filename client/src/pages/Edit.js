@@ -1,5 +1,5 @@
-import { useState***REMOVED*** useContext***REMOVED*** useEffect } from 'react'
-import {Link***REMOVED*** useHistory} from 'react-router-dom';
+import { useState, useContext, useEffect } from 'react'
+import {Link, useHistory} from 'react-router-dom';
 import useRequest from '../hooks/use-request'
 
 import useModal from '../hooks/use-modal';
@@ -29,41 +29,41 @@ import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 
 const EditPage = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
-    const { doRequest: fetchCurrentUserDetails***REMOVED*** errors } = useRequest({
-        method: 'get'***REMOVED***
+    const { doRequest: fetchCurrentUserDetails, errors } = useRequest({
+        method: 'get',
         url: API_URL + '/api/users/currentuser/details'
-***REMOVED***);
+    });
 
-    const { doRequest: putPortfolio***REMOVED*** errors: updatePortfolioErrors } = useRequest({
-        method: 'put'***REMOVED***
+    const { doRequest: putPortfolio, errors: updatePortfolioErrors } = useRequest({
+        method: 'put',
         url: API_URL + '/api/portfolio/edit'
-***REMOVED***)
+    })
 
     const history = useHistory();
     const { setShowFooterButton } = useContext(LiveUpdateContext)
     
 
     /****************************************states***************************************************/
-    const [loading***REMOVED*** setLoading] = useState(true);
-    const [isError***REMOVED*** setIsError] = useState(false);
-    const [user***REMOVED*** setUser] = useState({***REMOVED***
+    const [loading, setLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
+    const [user, setUser] = useState({});
 
-    const [about***REMOVED*** setAbout] = useState({***REMOVED***
-    const [experiences***REMOVED*** setExperiences] = useState([]);
-    const [skills***REMOVED*** setSkills] = useState([]);
+    const [about, setAbout] = useState({});
+    const [experiences, setExperiences] = useState([]);
+    const [skills, setSkills] = useState([]);
 
-    const [postiveAlert***REMOVED*** setPositiveAlert] = useState(false);
+    const [postiveAlert, setPositiveAlert] = useState(false);
 
     // currently experience loaded in modal form (ExperienceForm)
     // this state is only used to initialize from value
     // if edited then those will be directly updated to experiences array 
     // and not this state
-    const [currentExpLoaded***REMOVED*** setCurrentExpLoaded] = useState({***REMOVED***
+    const [currentExpLoaded, setCurrentExpLoaded] = useState({});
 
     /****************************************modals***************************************************/
-    const { modalContainerRef:aboutRef***REMOVED*** openModal:openAbout***REMOVED*** closeModal:closeAbout }  = useModal({activeClass:"active"***REMOVED***
-    const { modalContainerRef:expRef***REMOVED*** openModal:openExp***REMOVED*** closeModal:closeExp }  = useModal({activeClass:"active"***REMOVED***
-    const { modalContainerRef:skillsRef***REMOVED*** openModal:openSkills***REMOVED*** closeModal:closeSkills }  = useModal({activeClass:"active"***REMOVED***
+    const { modalContainerRef:aboutRef, openModal:openAbout, closeModal:closeAbout }  = useModal({activeClass:"active"});
+    const { modalContainerRef:expRef, openModal:openExp, closeModal:closeExp }  = useModal({activeClass:"active"});
+    const { modalContainerRef:skillsRef, openModal:openSkills, closeModal:closeSkills }  = useModal({activeClass:"active"});
 
     /****************************************requests***************************************************/
     /****************************************About requests***************************************************/
@@ -71,7 +71,7 @@ const EditPage = () => {
     const updateAbout = async (newAbout) => {
         // await putAbout(newAbout);
         setAbout(newAbout);
-***REMOVED***
+    }
 
     /****************************************Experience requests***************************************************/
 
@@ -82,68 +82,68 @@ const EditPage = () => {
         if(id && id.length>0) {
             const idx = experiences.findIndex(obj => obj._id === id || obj._id === id);
             setCurrentExpLoaded(prev => experiences[idx]);
-    ***REMOVED***
+        }
         else {
             const empty = {};
             setCurrentExpLoaded(prev => empty);
-    ***REMOVED***
+        }
 
         openExp();
 
-***REMOVED***;
+    };
 
     const updateExperiences = async (newExperience) => {
         const prevValues = [...experiences];
 
-        await updateById(newExperience._id || null***REMOVED*** newExperience***REMOVED*** prevValues);
+        await updateById(newExperience._id || null, newExperience, prevValues);
         setExperiences(prevValues);
-***REMOVED***
+    }
 
     /****************************************Skills requests***************************************************/
     const updateSkills = (newSkills) => {
         setSkills(newSkills);
-***REMOVED***;
+    };
 
     /****************************************Action Buttons***************************************************/
 
-    const { modalContainerRef:alertRef***REMOVED*** 
-            openModal:openAlert***REMOVED*** 
+    const { modalContainerRef:alertRef, 
+            openModal:openAlert, 
             closeModal:closeAlert 
-    ***REMOVED***  = useModal({activeClass:"active"***REMOVED***
+        }  = useModal({activeClass:"active"});
 
     const onProceed = async (event) => {
         closeAlert();
         if(!postiveAlert) {
             history.push(`/portfolio/${user.username}`);
-    ***REMOVED***
+        }
         else {
             console.log({
-                about: about***REMOVED***
-                experiences: experiences***REMOVED***
+                about: about,
+                experiences: experiences,
                 skills: skills
-***REMOVED***);
+            });
 
             const portfolio = {
-                id: user.portfolio._id***REMOVED***
-                about: about***REMOVED***
-                experiences: experiences***REMOVED***
+                id: user.portfolio._id,
+                about: about,
+                experiences: experiences,
                 skills: skills
-***REMOVED***;
+            };
 
-            const res = await putPortfolio({portfolio:portfolio***REMOVED***
-            console.log('Response: '***REMOVED*** res);
+            const res = await putPortfolio({portfolio:portfolio});
+            console.log('Response: ', res);
             if(res) history.push(`/portfolio/${user._id}`);
-    ***REMOVED***
-***REMOVED***
+        }
+    }
     const onCancel = () => {
         setPositiveAlert(false);
         openAlert();
-***REMOVED***
+    }
 
     const onSubmit = () => {
         setPositiveAlert(true);
         openAlert();
-***REMOVED***
+    }
 
 
     /****************************************Side Effects***************************************************/
@@ -164,30 +164,30 @@ const EditPage = () => {
 
                 setLoading(false);
                 setIsError(false);
-***REMOVED***
-    ***REMOVED***
+            }
+        }
 
         fetchUser();
 
         return () => {
             const body = document.querySelector('body');
             body.style.overflowY = "scroll";
-    ***REMOVED***
-***REMOVED******REMOVED*** []);
+        }
+    }, []);
 
 
     useEffect(() => {
-***REMOVED******REMOVED*** [experiences])
+    }, [experiences])
     useEffect(() => {
         if(errors && errors.length) {
             console.log(errors)
             setIsError(true);
             setLoading(false);
-    ***REMOVED***
+        }
         else {
             setIsError(false);
-    ***REMOVED***
-***REMOVED******REMOVED*** [errors])
+        }
+    }, [errors])
 
 
     return (

@@ -1,4 +1,4 @@
-import { useContext***REMOVED*** useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { LiveUpdateContext } from "../contexts/LiveUpdateContext";
 import useRequest from "../hooks/use-request"
@@ -6,14 +6,14 @@ import Button from "./Button";
 
 import { socket } from '../service/socket';
 
-const SignOut = ({className=""***REMOVED*** => {
+const SignOut = ({className=""}) => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
 
     const {setSignedInUser} = useContext(LiveUpdateContext)
-    const { doRequest: signOut***REMOVED*** errors } = useRequest({
-        url: API_URL+'/api/users/signout'***REMOVED***
+    const { doRequest: signOut, errors } = useRequest({
+        url: API_URL+'/api/users/signout',
         method: 'delete'
-***REMOVED***);
+    });
 
     const history = useHistory();
 
@@ -23,7 +23,7 @@ const SignOut = ({className=""***REMOVED*** => {
         // window.location.reload();
         setSignedInUser(null);
         // history.push('/');
-***REMOVED***;
+    };
 
 
     return (

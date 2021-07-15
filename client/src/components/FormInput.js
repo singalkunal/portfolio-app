@@ -1,19 +1,19 @@
 import '../css/FormInput.css'
 const FormInput = ({ 
-    label***REMOVED*** 
-    dataid=""***REMOVED***
-    name***REMOVED*** 
-    type***REMOVED*** 
-    value***REMOVED*** 
-    placeholder=""***REMOVED***
-    iconUrl=null***REMOVED***
-    handleChange***REMOVED*** 
-    required=false ***REMOVED*** => {
+    label, 
+    dataid="",
+    name, 
+    type, 
+    value, 
+    placeholder="",
+    iconUrl=null,
+    handleChange, 
+    required=false }) => {
     return (
         
         <div className={"form-group " + type}>
-***REMOVED*** label && <label className="form-label">{label}</label> }
-***REMOVED***
+            { label && <label className="form-label">{label}</label> }
+            {
                 type === 'textarea'
                 ?
                 <textarea 
@@ -51,7 +51,7 @@ const FormInput = ({
                     placeholder={placeholder}
                     onChange={handleChange}
                 />
-***REMOVED***
+            }
         </div>
     )
 }

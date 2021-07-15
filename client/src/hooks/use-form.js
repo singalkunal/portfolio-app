@@ -1,9 +1,9 @@
-import { useRef***REMOVED*** useState***REMOVED*** useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
-const useForm = ({ initialValues***REMOVED*** onSubmit***REMOVED*** requiredValues=[] ***REMOVED*** => {
-    const [values***REMOVED*** setValues] = useState(initialValues || {***REMOVED***
-    const [errors***REMOVED*** setErrors] = useState([]);
-    const [isSubmitting***REMOVED*** setisSubmitting] = useState(false);
+const useForm = ({ initialValues, onSubmit, requiredValues=[] }) => {
+    const [values, setValues] = useState(initialValues || {});
+    const [errors, setErrors] = useState([]);
+    const [isSubmitting, setisSubmitting] = useState(false);
 
     const handleChange = (event) => {
         const target = event.target;
@@ -11,23 +11,23 @@ const useForm = ({ initialValues***REMOVED*** onSubmit***REMOVED*** requiredValu
 
         const value = target.type === 'checkbox' ? target.checked : target.value;
         setValues({
-            ...values***REMOVED***
+            ...values,
             [name]: value
-***REMOVED***
-***REMOVED***;
+        });
+    };
 
-    const changeSpecificValue = (name***REMOVED*** updValue) => {
-        console.log("change "***REMOVED*** name***REMOVED*** "to "***REMOVED*** updValue);
+    const changeSpecificValue = (name, updValue) => {
+        console.log("change ", name, "to ", updValue);
         setValues({
-            ...values***REMOVED***
+            ...values,
             [name]: updValue
-***REMOVED***
-***REMOVED***;
+        });
+    };
 
     const reinitializeForm = (newValues) => {
         setValues(newValues);
         setErrors([]);
-***REMOVED***;
+    };
 
     const handleSubmit = (event) => {
         // console.log(event);
@@ -39,21 +39,21 @@ const useForm = ({ initialValues***REMOVED*** onSubmit***REMOVED*** requiredValu
         const err = [];
         for (let name of requiredValues) {
             if(!values[name] || values[name] == "") {
-                err.push({msg: `Must provide ${name}...`***REMOVED***
-***REMOVED***
-    ***REMOVED***
+                err.push({msg: `Must provide ${name}...`});
+            }
+        }
 
         setErrors(prev => err);
         setisSubmitting(prev => true);
         // setValues(initialValues);
-***REMOVED***
+    }
 
     const handleDiscard = (event) => {
         event.preventDefault();
         event.stopPropagation();
 
         reinitializeForm(initialValues);
-***REMOVED***
+    }
 
     useEffect(() => {
         const submitOrError = async () => {
@@ -63,16 +63,16 @@ const useForm = ({ initialValues***REMOVED*** onSubmit***REMOVED*** requiredValu
                 // clear input values
                 init && setValues(initialValues);
                 setisSubmitting(prev => false);
-***REMOVED***
+            }
             else {
                 setisSubmitting(prev=>false);
-***REMOVED***
-    ***REMOVED***
+            }
+        }
 
         submitOrError();
-***REMOVED******REMOVED*** [errors])
+    }, [errors])
 
-    return { values***REMOVED*** handleChange***REMOVED*** reinitializeForm***REMOVED*** changeSpecificValue***REMOVED*** handleSubmit***REMOVED*** handleDiscard***REMOVED*** isSubmitting***REMOVED*** errors };
+    return { values, handleChange, reinitializeForm, changeSpecificValue, handleSubmit, handleDiscard, isSubmitting, errors };
 
 };
 

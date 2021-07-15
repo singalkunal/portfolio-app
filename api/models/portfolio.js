@@ -1,130 +1,130 @@
-***REMOVED***
+const mongoose = require('mongoose');
 
 const validateSize = (arr) => arr.length <= 2;
 
 const profileLinkSchema = new mongoose.Schema(
     {
         title: {
-            type: String***REMOVED***
+            type: String,
             required: true
-    ***REMOVED******REMOVED***
+        },
         link: {
-            type: String***REMOVED***
+            type: String,
             required: true
-    ***REMOVED******REMOVED***
+        },
         // firebase publicUrl of file
         icon_url: {
-            type: String***REMOVED***
-            default: ""***REMOVED***
-    ***REMOVED******REMOVED***
+            type: String,
+            default: "",
+        },
         // will be used to access file in firebase bucket
         filename: {
-            type: String***REMOVED***
+            type: String,
             default: ""
-    ***REMOVED***
-***REMOVED***
+        }
+    }
 );
 
 const portfolioSchema = new mongoose.Schema({
     about: {
             firstname: {
-                type: String***REMOVED***
+                type: String,
                 default : '**my name her**'
-***REMOVED***
+            },
             lastname: {
-                type: String***REMOVED***
+                type: String,
                 default: ""
-***REMOVED***
+            },
             img_url: {
-                type: String***REMOVED***
+                type: String,
                 default: ""
-***REMOVED***
+            },
             desc: {
-                type: String***REMOVED***
+                type: String,
                 default: "**my desc here**"
-***REMOVED***
+            },
             profile_links:[profileLinkSchema]
-***REMOVED******REMOVED***
+    },
     // maybe project or experience
     experiences: [{
         title: {
-            type: String***REMOVED***
+            type: String,
             required: true
-    ***REMOVED******REMOVED***
+        },
         brief: {
-            type: String***REMOVED***
+            type: String,
             required: true
-    ***REMOVED******REMOVED***
+        },
         detail: {
-            type: String***REMOVED***
+            type: String,
             required: true
-    ***REMOVED******REMOVED***
+        },
         tags: [
-***REMOVED***
+            {
                 tag: {
-                    type: String***REMOVED***
+                    type: String,
                     required: true
-***REMOVED***
-***REMOVED***
-        ]***REMOVED***
+                }
+            }
+        ],
         additional_tags: [
-***REMOVED***
+            {
                 tag: {
-                    type: String***REMOVED***
+                    type: String,
                     required: true
-***REMOVED***
-***REMOVED***
-        ]***REMOVED***
+                }
+            }
+        ],
         img_url: {
             type: [
-    ***REMOVED***
-                    type: String***REMOVED***
+                {
+                    type: String,
                     required: true
-***REMOVED***
-            ]***REMOVED***
+                }
+            ],
             validate: [validateSize]
-    ***REMOVED******REMOVED***
+        },
         external_links: [
-***REMOVED***
+            {
                 title: {
-                    type: String***REMOVED***
+                    type: String,
                     required: true
-    ***REMOVED***
+                },
                 link: {
-                    type: String***REMOVED***
+                    type: String,
                     required: true
-    ***REMOVED***
+                },
                 icon_url: {
-                    type: String***REMOVED***
+                    type: String,
                     default:""
-    ***REMOVED***
+                },
                 filename: {
-                    type: String***REMOVED***
+                    type: String,
                     default: ""
-***REMOVED***
-***REMOVED***
+                }
+            }
         ]
-***REMOVED***]***REMOVED***
+    }],
     skills: [{
         domain: {
-            type: String***REMOVED***
+            type: String,
             required: true
-    ***REMOVED******REMOVED***
+        },
         relatedSkills: [
-***REMOVED***
+            {
                 skill: String
-***REMOVED***
+            }
         ]
-***REMOVED***]***REMOVED***
+    }],
     post: {
-        type: mongoose.Schema.Types.ObjectId***REMOVED***
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
-***REMOVED******REMOVED***
-}***REMOVED***
+    },
+},
 {
     toJSON: {
         versionKey: false
-***REMOVED***
-***REMOVED***
+    }
+});
 
 module.exports = portfolioSchema;

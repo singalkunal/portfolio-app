@@ -12,12 +12,12 @@
     /* background-image: url(../public/images/sdlc.png); */
 }
 
- /* Hide scrollbar for Chrome***REMOVED*** Safari and Opera */
+ /* Hide scrollbar for Chrome, Safari and Opera */
  .home::-webkit-scrollbar {
     display: none;
   }
   
-  /* Hide scrollbar for IE***REMOVED*** Edge and Firefox */
+  /* Hide scrollbar for IE, Edge and Firefox */
   .home {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
@@ -34,7 +34,7 @@
 .heading{
     text-align: center;
     padding-bottom: 20px;
-    border-bottom: 2px solid rgba(253***REMOVED*** 245***REMOVED*** 230***REMOVED*** 0.6);
+    border-bottom: 2px solid rgba(253, 245, 230, 0.6);
 }
 ul.steps{
     list-style:none;
@@ -52,7 +52,7 @@ ul.steps{
 }
 .step i{
     padding-right: 10px;
-    color: rgba(255***REMOVED***255***REMOVED***255***REMOVED*** 0.8);;
+    color: rgba(255,255,255, 0.8);;
 }
 
 .buttons{

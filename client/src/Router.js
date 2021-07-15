@@ -1,6 +1,6 @@
 import { useContext } from "react"
 
-import { Switch***REMOVED*** Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 
 import EditPage from './pages/Edit';

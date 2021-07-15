@@ -11,36 +11,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const SkillDomain = ({
-    domain***REMOVED***
-    handleDomainTitleChange***REMOVED***
-    deleteDomain***REMOVED***
+    domain,
+    handleDomainTitleChange,
+    deleteDomain,
     updateDomain
-***REMOVED*** => {
+}) => {
 
     const {
-        values: relatedSkillValue***REMOVED***
-        handleChange***REMOVED***
-        handleSubmit***REMOVED***
-***REMOVED*** = useForm({
-        initialValues: {skill: ""}***REMOVED***
+        values: relatedSkillValue,
+        handleChange,
+        handleSubmit,
+    } = useForm({
+        initialValues: {skill: ""},
         onSubmit: async () => {
-            console.log('Submit relatedskill...'***REMOVED*** relatedSkillValue)
+            console.log('Submit relatedskill...', relatedSkillValue)
             await updateTag();
             return true;
-    ***REMOVED***
-***REMOVED***);
+        }
+    });
 
     const { 
-            updateTag***REMOVED*** 
+            updateTag, 
             deleteTag 
-    ***REMOVED*** = useFormTag({
-            tags: domain.relatedSkills***REMOVED***
-            tagValues: relatedSkillValue***REMOVED***
+        } = useFormTag({
+            tags: domain.relatedSkills,
+            tagValues: relatedSkillValue,
             updateTags: (updatedValues) => {
-                console.log('Update values: '***REMOVED*** updatedValues);
-                updateDomain(domain._id***REMOVED*** {'relatedSkills': updatedValues***REMOVED***
-***REMOVED***
-    ***REMOVED***)
+                console.log('Update values: ', updatedValues);
+                updateDomain(domain._id, {'relatedSkills': updatedValues});
+            }
+        })
 
     return (
         <div className="skill-domain-form">

@@ -2,11 +2,11 @@ import styled from 'styled-components/macro';
 // import FormInput from '../components/FormInput';
 import Reply from './Reply';
 
-import { faHeart***REMOVED*** faCaretSquareUp } from '@fortawesome/free-regular-svg-icons'
-import { faHistory***REMOVED*** faHeart as fasHeart***REMOVED*** faReplyAll as fasReplyAll***REMOVED*** faThumbsUp as fasThumbsUp} from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faCaretSquareUp } from '@fortawesome/free-regular-svg-icons'
+import { faHistory, faHeart as fasHeart, faReplyAll as fasReplyAll, faThumbsUp as fasThumbsUp} from '@fortawesome/free-solid-svg-icons'
 import FaIconLink from './FaIconLink';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { StyledAttribute***REMOVED*** StyledAttributes } from './Attributes';
+import { StyledAttribute, StyledAttributes } from './Attributes';
 
 const StyledComment = styled.div`
     max-width: 100%;
@@ -21,7 +21,7 @@ const CommentHead = styled.div`
     & span {
         font-size: 14px;
         font-weight: 500;
-***REMOVED***
+    }
 
 `
 
@@ -41,7 +41,7 @@ const Replies = styled.div`
 
 const Comment = ({
     comment
-***REMOVED*** => {
+}) => {
     return (
         <StyledComment>
             <CommentHead>
@@ -71,18 +71,18 @@ const Comment = ({
             </CommentAttributes>
 
             <CommentMain>
-    ***REMOVED***comment.text}
+                {comment.text}
             </CommentMain>
             
             <Replies>
-    ***REMOVED***
+                {
                     comment.replies.map(reply => {
                         return <Reply 
                             key={reply._id}
                             reply={reply}
                         />
-    ***REMOVED***)
-***REMOVED***
+                    })
+                }
             </Replies>
         </StyledComment>
     )
