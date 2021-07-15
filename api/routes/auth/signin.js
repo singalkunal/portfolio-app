@@ -54,14 +54,12 @@ validateRequest***REMOVED***
 
     // const user = await User.findOne({email***REMOVED***
 
-    console.log(req.body);
     const { user***REMOVED*** password***REMOVED*** remember } = req.body;
 
     if(!user) {
         throw new BadRequestError("User doesn't exists"***REMOVED*** 404***REMOVED*** 'email');
 ***REMOVED***
 
-    console.log(user.active);
     if(!user.active) {
         throw new BadRequestError('Check your email for verification...'***REMOVED*** 500);
 ***REMOVED***
@@ -70,7 +68,7 @@ validateRequest***REMOVED***
         const passwordMatch = await Password.verify(password***REMOVED*** user.password);
         if(passwordMatch) {
             const jwtUser = jwt.sign({
-                id: user.id***REMOVED***
+                _id: user._id***REMOVED***
                 username: user.username***REMOVED***
                 email: user.email
 ***REMOVED*** process.env.JWT_KEY);
@@ -78,7 +76,7 @@ validateRequest***REMOVED***
             req.session.jwt = jwtUser;
             if(remember) req.sessionOptions.maxAge = 30 * 24 * 60 * 60 * 1000;
             // console.log(req.session);
-            return res.status(200).json({jwtUser***REMOVED***
+            return res.status(200).json({user***REMOVED***
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***
@@ -86,6 +84,7 @@ validateRequest***REMOVED***
 ***REMOVED***
 
     throw new BadRequestError('Incorrect password'***REMOVED*** 400***REMOVED*** 'password');
+    
 
 ***REMOVED***
 

@@ -26,8 +26,8 @@ const userSchema = new mongoose.Schema({
     toJSON: {
         transform(doc***REMOVED*** ret) {
             delete ret.password;
-            ret.id = ret._id;
-            delete ret._id;
+            // ret.id = ret._id;
+            // delete ret._id;
     ***REMOVED******REMOVED***
 
         versionKey: false

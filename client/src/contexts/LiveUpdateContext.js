@@ -5,11 +5,11 @@ export const LiveUpdateContext = createContext();
 
 const LiveUpdateContextProvider = (props) => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
-    const [userSignedIn***REMOVED*** setUserSignedIn] = useState(false);
-    const [userMail***REMOVED*** setUserMail] = useState(null);
+    const [showMail***REMOVED*** setShowMail] = useState(null);
     const [showFooterButton***REMOVED*** setShowFooterButton] = useState(true); // willl be used by pages who don't want to show buttons in footer
     const [globalLoading***REMOVED*** setGlobalLoading] = useState(true);
 
+    const [signedInUser***REMOVED*** setSignedInUser] = useState(null);
 
 
     const { doRequest: getUserReq***REMOVED*** errors } = useRequest({
@@ -19,11 +19,10 @@ const LiveUpdateContextProvider = (props) => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await getUserReq();
-            console.log(res);
-            if(res) {
+            const data = await getUserReq();
+            if(data) {
+                setSignedInUser(prev => data);
                 setGlobalLoading(prev => false);
-                setUserSignedIn(prev => true);
 ***REMOVED***
             else {
                 setGlobalLoading(prev => false);
@@ -36,11 +35,11 @@ const LiveUpdateContextProvider = (props) => {
 
     return (
         <LiveUpdateContext.Provider value={{
-            userSignedIn***REMOVED***setUserSignedIn***REMOVED*** 
-            userMail***REMOVED*** setUserMail***REMOVED***
+            signedInUser***REMOVED*** setSignedInUser***REMOVED***
+            showMail***REMOVED*** setShowMail***REMOVED***
             showFooterButton***REMOVED*** setShowFooterButton***REMOVED***
             globalLoading
-***REMOVED***}>
+    ***REMOVED***}>
                 
 ***REMOVED***props.children}
         </LiveUpdateContext.Provider>

@@ -9,4 +9,6 @@ html***REMOVED*** body***REMOVED*** #root {
 
 body {
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }

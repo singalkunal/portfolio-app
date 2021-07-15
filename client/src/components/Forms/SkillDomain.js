@@ -76,7 +76,7 @@ const SkillDomain = ({
             <div className="wrap-right">
                 <Button 
                     className="domain-delete cancel onlyicon-btn"
-                    id={domain._id || domain.id}
+                    id={domain._id}
                     onClick={deleteDomain}
                 >
                     <FontAwesomeIcon icon={faTrashAlt} />

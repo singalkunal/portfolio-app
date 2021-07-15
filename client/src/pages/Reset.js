@@ -42,7 +42,7 @@ const Reset = () => {
 
     const history = useHistory();
 
-    const {userSignedIn} = useContext(LiveUpdateContext);
+    const {signedInUser} = useContext(LiveUpdateContext);
     
     const { 
         values***REMOVED***
@@ -91,7 +91,7 @@ const Reset = () => {
     return (
         <div className="container">
 ***REMOVED***
-                !userSignedIn 
+                !signedInUser 
                 ?
                 <form style={styles.wrapme}>
                 <header style={styles.header}>

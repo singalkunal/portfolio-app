@@ -12,7 +12,6 @@ const countapi = require('countapi-js');
 router.get('/api/users/currentuser'***REMOVED*** 
 ***REMOVED***
 (req***REMOVED*** res) => {
-    // console.log(req.currentUser);
     res.send(req.currentUser || null);
 ***REMOVED***
 
@@ -20,14 +19,14 @@ router.get('/api/users/currentuser/details'***REMOVED***
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***
-    const user = await User.findById(req.currentUser.id).exec();
+    const user = await User.findById(req.currentUser._id).exec();
+    
     if(!user) {
-        throw BadRequestError('Requested user deatils can\'t be found...'***REMOVED*** 404);
+        throw new BadRequestError('Requested user deatils can\'t be found...'***REMOVED*** 404);
 ***REMOVED***
 
 ***REMOVED***
-        const result = await countapi.get(req.headers.host***REMOVED*** 'portfolio-' + user.username);
-        res.json({viewCount: result.value***REMOVED*** user***REMOVED***
+        res.json({viewCount: 0***REMOVED*** user***REMOVED***
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***
@@ -42,7 +41,7 @@ router.delete('/api/users/currentuser/delete'***REMOVED***
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***
-        await User.findByIdAndDelete(req.currentUser.id).exec();
+        await User.findByIdAndDelete(req.currentUser._id).exec();
         req.session = null;
         res.status(200).send(true);
 ***REMOVED***
@@ -51,4 +50,13 @@ router.delete('/api/users/currentuser/delete'***REMOVED***
         throw new BadRequestError('Error deleting user...'***REMOVED*** 500);
 ***REMOVED***
 ***REMOVED***
+
+router.get('/api/users/opensocket'***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+    res.status(200).send({jwt: req.session.jwt***REMOVED***
+    
+***REMOVED***
+
 ***REMOVED***

@@ -33,7 +33,7 @@ const uploadFile = async (bucket***REMOVED*** file_to_upload***REMOVED*** path) 
 //     ***REMOVED***
 //     upload.single('file')***REMOVED*** 
 //     ***REMOVED***
-//         const uid = req.currentUser.id;
+//         const uid = req.currentUser._id;
 //         var path = uid + '/' + req.body.path;
 //         path = path || "images/"
 //         const bucket = req.app.locals.bucket;
@@ -50,7 +50,7 @@ router.post(
     ***REMOVED***
     upload.array('files')***REMOVED*** 
     ***REMOVED***
-        const uid = req.currentUser.id;
+        const uid = req.currentUser._id;
         var path = uid + '/' + req.body.path;
         path = path || "images/"
         const bucket = req.app.locals.bucket;

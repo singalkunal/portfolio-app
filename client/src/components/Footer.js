@@ -8,7 +8,7 @@ import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 
 const Footer = () => {
     const {
-        userSignedIn***REMOVED*** setUserSignedIn***REMOVED***
+        signedInUser***REMOVED*** setSignedInUser***REMOVED***
         showFooterButton
 ***REMOVED*** = useContext(LiveUpdateContext);
     
@@ -17,11 +17,11 @@ const Footer = () => {
             <span className="copyright">&copy; 2021 Developed By Kunal</span>
 ***REMOVED***
                 showFooterButton && (
-                    userSignedIn
+                    signedInUser
                     ?
                     <SignOut />
                     :
-                    <Link to='/' className="takeme">
+                    <Link to='/' className="takeme button">
                         <i><img src={EditIcon} alt="" /></i>
                         <span className="text">Make you portfolio now</span>
                     </Link>

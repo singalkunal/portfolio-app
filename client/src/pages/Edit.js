@@ -80,7 +80,7 @@ const EditPage = () => {
         const id = event.currentTarget.dataset.id;
 
         if(id && id.length>0) {
-            const idx = experiences.findIndex(obj => obj.id === id || obj._id === id);
+            const idx = experiences.findIndex(obj => obj._id === id || obj._id === id);
             setCurrentExpLoaded(prev => experiences[idx]);
     ***REMOVED***
         else {
@@ -95,7 +95,7 @@ const EditPage = () => {
     const updateExperiences = async (newExperience) => {
         const prevValues = [...experiences];
 
-        await updateById(newExperience._id || newExperience.id || null***REMOVED*** newExperience***REMOVED*** prevValues);
+        await updateById(newExperience._id || null***REMOVED*** newExperience***REMOVED*** prevValues);
         setExperiences(prevValues);
 ***REMOVED***
 
@@ -114,7 +114,7 @@ const EditPage = () => {
     const onProceed = async (event) => {
         closeAlert();
         if(!postiveAlert) {
-            history.push(`/portfolio/${user.id}`);
+            history.push(`/portfolio/${user.username}`);
     ***REMOVED***
         else {
             console.log({
@@ -124,7 +124,7 @@ const EditPage = () => {
 ***REMOVED***);
 
             const portfolio = {
-                id: user.portfolio.id***REMOVED***
+                id: user.portfolio._id***REMOVED***
                 about: about***REMOVED***
                 experiences: experiences***REMOVED***
                 skills: skills
@@ -132,7 +132,7 @@ const EditPage = () => {
 
             const res = await putPortfolio({portfolio:portfolio***REMOVED***
             console.log('Response: '***REMOVED*** res);
-            if(res) history.push(`/portfolio/${user.id}`);
+            if(res) history.push(`/portfolio/${user._id}`);
     ***REMOVED***
 ***REMOVED***
     const onCancel = () => {
@@ -155,8 +155,8 @@ const EditPage = () => {
 
             if(currentUser) {
                 // console.log(currentUser.portfolio.experiences[0].id || currentUser.portfolio.experiences[0]._id);
-                setUser(currentUser);
-                const portfolio = currentUser.portfolio;
+                setUser(currentUser.user);
+                const portfolio = currentUser.user.portfolio;
                 
                 setAbout(portfolio.about)
                 setExperiences(portfolio.experiences);

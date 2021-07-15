@@ -8,23 +8,17 @@ import { Link } from 'react-router-dom';
 import { useContext***REMOVED*** useEffect } from 'react';
 import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 
-const Navbar = ({
-    mail=null***REMOVED***
-    userSignedIn=false
-***REMOVED*** => {
+const Navbar = () => {
     const showLink = {
         title: 'Resume'***REMOVED***
         link: 'www.google.com'
 ***REMOVED***
 
-    const { userMail } = useContext(LiveUpdateContext);
-    useEffect(() => {
-        console.log(userMail);
-***REMOVED******REMOVED*** [userMail]);
+    const { showMail } = useContext(LiveUpdateContext);
 
     return (
         <nav className="navbar">
-            
+        
             <Link to="/" className="main-nav-item" id="home">
                 <img src={HomeIcon} alt="" />
             </Link>
@@ -40,14 +34,8 @@ const Navbar = ({
 ***REMOVED***
 
 
-***REMOVED***/* {
-                userSignedIn
-                &&
-                <SignOut />
-***REMOVED*** */}
-
-            <a href={`mailto:${userMail || process.env.EMAIL}`} className="main-nav-item takeme">
-    ***REMOVED***'Mail ' + (userMail ? 'Me' : 'Us')}
+            <a href={`mailto:${showMail ||  process.env.EMAIL}`} className="main-nav-item button takeme">
+    ***REMOVED***'Mail ' + (showMail ? 'Me' : 'Us')}
             </a>
 
         </nav>

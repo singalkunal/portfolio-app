@@ -26,6 +26,7 @@ const useForm = ({ initialValues***REMOVED*** onSubmit***REMOVED*** requiredValu
 
     const reinitializeForm = (newValues) => {
         setValues(newValues);
+        setErrors([]);
 ***REMOVED***;
 
     const handleSubmit = (event) => {

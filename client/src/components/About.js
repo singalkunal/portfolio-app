@@ -15,7 +15,7 @@ const About = ({ about ***REMOVED*** => {
             <div className="intro">
                 <div className="banner">
                     <div className="wave">Hi***REMOVED*** I am</div>
-                    <div className="name"> {about.name || 'No name'}</div>
+                    <div className="name"> {about.firstname  ? about.firstname + ' ' + about.lastname : 'No name'}</div>
                 </div>
                 <div className="desc">
         ***REMOVED***about.desc || desc}

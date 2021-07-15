@@ -114,8 +114,8 @@ const Experiences = ({
                                 faceClass={faceClass[index%2]} 
                                 editMode={editMode}
                                 onEditExp={onEditExp}
-                                key={experience.id || experience._id}
-                                id={experience.id || experience._id}
+                                key={experience._id}
+                                id={experience._id}
                             />
 ***REMOVED***)
 ***REMOVED***

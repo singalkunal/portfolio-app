@@ -18,7 +18,7 @@ const ProfileLinks = ({ profile_links ***REMOVED*** => {
                     return  <a href={profile.link}
                      target="_blank"
                     //  title={profile.title}
-                    key={profile._id || profile.id}
+                    key={profile._id}
                      className="icon">
                         <img src={profile.icon_url}  onError={onError} />
                         <div style={{display:"none"}}>{profile.title}</div>

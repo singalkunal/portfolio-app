@@ -5,7 +5,7 @@ const Tags = ({ tags ***REMOVED*** => {
         <div className="tags">
 ***REMOVED***
                 (tags || []).map(tag => {
-                    return <div className="tag" key={tag.id || tag._id} >{tag.tag}</div>
+                    return <div className="tag" key={tag._id} >{tag.tag}</div>
 ***REMOVED***)
 ***REMOVED***
         </div>

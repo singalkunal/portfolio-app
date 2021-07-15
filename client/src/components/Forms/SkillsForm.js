@@ -23,7 +23,7 @@ const SkillsForm = forwardRef(({
 
     useEffect(() => {
         skills.map(skill => {
-            const id = skill._id || skill.id
+            const id = skill._id
             setSkillsById(prev => {
                 return {
                     ...prev***REMOVED***

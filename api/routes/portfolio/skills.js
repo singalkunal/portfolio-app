@@ -14,7 +14,7 @@ router.post('/api/portfolio/skills'***REMOVED***
 ***REMOVED***
 ***REMOVED***
     const skill= req.body;
-    const user = await User.findById(req.currentUser.id).exec();
+    const user = await User.findById(req.currentUser._id).exec();
 
     if(!user) {
         throw new BadRequestError('Requested user not found...')
@@ -26,7 +26,7 @@ router.post('/api/portfolio/skills'***REMOVED***
     skills.push(skill_doc);
     await user.save()
 
-    res.status(201).send(skill_doc.id);
+    res.status(201).send(skill_doc._id);
 ***REMOVED***
 
 // edit skill
@@ -37,7 +37,7 @@ router.put('/api/portfolio/skills/:skid'***REMOVED***
     const skill = req.body;
     const {skid} = req.params;
 
-    const user = await User.findById(req.currentUser.id).exec();
+    const user = await User.findById(req.currentUser._id).exec();
 
     if(!user) {
         throw new BadRequestError('Requested user not found...')
@@ -45,7 +45,7 @@ router.put('/api/portfolio/skills/:skid'***REMOVED***
 
     var skills = user.portfolio.skills; // will be reference
     
-    Object.assign(skills.id(skid)***REMOVED*** skill); // copies values from source object to target
+    Object.assign(skills._id(skid)***REMOVED*** skill); // copies values from source object to target
 
     await user.save();
 
@@ -58,7 +58,7 @@ router.delete('/api/portfolio/skills/delete/:skid'***REMOVED***
 ***REMOVED***
 ***REMOVED***
     const {skid} = req.params;
-    const user = await User.findById(req.currentUser.id).exec();
+    const user = await User.findById(req.currentUser._id).exec();
 
     if(!user) {
         throw new BadRequestError('Requested user not found...')
@@ -66,7 +66,7 @@ router.delete('/api/portfolio/skills/delete/:skid'***REMOVED***
 
     var skills = user.portfolio.skills; // will be reference
     
-    user.portfolio.skills = skills.filter(s => s.id !== skid);
+    user.portfolio.skills = skills.filter(s => s._id !== skid);
 
     await user.save();
 

@@ -31,7 +31,7 @@ router.put('/api/portfolio/edit'***REMOVED***
 
     const { portfolio } = req.body;
 
-    if(user.portfolio.id != portfolio.id) {
+    if(user.portfolio._id != portfolio._id) {
         throw new BadRequestError('Can\'t update portfolio'***REMOVED*** 500);
 ***REMOVED***
 
@@ -48,5 +48,6 @@ router.put('/api/portfolio/edit'***REMOVED***
     res.status(200).send(true);
 
 ***REMOVED***
+
 
 ***REMOVED***

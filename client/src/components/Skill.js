@@ -7,7 +7,7 @@ const Skill = ({skill***REMOVED*** => {
 
 ***REMOVED***
                 (skill.relatedSkills || []).map(eachSkill => {
-                    return <span key={eachSkill._id || eachSkill.id} className="each-skill text">{eachSkill.skill}</span>
+                    return <span key={eachSkill._id} className="each-skill text">{eachSkill.skill}</span>
 ***REMOVED***)
 ***REMOVED***
         </div>

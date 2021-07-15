@@ -38,8 +38,6 @@ const Forgot = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
     const [shownErrors***REMOVED*** setShownErrors] = useState([]);
     const history = useHistory();
-
-    const {userSignedIn} = useContext(LiveUpdateContext);
     
     const { 
         values***REMOVED***

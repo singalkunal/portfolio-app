@@ -17,12 +17,12 @@ const useRequest = ({url***REMOVED*** method***REMOVED*** body ***REMOVED*** => 
     ***REMOVED***
             const response = await axios[method](latest_url***REMOVED*** latest_body);
             setErrors([]);
-            // console.log("Response: "***REMOVED*** response.data);
+            // console.log(url***REMOVED*** ": Response: "***REMOVED*** response);
 
             return response.data;
     ***REMOVED***
     ***REMOVED***
-    ***REMOVED***
+            // console.log("============="***REMOVED*** err);
             if(!err.response) setErrors([err])
             else setErrors(err.response.data.errors);
     ***REMOVED***

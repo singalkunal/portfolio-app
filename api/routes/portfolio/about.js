@@ -13,7 +13,7 @@ router.put('/api/portfolio/edit/about'***REMOVED***
 ***REMOVED***
 ***REMOVED***
     const about = req.body;
-    const user = await User.findById(req.currentUser.id).exec();
+    const user = await User.findById(req.currentUser._id).exec();
     user.portfolio.about = about;
     try{
         await user.save();

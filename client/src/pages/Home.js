@@ -13,8 +13,7 @@ const Home = () => {
         history.push('/auth');
 ***REMOVED***
 
-    const {userSignedIn} = useContext(LiveUpdateContext);
-    console.log(userSignedIn);
+    const {signedInUser} = useContext(LiveUpdateContext);
 
     return (
         <div className="container">
@@ -38,7 +37,7 @@ const Home = () => {
                     </ul>
                     <div className="buttons">
        ***REMOVED***
-                       !userSignedIn
+                       !signedInUser
                        ?
                         <>
                             <Button label="SignIn" onClick={onClick} />

@@ -76,8 +76,8 @@ const UpdateTags = ({
                                     label={tag[labelName] || tag.title || tag.label || tag.tag}
                                     iconUrl={tag.icon_url || defaultIcon}
                                     link={tag.link}
-                                    key = {tag._id || tag.id}
-                                    id = {tag._id || tag.id}
+                                    key = {tag._id}
+                                    id = {tag._id}
                                     onDelete={onDelete}
                                />
     ***REMOVED***)

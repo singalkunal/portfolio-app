@@ -20,7 +20,7 @@ const Auth = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
     const { translate***REMOVED*** data } = useTranslate();
 
-    const { setUserSignedIn***REMOVED*** setShowFooterButton } = useContext(LiveUpdateContext);
+    const { setSignedInUser***REMOVED*** setShowFooterButton } = useContext(LiveUpdateContext);
 
     const formOverlayRef = useRef(null);
     const formRef = useRef(null);
@@ -31,9 +31,10 @@ const Auth = () => {
         console.log(email***REMOVED*** password);
     ***REMOVED***
             const res = await signinRequest();
+            console.log(res);
             if(res) {
                 console.log('Successfully signed in...'***REMOVED*** res);
-                setUserSignedIn(true);
+                setSignedInUser(res.user);
                 history.push('/account');
 ***REMOVED***
     ***REMOVED***

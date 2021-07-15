@@ -10,62 +10,67 @@ import {animateValue} from '../utils/animate';
 
 import '../css/Account.css';
 import { LiveUpdateContext } from "../contexts/LiveUpdateContext";
-import axios from "axios";
 
 const Account = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
-    const COUNT_API_URL = 'https://api.countapi.xyz/get/'
     const redirectTime = 5 // redirection time (in seconds) on error
     const history = useHistory();
+
+    const [user***REMOVED*** setUser] = useState({***REMOVED***
+    const { setSignedInUser } = useContext(LiveUpdateContext);
+
     const [loading***REMOVED*** setLoading] = useState(true);
     const [isError***REMOVED*** setIsError] = useState(false);
-    const [user***REMOVED*** setUser] = useState({***REMOVED***
+
     const [viewCount***REMOVED*** setViewCount] = useState('NA');
     const progressRef = useRef(null);
 
-    const { doRequest***REMOVED*** errors } = useRequest({
-        url: API_URL + '/api/users/currentuser/details'***REMOVED***
-        method: "get"***REMOVED***
-***REMOVED***);
-
-    const { doRequest: getViewCounts***REMOVED*** errors: viewCountErrors } = useRequest({
-        // url: COUNT_API_URL + window.location.hostname + '/portfolio-' + user.username***REMOVED***
-        method: "get"
-***REMOVED***);
 
     const { doRequest: deleteAccount***REMOVED*** errors: deleteAccountErrors } = useRequest({
         method: 'delete'***REMOVED***
         url: API_URL + '/api/users/currentuser/delete'
-***REMOVED***)
+***REMOVED***);
+
+    const { doRequest: getUserDetails***REMOVED*** errors: getUserDetailsErrors } = useRequest({
+        url: API_URL+"/api/users/currentuser/details"***REMOVED***
+        method: 'get'
+***REMOVED***);
+
+    
 
     const onDeleteAccount = async (event) => {
-        // console.log('Delete me fast');
-
         const res = await deleteAccount();
         if(res) {
-            setUserSignedIn(false);
+            setSignedInUser(null);
+            setUser(null);
             history.push('/');
     ***REMOVED***
 ***REMOVED***;
 
-    const { userSignedIn***REMOVED*** setUserSignedIn***REMOVED*** globalLoading } = useContext(LiveUpdateContext);
 
     // check if current signed in user
     useEffect(() => {
         // render data
-        console.log(window.location.hostname)
         const fetchAndAnimate = async () => {
-            const data = await doRequest();
+            
+            const data = await getUserDetails();
             if(data) {
-                const { viewCount: vc***REMOVED*** user } = data;
-                setViewCount(vc);
-                setUser(user);
+                const currentUser = data.user;
+                setUser(currentUser);
+
                 setIsError(false);
                 setLoading(false);
 
+
+                const p = calcPercentageCompleted(currentUser);
+                console.log("% = "***REMOVED*** p);
+                animateValue(0***REMOVED*** p***REMOVED*** 2000***REMOVED*** document.getElementById('bar')***REMOVED*** "value");
+                animateValue(0***REMOVED*** p***REMOVED*** 2000***REMOVED*** progressRef.current***REMOVED*** "textContent"***REMOVED*** "% Profile completed");    
                 // asynchronously animate certain fields
-                animateValue(0***REMOVED*** calcPercentageCompleted(user)***REMOVED*** 2000***REMOVED*** document.getElementById('bar')***REMOVED*** "value");
-                animateValue(0***REMOVED*** calcPercentageCompleted(user)***REMOVED*** 2000***REMOVED*** progressRef.current***REMOVED*** "textContent"***REMOVED*** "% Profile completed");
+***REMOVED***
+            else {
+                setLoading(false);
+                setIsError(true);
 ***REMOVED***
 
     ***REMOVED***
@@ -74,29 +79,15 @@ const Account = () => {
 
 ***REMOVED******REMOVED*** [])
 
-    useEffect(() => {
-        // var timer;
-        if(isError || (errors && errors.length)) {
-            console.log(errors)
-            setIsError(true);
-            setLoading(false);
-    ***REMOVED***
-        else {
-            setIsError(false);
-    ***REMOVED***
-
-        // return () => clearTimeout(timer);
-***REMOVED******REMOVED*** [errors***REMOVED*** isError]);
-
     
 
     return (
         <div className="container">
             <div id="account-app-overlay"></div>
-            <Load loading={loading || globalLoading}>
-                <SomeError isError={isError || !userSignedIn} redirect redirectTime={+redirectTime} path="/auth">
+            <Load loading={loading}>
+                <SomeError isError={isError || !user} redirect redirectTime={+redirectTime} path="/auth">
         ***REMOVED***
-                        userSignedIn
+                        user
                         &&
                         <div className="account">
                             <header className="label">

@@ -1,13 +1,15 @@
 export default function calcPercentageCompleted(user) {
     // user will be user document
-    
+
     if(!user) return;
     const portfolio = user.portfolio;
+    console.log(user);
+    // console.log(portfolio.about);
     if(!portfolio || !portfolio.about) {
         return 0;
 ***REMOVED***
 
-    // console.log(portfolio);
+    console.log(portfolio);
     var num_fields_provided = 0  
 
     num_fields_provided += 2; // for fields which are required true
@@ -17,5 +19,5 @@ export default function calcPercentageCompleted(user) {
 
     num_fields_provided += Math.min(3***REMOVED*** portfolio.about.profile_links.length) + Math.min(3***REMOVED*** portfolio.experiences.length) +  Math.min(3***REMOVED*** portfolio.skills.length);
 
-    return Math.floor(num_fields_provided * 100 / 13);
+    return (Math.floor(num_fields_provided * 100 / 13))
 }

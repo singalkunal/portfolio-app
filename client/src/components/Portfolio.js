@@ -12,18 +12,19 @@ import SomeError from './SomeError';
 
 import '../css/Portfolio.css';
 import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
+import Error from './Error';
 
 const Portfolio = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
     const { username } = useParams();
     const location = useLocation();
 
-    const {uesrMail***REMOVED*** setUserMail} = useContext(LiveUpdateContext);
+    const {signedInUser***REMOVED*** setShowMail } = useContext(LiveUpdateContext);
 
     const [showFab***REMOVED*** setShowFab] = useState(false);
     const [portfolio***REMOVED*** setPortfolio] = useState({***REMOVED***
     const [loading***REMOVED*** setLoading] = useState(true);
-    const [isError***REMOVED*** setIsError] = useState(null);
+    const [isError***REMOVED*** setIsError] = useState(true);
 
     const { doRequest: fetchCurrentUser***REMOVED*** errors: curerr } = useRequest({
         url: API_URL+'/api/users/currentuser'***REMOVED***
@@ -41,9 +42,8 @@ const Portfolio = () => {
         const fetchPortfolio = async () => {
             var passedPortfolio = null;
             if(location.state) passedPortfolio = location.state.portfolio;
-
-            const currentUser = await fetchCurrentUser();
-            if(currentUser.username === username) setShowFab(true);
+            
+            if(signedInUser && (signedInUser.username === username)) setShowFab(true);
 
             if(passedPortfolio) {
                 console.log('passeed');
@@ -52,21 +52,26 @@ const Portfolio = () => {
 ***REMOVED***
             else {
                 console.log('nadda');
-                const { user } = await fetchUser();
-                if(user) {
-                    setIsError(false);
-                    setPortfolio(user.portfolio);
+            ***REMOVED***
+                    const { user } = await fetchUser();
+                    if(user) {
+                        setShowMail(user.email);
+                        setIsError(false);
+                        setPortfolio(user.portfolio);
+    ***REMOVED***
+***REMOVED***
+            ***REMOVED***
+                    setIsError(true);
 ***REMOVED***
 ***REMOVED***
             
-            setUserMail(currentUser.email);
             setLoading(false);
     ***REMOVED***;
 
         fetchPortfolio();
 
         return () => {
-            setUserMail(null);
+            setShowMail(null);
     ***REMOVED***;
 
 ***REMOVED******REMOVED*** []);
@@ -83,7 +88,7 @@ const Portfolio = () => {
             setLoading(false);
     ***REMOVED***
         else {
-            setIsError(false);
+            // setIsError(false);
     ***REMOVED***
 ***REMOVED******REMOVED*** [errors***REMOVED*** curerr])
 
@@ -92,7 +97,7 @@ const Portfolio = () => {
         <>
             <div className="container">
                 <Load loading={loading}>
-                    <SomeError isError={isError}>
+                    <SomeError isError={isError} errorHeader="Error!!" errors={[...errors***REMOVED*** ...curerr]}>
                         <About about={portfolio.about} />
                         <Experiences experiences={portfolio.experiences} />
                         <Skills skills={portfolio.skills} />

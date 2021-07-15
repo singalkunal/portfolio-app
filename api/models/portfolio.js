@@ -115,15 +115,14 @@ const portfolioSchema = new mongoose.Schema({
                 skill: String
 ***REMOVED***
         ]
-***REMOVED***]
-}***REMOVED*** {
+***REMOVED***]***REMOVED***
+    post: {
+        type: mongoose.Schema.Types.ObjectId***REMOVED***
+        ref: 'Post'
+***REMOVED******REMOVED***
+}***REMOVED***
+{
     toJSON: {
-        transform(doc***REMOVED*** ret) {
-            delete ret.password;
-            ret.id = ret._id;
-            delete ret._id;
-    ***REMOVED******REMOVED***
-
         versionKey: false
 ***REMOVED***
 ***REMOVED***

@@ -56,7 +56,7 @@ validateRequest***REMOVED***
         code: randomBytes(64).toString('hex')***REMOVED***
         username***REMOVED***
         email***REMOVED***
-        userId: user.id
+        userId: user._id
 ***REMOVED***);
 
     await code.save();

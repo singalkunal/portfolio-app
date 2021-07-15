@@ -10,7 +10,7 @@ const Skills = ({
         <section id="skills" style={{backgroundImage:`url(${SkillBg}`}} >
 ***REMOVED***
                 (skills || []).map(skill => {
-                    return <Skill skill={skill} key={skill._id || skill.id} />
+                    return <Skill skill={skill} key={skill._id} />
 ***REMOVED***)
 ***REMOVED***
 
