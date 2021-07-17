@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-const ProfileLinks = ({ profile_links }) => {
+const ProfileLinks = ({ profile_links, className="" }) => {
     const onError = (event) => {
         event.preventDefault();
 
@@ -11,7 +11,7 @@ const ProfileLinks = ({ profile_links }) => {
         text.style.display = "block";
     }
     return (
-        <div className="profileLinks">
+        <div className={`profileLinks ${className}`}>
             {
                 profile_links.map(profile => {
                     var classes = profile.classes

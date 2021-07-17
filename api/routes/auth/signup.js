@@ -44,7 +44,6 @@ router.post('/api/users/signup', [
 ],
 validateRequest,
 async (req, res) => {
-    console.log(req.session);
     const { username, email, password } = req.body;
     
     user = new User({username, email, password});
@@ -66,6 +65,8 @@ async (req, res) => {
         throw new BadRequestError('Can\'t send verification code...', 401);
     }
 
+    var base64email = Buffer.from(user.email).toString('base64');
+
 
     const msg = {
         from: {
@@ -77,13 +78,13 @@ async (req, res) => {
         text: `
             Hello, thanks for registering with us.
             Please copy and paste below url in browser to verify your account
-            http://${req.headers.host}/api/users/verify?code=${code.code}&email=${user.email}
+            http://${process.env.REACT_APP_URL}/auth/verify?code=${code.code}&email=${base64email}
         `,
         html: `
             <h1>Hello</h1>
             <p>Thanks for registering with us</p>
-            <p>Please click the link below to verify you account. Code is valid only for 30 mins </p>
-            <a href = http://${req.headers.host}/api/users/verify?code=${code.code}&email=${user.email}>Verify you account</a>
+            <p>Please click the link below to verify your account. Code is valid only for 30 mins </p>
+            <a href = http://${process.env.REACT_APP_URL}/auth/verify?code=${code.code}&email=${base64email}>Verify your account</a>
         `
     }
 
@@ -92,7 +93,10 @@ async (req, res) => {
         res.status(200).send(true);
     }
     catch(err) {
+        await SecretCode.deleteOne({username});
+        await User.deleteOne({username});
         throw BadRequestError('Can\'t send verification code... Try again in some time', 500);
+        
     }
 
 });
@@ -100,33 +104,42 @@ async (req, res) => {
 router.get('/api/users/verify', async (req, res) => {
     // console.log(req.query);
 
-    const { code, email } = req.query;
-    const now = Date.now();
+    try {
+            var { code, email } = req.query;
+        email = Buffer.from(email, 'base64').toString('ascii');
+        const now = Date.now();
 
-    const secretcode = await SecretCode.findOne({code});
+        const secretcode = await SecretCode.findOne({code});
 
-    if(!secretcode || secretcode.email !== email) {
-        return res.status(400).send('<h1>Verification failed</h1>');
+        if(!secretcode || secretcode.email !== email) {
+            return res.status(400).send('<h1>Verification failed</h1>');
+        }
+
+        if(secretcode.expiresAt.getTime() <= now) {
+            throw new BadRequestError('Verification code exprired', 400);
+        }
+
+        const user = await User.findById(secretcode.userId);
+
+        if(!user) {
+            return res.status(400).send('<h1>Verification failed</h1>');
+        }
+        
+        if(user.active) {
+            return res.status(200).send('User already verifieid')
+        }
+
+        
+        user.active = true;
+        await user.save();
+        await SecretCode.deleteOne({code});
+        res.status(200).send('OK');
     }
 
-    if(secretcode.expiresAt.getTime() <= now) {
-        throw new BadRequestError('Verification code exprired', 400);
+    catch(err) {
+        console.log(err);
+        throw new BadRequestError("unable to verify user", 500);
     }
-
-    const user = await User.findById(secretcode.userId);
-
-    if(!user) {
-        return res.status(400).send('<h1>Verification failed</h1>');
-    }
-    
-    if(user.active) {
-        return res.status(200).send('User already verifieid')
-    }
-
-    await SecretCode.deleteOne({code});
-    user.active = true;
-    await user.save()
-    res.status(200).send('Verified');
 })
 
 

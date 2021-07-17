@@ -75,7 +75,6 @@ async (req, res) => {
     }
 
     var base64email = Buffer.from(user.email).toString('base64');
-    console.log(Buffer.from(base64email, 'base64').toString('utf-8'));
 
     const msg = {
         from: {
@@ -144,7 +143,7 @@ async (req, res) => {
 
     const user = await User.findById(secretcode.userId);
     if(!user) {
-        return res.status(400).send('<h1>Verification failed</h1>');
+        return res.status(400).send('Verification failed');
     }
 
     user.active = true;

@@ -1,6 +1,10 @@
 import styled from 'styled-components/macro';
 import { FaIcon } from './FaIconLink';
 
+const cssVariables = {
+    minDesktopWidth: "1000px",
+}
+
 const Attribute = ({
     className,
     icon,
@@ -25,11 +29,9 @@ const Attribute = ({
 
 export const StyledAttribute = styled(Attribute)`
     padding: 0 10px;
+    cursor: ${props => props.noLink ? 'unset': 'pointer'};
     & span {
         font-size: ${props => props.fontSize || "16px"};
-    }
-    &:hover {
-        cursor: pointer;
     }
 `
 
@@ -41,4 +43,10 @@ export const StyledAttributes = styled.ul`
     justify-content: center;
 
     padding: 10px 0;
+
+    &.hideOnSmall {
+        @media only screen and (max-width: ${cssVariables.minDesktopWidth}) {
+            display: none;
+        }
+    }
 `

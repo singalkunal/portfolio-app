@@ -8,6 +8,25 @@ import { Link } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 
+import FaIconLink from '../styled-components/FaIconLink';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import CommunityIcon from '../icons/community.svg';
+
+import styled from 'styled-components/macro';
+
+const MyLink = styled(Link)`
+    display: flex;
+    align-items: center;
+
+    /* border-right: 1px solid #c4c4c4;
+    border-left: 1px solid #c4c4c4; */
+`
+const Icon = styled.i`
+    width: 32px;
+    height: 32px;
+`
+
+
 const Navbar = () => {
     const showLink = {
         title: 'Resume',
@@ -18,19 +37,16 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-        
-            <Link to="/" className="main-nav-item" id="home">
-                <img src={HomeIcon} alt="" />
-            </Link>
+            <FaIconLink icon={faHome} link="/#" />
             
             {
                 showLink
                 &&
-                <a href={showLink.link} className="main-nav-item special">
+                <MyLink to='/community' className="main-nav-item special">
                     {/* <i><img src={LinkIcon} alt="" /></i> */}
-                    <i className="fas fa-link"></i>
-                    <span className="text">{showLink.title}</span>
-                </a>
+                    <Icon> <img src={CommunityIcon} alt=""/> </Icon>
+                    <span className="text">Community</span>
+                </MyLink>
             }
 
 

@@ -1,6 +1,8 @@
 import { useHistory, useParams, Link } from "react-router-dom"
 import { useContext, useEffect, useRef, useState } from 'react';
+
 import useRequest from "../hooks/use-request";
+import useModal from '../hooks/use-modal';
 
 import Load from '../components/Load';
 import SomeError from '../components/SomeError';
@@ -10,6 +12,7 @@ import {animateValue} from '../utils/animate';
 
 import '../css/Account.css';
 import { LiveUpdateContext } from "../contexts/LiveUpdateContext";
+import Alert from "../components/Alert";
 
 const Account = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
@@ -36,15 +39,19 @@ const Account = () => {
         method: 'get'
     });
 
+    const { modalContainerRef:alertRef, openModal:openAlert, closeModal:closeAlert } = useModal({activeClass:"active"});
     
 
-    const onDeleteAccount = async (event) => {
+    const onProceedDelete = async () => {
         const res = await deleteAccount();
         if(res) {
             setSignedInUser(null);
             setUser(null);
             history.push('/');
         }
+    }
+    const onDeleteAccount = async (event) => {
+        openAlert();
     };
 
 
@@ -77,12 +84,17 @@ const Account = () => {
 
         fetchAndAnimate();
 
+        return () => {
+            const body = document.querySelector('body');
+            body.style.overflowY = "scroll";
+        }
     }, [])
 
     
 
     return (
-        <div className="container">
+        
+        <div className="container" ref={alertRef}>
             <div id="account-app-overlay"></div>
             <Load loading={loading}>
                 <SomeError isError={isError || !user} redirect redirectTime={+redirectTime} path="/auth">
@@ -92,7 +104,7 @@ const Account = () => {
                         <div className="account">
                             <header className="label">
                                 <i className="fas fa-user-alt"></i>
-                                <span className="title">My Account</span>
+                                <span className="title">{user.username}</span>
                             </header>
                             <ul className="options">
                                 <li>
@@ -145,6 +157,14 @@ const Account = () => {
                             </ul>
                         </div>
                     }
+
+                    <Alert
+                        closeModal={closeAlert}
+                        onProceed={onProceedDelete}
+                        msg="Delete Account? "
+                        isPositive={0}
+                        ref={alertRef}
+                    />
                 </SomeError>
             </Load>
         </div>

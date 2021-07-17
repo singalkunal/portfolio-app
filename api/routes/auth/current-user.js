@@ -3,9 +3,11 @@ const BadRequestError = require('../../errors/bad-request-error');
 
 const currentUser = require('../../middlewares/current-user');
 const RequireAuth = require('../../middlewares/require-auth');
-const User = require('../../models/user');
 
-const countapi = require('countapi-js');
+const User = require('../../models/user');
+const Comment = require('../../models/comment');
+const Post = require('../../models/post');
+
 
 const router = express.Router();
 
@@ -41,7 +43,47 @@ currentUser,
 RequireAuth,
 async (req, res) => {
     try {
+        
+        const userId = req.currentUser._id;
+        const comments = await Comment.find({commentedBy: userId}).select('_id');
+        console.log(comments);
+
+        // update posts
+        const posts = await Post.updateMany({},
+            {
+                $pullAll: {comments: comments},
+                $pullAll: {likes: [userId]}
+            },
+        );
+
+        await Post.updateMany({}, [
+            {
+                $set: {
+                    likesCount: {$size: "$likes"}, 
+                    commentsCount: {$size: "$comments"
+                }}
+            }
+        ]);
+
+
+        // update comments
+        await Comment.updateMany({}, {
+            $pull: {replies: {repliedBy: userId}},
+            $pullAll: {likes: [userId]}
+        });
+
+        await Comment.updateMany({}, [
+            {
+                $set: {
+                    likesCount: {$size: "$likes"},
+                    repliedCount: {$size: "$replies"}
+                }
+            }
+        ]);
+
+        await Comment.deleteMany({_id: {$in: comments}}).exec();
         await User.findByIdAndDelete(req.currentUser._id).exec();
+
         req.session = null;
         res.status(200).send(true);
     }

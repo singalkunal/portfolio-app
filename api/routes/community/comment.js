@@ -21,8 +21,6 @@ RequireAuth,
 async (req, res) => {
     const { postId } = req.params;
     const userId = req.currentUser._id;
-    console.log(postId);
-    console.log(userId);
     try {
         var comments = await Post.aggregate([
             {
@@ -56,6 +54,9 @@ async (req, res) => {
                 $set: {
                     'liked': {$in: [mongoose.Types.ObjectId(userId), '$likes']}
                 }
+            },
+            {
+                $sort: { createdAt: -1}
             }
 
         ]).exec();
@@ -277,5 +278,6 @@ async (req, res) => {
         return res.status(201).json({reply});
     }
 });
+
 
 module.exports = router;

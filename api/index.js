@@ -1,11 +1,17 @@
 const express = require('express');
+const socketio = require('socket.io');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieSession = require('cookie-session');
-require('dotenv').config();
+require('dotenv').config({path: '../Docker/api/api-variable.env'});
 
 const admin = require('firebase-admin');
 const serviceAccount = require('./serviceAccountKey.json');
+
+const registerCommunity = require('./events/community');
+const registerCommentEvents = require('./events/comment');
+const registerPostEvents = require('./events/post');
+
 
 const signupRouter =  require('./routes/auth/signup');
 const signinRouter = require('./routes/auth/signin');
@@ -20,7 +26,12 @@ const editAboutRouter = require('./routes/portfolio/about');
 const experienceRouter = require('./routes/portfolio/experience');
 const skillsRouter = require('./routes/portfolio/skills');
 
+const postRouter = require('./routes/community/post');
+const commentRouter = require('./routes/community/comment');
+
 const errorHandler = require('./middlewares/error-handler');
+
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(express.json());
@@ -28,6 +39,8 @@ app.use(express.urlencoded({extended: false}));
 
 app.set('trust proxy', true);
 
+const server = require('http').createServer(app);
+const io = require('./services/socket').init(server);
 
 // app.use(cors());
 // allows axios to make request from react app
@@ -40,12 +53,55 @@ app.use(function(req, res, next) {
   });
 
 
-app.use(cookieSession({
+const session = cookieSession({
     signed: false, // disables encryption of jwt
     // secure: true
-}));
+});
+app.use(session);
 
 const PORT = process.env.PORT || 3080;
+
+
+// wrapper to map express middlewares to socket.io middleware
+const wrap = middleware => (socket, next) => {
+    middleware(socket.request, {}, next);
+};
+
+// io.use(wrap(session));
+
+io.on('connection', socket => {
+    console.log('New client connected...');
+
+    registerCommunity(io, socket);
+    registerCommentEvents(io, socket);
+    registerPostEvents(io, socket);
+
+    socket.on('disconnect', () => {
+        socket.request.currentUser = null; 
+        console.log('Client disconnected...');
+    });
+});
+
+
+io.use((socket, next) => {
+    if(socket.handshake.auth.jwt) {
+
+        try{
+            socket.request.currentUser = jwt.verify(socket.handshake.auth.jwt, process.env.JWT_KEY);
+            next();
+        }
+        catch(err) {
+            // console.log(err);
+            next(new Error('unable to verify...'))
+        }
+    }
+
+    else {
+        next(new Error('Unable to authorize user...'));
+    }
+
+});
+
 
 app.use(signupRouter);
 app.use(signinRouter);
@@ -59,6 +115,9 @@ app.use(uploadRouter);
 app.use(editAboutRouter);
 app.use(experienceRouter);
 app.use(skillsRouter);
+
+app.use(postRouter);
+app.use(commentRouter);
 
 app.use(errorHandler)
 
@@ -89,7 +148,7 @@ const startUp = async () => {
 
     console.log('Connected to storage...');
 
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
         console.log(`Api listening on ${PORT}...`);
     })
 };

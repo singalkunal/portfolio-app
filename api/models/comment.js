@@ -36,7 +36,7 @@ const commentSchema = new mongoose.Schema({
         }
     }],
     createdAt: Number,
-    updatedAt: Number
+    updatedAt: Number,
 },
 {
     timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }
@@ -51,7 +51,6 @@ const commentSchema = new mongoose.Schema({
         versionKey: false
     }
 });
-
 const Comment = mongoose.model('Comment', commentSchema);
 
 module.exports = Comment;

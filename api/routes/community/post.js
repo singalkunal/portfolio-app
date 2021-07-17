@@ -90,8 +90,6 @@ RequireAuth,
 async (req, res) => {
     const userId = req.currentUser._id;
 
-    console.log(userId);
-
     try {
         var posts = await Post
                 .aggregate([
@@ -109,13 +107,15 @@ async (req, res) => {
                         }
                     },
                     {
-                        $unwind: "$user"
+                        $unwind: "$user" // lookup returns array - unwind will extract it into object
                     },
 
                     {
                         $set: {
                             'desc': "$user.portfolio.about.desc",
-                            'img_url': "$user.portfolio.about.img_url"
+                            'img_url': "$user.portfolio.about.img_url",
+                            'profile_links': "$user.portfolio.about.profile_links",
+                            'name': {$concat: ["$user.portfolio.about.firstname", " ", "$user.portfolio.about.lastname"]}
                         }
                     },
                     {
@@ -125,6 +125,9 @@ async (req, res) => {
                             "user.portfolio": 0,
                         }
                     },
+                    {
+                        $sort: { createdAt: -1 }
+                    }
                 ])
                 .exec();
                 

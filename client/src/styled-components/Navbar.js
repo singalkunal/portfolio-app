@@ -1,29 +1,38 @@
-import { useContext, useEffect } from 'react';
-import styled from 'styled-components';
-import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
+import styled from 'styled-components/macro';
 
 import FaIconLink from './FaIconLink';
 import { faHome, faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 export const StyledNavbar = styled.nav` 
-    width: 100%;
+    width: 90%;
+    min-width: 360px;
+    position: fixed;
+
+    padding: 20px 0;
+    padding-bottom: 60px;
+
+    background-color: white;
+
+    z-index: 20;
+    /* position: relative; */
+
+`
+const NavbarInner = styled.div`
     display: flex;
     /* grid-template-columns: repeat(3, 1fr); */
 
     align-items: center;
     justify-content: space-between;
 
-    margin: 20px 0;
-
     padding-bottom: 10px;
     border-bottom: 2px solid #c4c4c4;
-
-    /* position: relative; */
 `
 
 export const StyledNavItem = styled.div`
     display: flex;
     justify-content: center;
+    cursor: pointer;
     & span {
         font-size: 24px;
         font-weight: 500;
@@ -42,20 +51,20 @@ export const StyledNavItem = styled.div`
 
 const Navbar = ({
     heading="Community",
-    isDummy=false
 }) => {
+
+    const scrollToTop = () => {
+        window.scrollTo(0,0);
+    }
+
     return (
-        <>
-        {
-            !isDummy
-            &&
-            <StyledNavbar>
+        <StyledNavbar>
+            <NavbarInner>
                 <StyledNavItem><FaIconLink icon={faHome} link='/#' /></StyledNavItem>
-                <StyledNavItem><span className="head">{heading}</span></StyledNavItem>
+                <StyledNavItem><span className="head" onClick={scrollToTop}>{heading}</span></StyledNavItem>
                 <StyledNavItem><FaIconLink icon={faEnvelopeSquare} external link={`mailto:${process.env.REACT_APP_EMAIL}`}/></StyledNavItem>
-            </StyledNavbar>
-        }
-        </>
+            </NavbarInner>
+        </StyledNavbar>
     )
 }
 

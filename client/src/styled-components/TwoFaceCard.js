@@ -22,6 +22,7 @@ export const FaceCardFront = styled(Card)`
 `
 
 export const FaceCardBack = styled(Card)`
+    height: 100%;
     &.transition-enter{
         opacity: 0;
     }
@@ -38,7 +39,6 @@ export const FaceCardBack = styled(Card)`
 `
 export const StyledTwoFaceCard = styled.div`
     width: 100%;
-    height: 100%;
     max-width: 360px;
     aspect-ratio: 4/5;
     border: 1px solid #f1f1f1;

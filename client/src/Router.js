@@ -20,6 +20,8 @@ import Load from "./components/Load";
 import { LiveUpdateContext } from "./contexts/LiveUpdateContext"
 import CommentBlock from "./styled-components/CommentBlock";
 import Navbar from "./components/Navbar";
+import Footer from './components/Footer';
+import Verify from "./pages/Verify";
 
 const Router = () => {
     const { globalLoading } = useContext(LiveUpdateContext);
@@ -29,42 +31,55 @@ const Router = () => {
                 <Route exact path='/'>
                     <Navbar />
                     <Home />
+                    <Footer />
                 </Route>
                 <Route exact path="/auth">
                     <Navbar />
                     <Auth />
+                    <Footer />
                 </Route>
 
+                <Route exact path='/auth/verify'>
+                    <Navbar />
+                    <Verify />
+                    <Footer />
+                </Route>
                 <Route exact path='/auth/forgot'>
                     <Navbar />
                     <Forgot />
+                    <Footer />
                 </Route>
 
                 <Route exact path='/auth/reset'>
                     <Navbar />
                     <Reset />
+                    <Footer />
                 </Route>
 
                 <Route exact path="/redirect">
                     <Navbar />
                     <Redirect />
+                    <Footer />
                 </Route>
 
                 <Route exact path="/account">
                     <Navbar />
                     <Account />
+                    <Footer />
                 </Route>
             
                 <Route exact path='/portfolio/edit'>
                     <Navbar />
                     <SideBar />
                     <EditPage />
+                    <Footer />
                 </Route>
 
                 <Route exact path="/portfolio/:username">
                     <Navbar />
                     <SideBar />
                     <Portfolio /> 
+                    <Footer />
                 </Route>
 
                 <Route exact path="/community">

@@ -39,6 +39,7 @@ const FormInput = ({
     rightText,
     rightOnClick,
     handleChange, 
+    handleSubmit,
     className
 }) => {
     return (
@@ -57,10 +58,12 @@ const FormInput = ({
             <InputWithIcon>
                 <StyledInput 
                     type={type}
+                    value={value}
                     name={name}
                     placeholder={placeholder}
+                    onChange={handleChange}
                 />
-                <StyledTextIcon>{rightText}</StyledTextIcon>
+                <StyledTextIcon onClick={handleSubmit}>{rightText}</StyledTextIcon>
             </InputWithIcon>
         </div>
     )

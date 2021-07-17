@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 import Button from "./Button";
 
-const Alert = forwardRef(({ closeModal, isPositive, onProceed }, ref) => {
-    const msgs = ['Changes will be lost...', 'Changes will be saved...']
+const Alert = forwardRef(({ closeModal, isPositive, onProceed, msg=null }, ref) => {
+    const msgs = ['Changes will be lost...', 'Changes will be premanently saved...']
     const classes = ['cancel', 'save'];
 
     return (
@@ -10,7 +10,7 @@ const Alert = forwardRef(({ closeModal, isPositive, onProceed }, ref) => {
             <div className="overlay" id="app-overlay"></div>
             <div className="edit-form-wrapper">
                 <header>
-                    <h3 className="text">{msgs[+isPositive] + 'Proceed?'}</h3>
+                    <h3 className="text">{msg || (msgs[+isPositive] + 'Proceed?')}</h3>
                 </header>
                 <div className="action-buttons">
                     <Button

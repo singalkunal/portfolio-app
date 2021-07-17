@@ -44,8 +44,9 @@ module.exports = (io, socket) => {
         try {
             const user = socket.request.currentUser;
             const like = await commentController.toggleLikeComment(user, commentId);
+            
             io.emit('toggle-like-comment', {like, userId: user._id, commentId})
-            sb(true);
+            cb(true);
         }
         catch(err) {
             console.log(err);

@@ -4,7 +4,7 @@ import { LiveUpdateContext } from "../contexts/LiveUpdateContext";
 import useRequest from "../hooks/use-request"
 import Button from "./Button";
 
-import { socket } from '../service/socket';
+// import { getSocket } from '../service/socket';
 
 const SignOut = ({className=""}) => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
@@ -18,7 +18,7 @@ const SignOut = ({className=""}) => {
     const history = useHistory();
 
     const signout = async (event) => {
-        socket.emit('close-session');
+        // const scoket = getSocket();
         await signOut();
         // window.location.reload();
         setSignedInUser(null);

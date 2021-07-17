@@ -1,8 +1,6 @@
 const express = require('express');
 const BadRequestError = require('../../errors/bad-request-error');
 
-const countapi = require('countapi-js');
-
 const User = require('../../models/user');
 
 const router = express.Router();
@@ -14,8 +12,7 @@ async (req, res) => {
     try {
         const user = await User.findOne({username}).exec();
         if(user) {
-            const result = await countapi.hit(req.headers.host, 'portfolio-' + username);
-            return res.json({viewCount: result.value, user});
+            return res.json({ user});
         }
 
         throw new BadRequestError('Can\'t find user...', 404);

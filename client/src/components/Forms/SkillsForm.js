@@ -100,7 +100,6 @@ const SkillsForm = forwardRef(({
     const deleteDomain = async (event) => {
         console.log(event);
         const id = event.currentTarget.dataset.id;
-        console.log(id);
         
         const newValues = await deleteById(id, {...values});
         reinitializeForm(newValues);

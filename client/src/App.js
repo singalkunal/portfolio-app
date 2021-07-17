@@ -7,6 +7,7 @@ import LiveUpdateContextProvider from './contexts/LiveUpdateContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Router from './Router';
+import SocketContextProvider from './contexts/SocketContext';
 
 
 function App() {
@@ -14,10 +15,11 @@ function App() {
   return (
     <BrowserRouter>
       <LiveUpdateContextProvider >
-        <div className="app">
-          <Router />
-          <Footer />
-        </div>
+          <SocketContextProvider>
+            <div className="app">
+              <Router />
+            </div>
+          </SocketContextProvider>
       </LiveUpdateContextProvider>
     </BrowserRouter>
   );

@@ -21,10 +21,14 @@ const ReplyMain = styled.main`
 const Reply = ({
     reply
 }) => {
+
+    if(!reply || !reply.repliedBy) {
+        console.log(reply);
+    }
     return (
         <StyledReply>
             <ReplyHead>
-                <span>&#64; {reply.repliedBy.username}</span>
+                <span>&#64; {(reply && reply.repliedBy) ? reply.repliedBy.username : reply.repliedBy}</span>
             </ReplyHead>
 
             <ReplyMain>

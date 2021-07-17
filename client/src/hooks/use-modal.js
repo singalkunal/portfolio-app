@@ -20,7 +20,6 @@ const useModal = ({activeClass}) => {
     }
 
     const closeModal = () => {
-        console.log('close modal called');
         setIsModalOpen(false);
         const body = document.querySelector('body');
         body.style.overflowY = "scroll";

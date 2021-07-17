@@ -21,7 +21,6 @@ const FaIconLink = ({
     onHover={transform: "scale(1.1)"},
     external
 }) => {
-    console.log(external);
     return (
 
         <>
