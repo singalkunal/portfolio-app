@@ -75,6 +75,7 @@ async (req, res) => {
             
             req.session.jwt = jwtUser;
             if(remember) req.sessionOptions.maxAge = 30 * 24 * 60 * 60 * 1000;
+            console.log("After signin", req.session);
             return res.status(200).json({user});
         }
 
@@ -83,7 +84,11 @@ async (req, res) => {
         }
     }
     catch(err) {
-        
+        if(err.name && err.name === 'custom-error') {
+            throw err;
+        }
+
+        throw new BadRequestError('Somthing went wrong...');
     }
 
     
