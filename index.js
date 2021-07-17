@@ -4,7 +4,6 @@ const cors = require('cors');
 const cookieSession = require('cookie-session');
 
 const admin = require('firebase-admin');
-const serviceAccount = require('./serviceAccountKey.json');
 
 const registerCommunity = require('./events/community');
 const registerCommentEvents = require('./events/comment');
@@ -134,9 +133,33 @@ const startUp = async () => {
     });
     
 
+    const {
+        type,
+        project_id,
+        private_key_id,
+        private_key,
+        client_email,
+        client_id,
+        auth_uri,
+        token_uri,
+        auth_provider_x509_cert_url,
+        client_x509_cert_url
+    } = process.env;
+
     // connect Firebase Storage
     admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
+        credential: admin.credential.cert({
+        type,
+        project_id,
+        private_key_id,
+        private_key,
+        client_email,
+        client_id,
+        auth_uri,
+        token_uri,
+        auth_provider_x509_cert_url,
+        client_x509_cert_url
+    }),
         storageBucket: process.env.BUCKET_URL
     });
 

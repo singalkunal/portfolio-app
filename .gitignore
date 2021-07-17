@@ -8,4 +8,5 @@ docker-compose.yml
 *Dockerfile
 
 api/serviceAccountKey.json
-
+npm-debug.log
+.DS_Store
