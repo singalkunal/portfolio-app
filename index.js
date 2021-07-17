@@ -117,7 +117,7 @@ app.use(postRouter);
 app.use(commentRouter);
 
 app.get('/api/test', (req, res) => {
-    res.status(200).send('<h1> API Working</h1>');
+    res.status(200).send('<h1> API Working Fine</h1>');
 })
 
 app.use(errorHandler)
