@@ -4,6 +4,7 @@
 *Docker
 *nginx
 docker-compose-dev.yml
+docker-compose.yml
 *Dockerfile
 
 api/serviceAccountKey.json
