@@ -123,7 +123,7 @@ const startUp = async () => {
     // Connect Database
     if(!process.env.MONGO_URI) {
         // Bad request error
-        return 
+        return console.log('MONGO_URI not provided');
     }
 
     await mongoose.connect(process.env.MONGO_URI, {
