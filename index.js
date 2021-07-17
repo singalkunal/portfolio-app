@@ -116,6 +116,10 @@ app.use(skillsRouter);
 app.use(postRouter);
 app.use(commentRouter);
 
+app.get('/api/test', (req, res) => {
+    res.status(200).send('<h1> API Working</h1>');
+})
+
 app.use(errorHandler)
 
 const startUp = async () => {
@@ -148,18 +152,6 @@ const startUp = async () => {
     } = process.env;
 
     private_key = private_key.replace(/\\n/g, '\n');
-    console.log({
-        type,
-        project_id,
-        private_key_id,
-        private_key,
-        client_email,
-        client_id,
-        auth_uri,
-        token_uri,
-        auth_provider_x509_cert_url,
-        client_x509_cert_url
-    })
 
     // connect Firebase Storage
     admin.initializeApp({
