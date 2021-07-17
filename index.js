@@ -132,8 +132,9 @@ const startUp = async () => {
         useUnifiedTopology: true
     });
     
+    console.log('Connected to databse');
 
-    const {
+    var {
         type,
         project_id,
         private_key_id,
@@ -146,6 +147,7 @@ const startUp = async () => {
         client_x509_cert_url
     } = process.env;
 
+    private_key = private_key.replace(/\\n/g, '\n');
     console.log({
         type,
         project_id,
@@ -178,12 +180,12 @@ const startUp = async () => {
 
     // locals properties can be accessed in any middleware using req.app.locals
     app.locals.bucket = admin.storage().bucket()
-    
+    console.log('Firebase storage initialized');
 
     
 
     server.listen(PORT, () => {
-        
+        console.log(`Api listening on port ${PORT}`);
     })
 };
 
