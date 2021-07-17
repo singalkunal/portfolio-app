@@ -77,12 +77,15 @@ async (req, res) => {
             if(remember) req.sessionOptions.maxAge = 30 * 24 * 60 * 60 * 1000;
             return res.status(200).json({user});
         }
+
+        else {
+            throw new BadRequestError('Incorrect password', 400, 'password');
+        }
     }
     catch(err) {
         
     }
 
-    throw new BadRequestError('Incorrect password', 400, 'password');
     
 
 })
