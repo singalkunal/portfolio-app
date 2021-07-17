@@ -3,9 +3,9 @@ import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 
 const Preview = ( props ) => {
     const { about } = useContext(LiveUpdateContext);
-    // console.log(about);
+    // 
 
-    console.log(props.location);
+    
 
     return (
         <div>

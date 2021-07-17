@@ -75,12 +75,11 @@ async (req, res) => {
             
             req.session.jwt = jwtUser;
             if(remember) req.sessionOptions.maxAge = 30 * 24 * 60 * 60 * 1000;
-            // console.log(req.session);
             return res.status(200).json({user});
         }
     }
     catch(err) {
-        console.log('error signing in: ', err);
+        
     }
 
     throw new BadRequestError('Incorrect password', 400, 'password');

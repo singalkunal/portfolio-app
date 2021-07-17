@@ -38,12 +38,6 @@ userSchema.pre('save', async function(next) {
     if(!this.portfolio) {
         this.portfolio = {}
     }
-
-    // initialize with empty array inside object
-    // if(this.portfolio.about && !this.portfolio.about.profile_links) {
-    //     this.portfolio.about.profile_links = [];
-    // }
-
     if(this.isModified('password') && this.password) {
         try {
             const hash = await Password.hash(this.password);
@@ -207,10 +201,10 @@ const User = mongoose.model('User', userSchema);
 //         useUnifiedTopology: true
 //     })
 
-//     console.log('connected...')
+//     
 
 //     const user = new User(u);
-//     console.log(user);
+//     
 //         user.save();
 // }
 

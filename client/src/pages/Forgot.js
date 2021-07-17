@@ -49,7 +49,7 @@ const Forgot = () => {
              alias: ""
          },
          onSubmit: async () => {
-             console.log('Submit', values);
+             
              setShownErrors([]);
              const res = await doRequest();
 
@@ -63,7 +63,7 @@ const Forgot = () => {
                  );
 
              }
-             console.log(res);
+             
          }
      });
 

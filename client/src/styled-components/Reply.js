@@ -23,7 +23,7 @@ const Reply = ({
 }) => {
 
     if(!reply || !reply.repliedBy) {
-        console.log(reply);
+        
     }
     return (
         <StyledReply>

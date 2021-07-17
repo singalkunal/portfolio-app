@@ -10,11 +10,16 @@
     min-width: 350px;
     margin: 0 auto;
     font-family: 'Poppins', sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center; */
 }
 
 .container {
     width: 85%;
-    min-height: 70%;
+    /* min-height: 70%; */
     display: flex;
     /* flex-direction: column; */
     justify-content: stretch;
@@ -131,6 +136,6 @@ html {
 
 @media only screen and (min-width: 500px){
     .container {
-        min-height: 80%;
+        /* min-height: 80%; */
     }
 }

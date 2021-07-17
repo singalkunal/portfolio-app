@@ -17,7 +17,7 @@ const useForm = ({ initialValues, onSubmit, requiredValues=[] }) => {
     };
 
     const changeSpecificValue = (name, updValue) => {
-        console.log("change ", name, "to ", updValue);
+        
         setValues({
             ...values,
             [name]: updValue
@@ -30,7 +30,7 @@ const useForm = ({ initialValues, onSubmit, requiredValues=[] }) => {
     };
 
     const handleSubmit = (event) => {
-        // console.log(event);
+        // 
         event.preventDefault();
         event.stopPropagation();
         // this is the place to check for errors and validation stuff
@@ -59,7 +59,7 @@ const useForm = ({ initialValues, onSubmit, requiredValues=[] }) => {
         const submitOrError = async () => {
             if(errors.length === 0 && isSubmitting) {
                 const init = await onSubmit();
-                // console.log('init: ' + init + '-->' + initialValues);
+                // 
                 // clear input values
                 init && setValues(initialValues);
                 setisSubmitting(prev => false);

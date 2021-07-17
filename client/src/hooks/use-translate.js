@@ -25,11 +25,11 @@ const useTranslate = () => {
 
     const [trans, setTrans] = useState(false)
     const [data, setData] = useState(in_data);
-    // console.log(data);
+    // 
 
 
     const translate = (event, overlay, form) => {
-        console.log('translate')
+        
         const container = document.querySelector('.auth.form-container');
         var width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
 

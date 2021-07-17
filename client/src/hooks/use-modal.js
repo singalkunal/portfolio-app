@@ -5,7 +5,7 @@ const useModal = ({activeClass}) => {
     const modalContainerRef = useRef(null); // ref to container element containing overlay and modal
 
     const openModal = () => {
-        console.log('open modal called');
+        
         setIsModalOpen(true);
         const body = document.querySelector('body');
         body.style.overflow = "hidden";

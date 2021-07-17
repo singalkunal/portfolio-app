@@ -3,13 +3,13 @@ export default function calcPercentageCompleted(user) {
 
     if(!user) return;
     const portfolio = user.portfolio;
-    console.log(user);
-    // console.log(portfolio.about);
+    
+    // 
     if(!portfolio || !portfolio.about) {
         return 0;
     }
 
-    console.log(portfolio);
+    
     var num_fields_provided = 0  
 
     num_fields_provided += 2; // for fields which are required true

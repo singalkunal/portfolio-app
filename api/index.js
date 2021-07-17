@@ -1,9 +1,7 @@
 const express = require('express');
-const socketio = require('socket.io');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieSession = require('cookie-session');
-require('dotenv').config({path: '../Docker/api/api-variable.env'});
 
 const admin = require('firebase-admin');
 const serviceAccount = require('./serviceAccountKey.json');
@@ -70,7 +68,7 @@ const wrap = middleware => (socket, next) => {
 // io.use(wrap(session));
 
 io.on('connection', socket => {
-    console.log('New client connected...');
+    
 
     registerCommunity(io, socket);
     registerCommentEvents(io, socket);
@@ -78,7 +76,7 @@ io.on('connection', socket => {
 
     socket.on('disconnect', () => {
         socket.request.currentUser = null; 
-        console.log('Client disconnected...');
+        
     });
 });
 
@@ -125,7 +123,7 @@ const startUp = async () => {
     // Connect Database
     if(!process.env.MONGO_URI) {
         // Bad request error
-        return console.log('Must define MONGO_URI as environment variable');
+        return 
     }
 
     await mongoose.connect(process.env.MONGO_URI, {
@@ -134,7 +132,7 @@ const startUp = async () => {
         useCreateIndex: true,
         useUnifiedTopology: true
     });
-    console.log('Connected to databse...');
+    
 
     // connect Firebase Storage
     admin.initializeApp({
@@ -146,10 +144,10 @@ const startUp = async () => {
     app.locals.bucket = admin.storage().bucket()
     
 
-    console.log('Connected to storage...');
+    
 
     server.listen(PORT, () => {
-        console.log(`Api listening on ${PORT}...`);
+        
     })
 };
 

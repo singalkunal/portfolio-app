@@ -1,21 +1,21 @@
 import ObjectId from 'bson-objectid';
 
 const deleteObjectById = async (id, obj) => {
-    console.log('delete', id, obj);
+    
     if(obj[id]) {
         delete obj[id];
-        console.log('ues');
+        
     }
     return obj;
 }
 export const deleteById = async (id, arr=[]) => {
-    console.log(id, arr);
+    
     if(!(arr instanceof Array)) {
         return deleteObjectById(id, arr);
     }
 
     arr = arr.filter(obj => (obj._id !== id && obj.id !== id));
-    console.log(arr);
+    
 
     return arr;
 };

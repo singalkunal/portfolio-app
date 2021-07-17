@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import useRequest from '../hooks/use-request'
 
 import useModal from '../hooks/use-modal';
@@ -117,12 +117,6 @@ const EditPage = () => {
             history.push(`/portfolio/${user.username}`);
         }
         else {
-            console.log({
-                about: about,
-                experiences: experiences,
-                skills: skills
-            });
-
             const portfolio = {
                 id: user.portfolio._id,
                 about: about,

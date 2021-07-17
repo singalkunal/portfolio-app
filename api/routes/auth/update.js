@@ -70,7 +70,7 @@ async (req, res) => {
     await code.save();
 
     if(!process.env.SENDGRID_API_KEY) {
-        console.log('SENDGRID_API_KEY not defined...');
+        
         throw new BadRequestError('Can\'t send verification code...', 401);
     }
 
@@ -125,7 +125,7 @@ router.post('/api/users/reset',
 ],
 validateRequest,
 async (req, res) => {
-    // console.log(req.query);
+    // 
     req.session = null;
 
     var { code, userEmail: email, password } = req.body;
@@ -153,7 +153,7 @@ async (req, res) => {
         await user.save();
     }
     catch(err) {
-        console.log('====>', err);
+        console.log(err);
         throw new BadRequestError('Error updating user...', 500);
     }
 

@@ -29,7 +29,7 @@ const portfolioSchema = new mongoose.Schema({
     about: {
             firstname: {
                 type: String,
-                default : '**my name her**'
+                default : '**my name here**'
             },
             lastname: {
                 type: String,

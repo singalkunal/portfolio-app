@@ -17,12 +17,12 @@ const useRequest = ({url, method, body }) => {
         try {
             const response = await axios[method](latest_url, latest_body);
             setErrors([]);
-            // console.log(url, ": Response: ", response);
+            // 
 
             return response.data;
         }
         catch(err) {
-            // console.log("=============", err);
+            // 
             if(!err.response) setErrors([err])
             else setErrors(err.response.data.errors);
         }

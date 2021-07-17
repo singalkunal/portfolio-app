@@ -19,7 +19,6 @@ module.exports = (io, socket) => {
             cb(true);
         }
         catch(err) {
-            // console.log(err);
             cb(false);
         }
     });

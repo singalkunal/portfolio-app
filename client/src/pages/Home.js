@@ -7,7 +7,7 @@ import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 const Home = () => {
     const history = useHistory();
     const API_URL = process.env.REACT_APP_API_BASE_URL;
-    // console.log(API_URL);
+    // 
     
     const onClick = () => {
         history.push('/auth');

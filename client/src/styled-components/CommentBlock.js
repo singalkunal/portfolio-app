@@ -111,12 +111,12 @@ const CommentBlock = ({postId, username, setCommentFor, className}) => {
         },
         requiredValues:['text'],
         onSubmit: () => {
-            console.log('Submitting comment... ', values);
+            
             
             if(replyFor) {
                 socket.emit('reply-comment', replyFor.commentId, values.text, obj => {
                     if(!obj) {
-                        console.log('Error')
+                        
                     }
                 })
 
@@ -125,7 +125,7 @@ const CommentBlock = ({postId, username, setCommentFor, className}) => {
             else {
                 socket.emit('post-comment', postId, values.text, obj => {
                     if(!obj) {
-                        console.log('Error');
+                        
                     }
     
                 })
@@ -181,7 +181,7 @@ const CommentBlock = ({postId, username, setCommentFor, className}) => {
                 return ;
             }
             setCommentsById(prev => {
-                console.log(t_commentId, typeof(t_commentId), Object.keys(prev));
+                
 
                 var {likesCount, likes, liked } = prev[t_commentId];
 
@@ -257,7 +257,7 @@ const CommentBlock = ({postId, username, setCommentFor, className}) => {
                 {
                     Object.entries(commentsById).map(([_, comment]) => {
                         if(comment._id === "60f0928acff6522b052fc173") {
-                            console.log(_, comment._id)
+                            
 
                         }
                         return <Comment 

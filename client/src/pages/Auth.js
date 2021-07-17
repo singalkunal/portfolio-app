@@ -28,35 +28,29 @@ const Auth = () => {
     const onSignin = async () => {
         const { email, password } = values; // email can be username or password
 
-        console.log(email, password);
-        try {
-            const res = await signinRequest();
-            console.log(res);
-            if(res) {
-                console.log('Successfully signed in...', res);
-                setSignedInUser(res.user);
-                history.push('/account');
-            }
+        
+        const res = await signinRequest();
+        
+        if(res) {
+            
+            setSignedInUser(res.user);
+            history.push('/account');
         }
-        catch(err) {console.log('Error while signing in: ', err)}
     }
 
     const onSignup = async () => {
-        try {
-            const res = await signupRequest();
-            if(res) {
-                console.log('Successfully signed up...');
-                console.log(res);
-                history.push({
-                    pathname: '/redirect',
-                    state: {
-                        header: 'Thank you for registering with us...',
-                        helptext: 'Check you email for verification...'
-                    }
-                });
-            }
+        const res = await signupRequest();
+        if(res) {
+            
+            
+            history.push({
+                pathname: '/redirect',
+                state: {
+                    header: 'Thank you for registering with us...',
+                    helptext: 'Check you email for verification...'
+                }
+            });
         }
-        catch(err) {console.log('Error while signing up: ', err)}
     }
 
     const { values, reinitializeForm, handleChange, handleSubmit } = useForm({
@@ -67,17 +61,17 @@ const Auth = () => {
             remember: false
         },
         onSubmit: (event) => {
-            console.log('Submit: ', values);
+            
             data.type === 'in' ? onSignin(event) : onSignup(event);
         }
     });
 
     const onTranslate = (event) => {
-        console.log(formOverlayRef.current)
-        console.log(formRef.current)
+        
+        
 
         // // const overlayOffset = 
-        console.log(formRef.current.offsetTop, formOverlayRef.current.offsetTop - formRef.current.offsetTop);
+        
 
         
 
@@ -116,7 +110,7 @@ const Auth = () => {
 
 
     // const onEmailChange = (e) => setEmail(e.target.value);
-    // const onPasswordChange = (e) => {console.log(e.target); setPassword(e.target.value);}
+    // const onPasswordChange = (e) => {
 
     const forgotPassword = () => {
         history.push('/auth/forgot');

@@ -14,7 +14,6 @@ currentUser,
 RequireAuth,
 async (req, res) => {
     const exp = req.body;
-    // console.log(exp);
     const user = await User.findById(req.currentUser._id).exec();
     const exp_doc = user.portfolio.experiences.create(exp);
     user.portfolio.experiences.push(exp_doc);

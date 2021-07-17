@@ -48,14 +48,13 @@ const SkillsForm = forwardRef(({
     } = useForm({
         initialValues: {...skillsById},
         onSubmit: () => {
-            // console.log('Submit all skills: ', values);
             // validate domains
 
             const skillsArr = Object.values(values);
 
             // let good = false;
             for(let skill of skillsArr) {
-                console.log(skill.domain);
+                
                 if(!skill.domain || !skill.domain.length)  {
                     return setErrors(prev => [...prev, {
                         msg: 'Domain can\'t be empty',
@@ -72,22 +71,22 @@ const SkillsForm = forwardRef(({
     });
 
     useEffect(() => {
-        console.log('Errors by id: ', errors);
+        
     }, [errors]);
 
 
     const initNewDomain = () => {
-        console.log('Add new Domain...');
+        
         const newValues = {...values};
         updateById(null, {domain: "", relatedSkills: []}, newValues);
-        console.log(newValues);
+        
         reinitializeForm(newValues);
     }
 
 
     const handleDomainTitleChange = (event) => {
         setStopReInitializing(true);
-        // console.log(event.target.dataset.id)
+        // 
         const domainId = event.target.dataset.id;
         const { name, value } = event.target;
 
@@ -98,7 +97,7 @@ const SkillsForm = forwardRef(({
     }
 
     const deleteDomain = async (event) => {
-        console.log(event);
+        
         const id = event.currentTarget.dataset.id;
         
         const newValues = await deleteById(id, {...values});

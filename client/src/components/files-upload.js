@@ -7,7 +7,6 @@ const FilesUpload = () => {
     const [imgUrl, setImgUrl] = useState('');
 
     const onSubmit = async (e) => {
-        console.log('onSubmit');
         e.preventDefault();
         const data = new FormData();
         data.append('name', name);
@@ -18,7 +17,7 @@ const FilesUpload = () => {
         // for debug purposes
         // try {
         //     const res = await axios.post('https://httpbin.org/anything', data);
-        //     console.log(res);
+        //     
         // }
         // catch(err) {}
 

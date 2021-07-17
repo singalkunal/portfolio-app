@@ -10,7 +10,7 @@ const About = ({ about }) => {
     return (
         <section className="about" id="about">
             <div className="profileImg">
-                <img src={url} alt="No profile image"/>
+                <img src={url} alt="Not available"/>
             </div>
             <div className="intro">
                 <div className="banner">

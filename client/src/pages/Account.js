@@ -6,13 +6,14 @@ import useModal from '../hooks/use-modal';
 
 import Load from '../components/Load';
 import SomeError from '../components/SomeError';
+import { LiveUpdateContext } from "../contexts/LiveUpdateContext";
+import Alert from "../components/Alert";
 
 import calcPercentageCompleted from '../utils/user-details';
 import {animateValue} from '../utils/animate';
 
 import '../css/Account.css';
-import { LiveUpdateContext } from "../contexts/LiveUpdateContext";
-import Alert from "../components/Alert";
+import Error from "../components/Error";
 
 const Account = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
@@ -39,8 +40,16 @@ const Account = () => {
         method: 'get'
     });
 
+    const { doRequest: postPortfolio, errors: postPortfolioErrors } = useRequest({
+        url: `${API_URL}/api/portfolio/post`,
+        method: 'post'
+    })
+
     const { modalContainerRef:alertRef, openModal:openAlert, closeModal:closeAlert } = useModal({activeClass:"active"});
     
+    const PostPortfolio = async () => {
+        await postPortfolio();
+    }
 
     const onProceedDelete = async () => {
         const res = await deleteAccount();
@@ -53,6 +62,8 @@ const Account = () => {
     const onDeleteAccount = async (event) => {
         openAlert();
     };
+
+    
 
 
     // check if current signed in user
@@ -70,7 +81,7 @@ const Account = () => {
 
 
                 const p = calcPercentageCompleted(currentUser);
-                console.log("% = ", p);
+                
                 animateValue(0, p, 2000, document.getElementById('bar'), "value");
                 animateValue(0, p, 2000, progressRef.current, "textContent", "% Profile completed");    
                 // asynchronously animate certain fields
@@ -84,11 +95,14 @@ const Account = () => {
 
         fetchAndAnimate();
 
+
         return () => {
             const body = document.querySelector('body');
             body.style.overflowY = "scroll";
         }
     }, [])
+
+
 
     
 
@@ -104,10 +118,10 @@ const Account = () => {
                         <div className="account">
                             <header className="label">
                                 <i className="fas fa-user-alt"></i>
-                                <span className="title">{user.username}</span>
+                                <span className="title">&#64;{user.username}</span>
                             </header>
                             <ul className="options">
-                                <li>
+                                <li className="d_flex">
                                     <i className="fas fa-envelope-square"></i>
                                     <span className="text">{user.email}</span>
                                 </li>
@@ -118,7 +132,7 @@ const Account = () => {
                                     <div ref={progressRef} className="bar-percentage" data-percentage={calcPercentageCompleted(user)}></div>
                                 </li>
 
-                                <li className="views">
+                                <li className="views d_flex">
                                     <i className="fas fa-eye"></i>
                                     <span className="text">Views: {viewCount} </span>
                                 </li>
@@ -134,9 +148,12 @@ const Account = () => {
                                         <i className="far fa-file-alt"></i>
                                         <span className="text">My Portfolio</span>
                                     </Link>
-                                    {/* <a href="">
                                     
-                                    </a> */}
+                                </li>
+
+                                <li className="link" onClick={PostPortfolio}>
+                                    <i className="fas fa-globe"></i>
+                                    <span className="text">Post Portfolio</span>
                                 </li>
 
                                 <li className="link">
@@ -155,6 +172,8 @@ const Account = () => {
                                 </li>
 
                             </ul>
+
+                            <Error errors={postPortfolioErrors} disappearIn={5000}/>
                         </div>
                     }
 

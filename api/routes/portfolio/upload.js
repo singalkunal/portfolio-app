@@ -16,7 +16,6 @@ const uploadFile = async (bucket, file_to_upload, path) => {
 
     try {
         await file.save(file_to_upload.buffer);
-        // console.log('File saved: ', path)
         await file.makePublic();
     
         return {publicUrl: file.publicUrl(), filename:path};
@@ -83,7 +82,6 @@ router.post(
         }
         try {
             await file.delete();
-            console.log('Deleted...');
         }
 
         catch(err) {

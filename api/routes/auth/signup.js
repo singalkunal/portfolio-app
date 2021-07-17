@@ -61,7 +61,7 @@ async (req, res) => {
     await code.save();
 
     if(!process.env.SENDGRID_API_KEY) {
-        console.log('SENDGRID_API_KEY not defined...');
+        
         throw new BadRequestError('Can\'t send verification code...', 401);
     }
 
@@ -102,7 +102,7 @@ async (req, res) => {
 });
 
 router.get('/api/users/verify', async (req, res) => {
-    // console.log(req.query);
+    // 
 
     try {
             var { code, email } = req.query;

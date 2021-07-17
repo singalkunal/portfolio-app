@@ -74,7 +74,7 @@ const Comment = ({
         
         socket.emit('toggle-like-comment', comment._id, obj => {
             if(!obj) {
-                console.log('Error');
+                
             }
         })
     };
@@ -92,21 +92,21 @@ const Comment = ({
 
         socket.emit('delete-comment', comment._id, obj => {
             if(!obj) {
-                console.log('Error');
+                
             }
         })
     }
 
     useEffect(() => {
         if(comment._id === "60f0928acff6522b052fc173") {
-            console.log('Haigaaaaaaaaaaaaaaa')
+            
         }
         return () => {
             setReplyFor(null);
         }
     }, []);
 
-    // console.log(comment.commentedBy, signedInUser._id);
+    // 
     return (
         
         <StyledComment>

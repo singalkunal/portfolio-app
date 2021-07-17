@@ -5,64 +5,6 @@ const Comment = require('../models/comment');
 const Post = require('../models/post');
 const User = require('../models/user');
 
-// const { getPost } = require('./post');
-
-// exports.getComment = async (user, postId) => {
-//     try {
-//         var comments = await Post.aggregate([
-//             {
-//                 $match: { _id: mongoose.Types.ObjectId(postId)}
-//             },
-//             {
-//                 $project: {
-//                     "tempRoot.comment": "$comments",
-//                 }
-//             },
-//             {
-//                 $replaceRoot: {newRoot: '$tempRoot'}
-//             },
-
-//             {
-//                 $lookup: {
-//                     from: 'comments',
-//                     localField: 'comment',
-//                     foreignField: '_id',
-//                     as: 'comment'  // because later unwinding each comment into separate documents
-//                 }
-//             },
-//             {
-//                 $unwind: "$comment"
-//             },
-//             {
-//                 $replaceRoot: {newRoot: '$comment'}
-//             }, 
-//             // now we have array of comments at this stage
-//             {
-//                 $set: {
-//                     'liked': {$in: [mongoose.Types.ObjectId(user._id), '$likes']}
-//                 }
-//             }
-
-//         ]).exec();
-
-//         comments = await Comment.populate(comments, {
-//             path: "commentedBy",
-//             select: "username",
-//         });
-
-//         comments = await Comment.populate(comments,
-//         {
-//             path: "replies.repliedBy",
-//             select: 'username'
-//         });
-//         return comments;
-//     }
-//     catch(err) {
-//         console.log(err);
-//         throw new Error('Unable to get comments ');
-//     }
-// }
-
 exports.postComment = async (user, postId, comment) => {
     // validation
     if(!postId) {
@@ -75,7 +17,6 @@ exports.postComment = async (user, postId, comment) => {
 
     try {
     
-        console.log(postId);
         var post = await Post.findById(postId).exec();
 
         const newComment = new Comment({
@@ -109,7 +50,6 @@ exports.deleteComment = async (user, commentId) => {
         throw new Error('must provide post');
     }
 
-    console.log('delete', commentId, user._id);
     var comment = await Comment.findOneAndDelete({_id: commentId, commentedBy: user._id}).exec();
 
     // if(comment.commentedBy.toString() !== user._id) {
@@ -119,7 +59,6 @@ exports.deleteComment = async (user, commentId) => {
     
 
     if(comment) {
-        // console.log('Deleted', comment);
         const result = await Post.updateOne(
             {_id: comment.commentedOn}, 
             {
@@ -187,7 +126,6 @@ exports.replyComment = async (user, commentId, reply) => {
         throw new Error('comment can\'t be empty');
     }
 
-    console.log(commentId);
     const comment = await Comment.findById(commentId).exec();
     const id = mongoose.Types.ObjectId();
 

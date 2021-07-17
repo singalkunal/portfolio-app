@@ -43,7 +43,7 @@ const PostImage = styled.div`
 
     @media only screen and (min-width: ${cssVariables.minDesktopWidth}) {
         aspect-ratio: 4/5;
-        max-width: 324px;
+        max-width: 360px;
     }
 `
 
@@ -178,6 +178,7 @@ export const Left = styled.div`
 
     @media only screen and (min-width: ${cssVariables.minDesktopWidth}) {
         width: 47%;
+        max-width: 360px;
     }
 `
 
@@ -211,9 +212,9 @@ const Post = ({
     const { socket } = useContext(SocketContext);
     const onLike = (event) => {
         event.preventDefault();
-        console.log('like');
+        
         socket.emit('toggle-like-post', post._id, obj => {
-            console.log(obj);
+            
 
         })
     }

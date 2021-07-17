@@ -15,7 +15,6 @@ const FormTag = ({
     const onError = (event) => {
         if(link) {
             const img = event.target;
-            // console.log(img)
             img.src = linkIcon;
         }
     }

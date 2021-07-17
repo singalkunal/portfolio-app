@@ -18,7 +18,6 @@ import Error from '../Error';
 import useFormTag from '../../hooks/use-from-tag';
 
 const AboutForm = forwardRef(({ about, closeModal, updateAbout }, ref) => {
-    // console.log(ObjectId().toHexString());
     // global
     const { values, 
             handleChange, 
@@ -28,7 +27,6 @@ const AboutForm = forwardRef(({ about, closeModal, updateAbout }, ref) => {
          } = useForm({
             initialValues: {...about},
             onSubmit: async () => {
-                console.log('Submit about form...', values, profileImg);
                 var response = null;
 
                 if(profileImg) {
@@ -37,15 +35,10 @@ const AboutForm = forwardRef(({ about, closeModal, updateAbout }, ref) => {
                 }
 
                 
-
-                console.log(values.img_url)
-                console.log(response)
                 await updateAbout({
                     ...values,
                     img_url: response && response.publicUrl ? response.publicUrl : about.img_url
                 });
-
-                console.log(values);
                 closeModal();
             }
     });

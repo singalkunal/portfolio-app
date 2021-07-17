@@ -1,13 +1,14 @@
-import './App.css'
-import './css/Button.css';
-import { BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+
+import Router from './Router';
 
 import LiveUpdateContextProvider from './contexts/LiveUpdateContext';
-
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Router from './Router';
 import SocketContextProvider from './contexts/SocketContext';
+
+import './App.css';
+import './css/Button.css';
+
+
 
 
 function App() {

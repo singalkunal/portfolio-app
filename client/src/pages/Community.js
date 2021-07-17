@@ -67,9 +67,9 @@ const Community = () => {
 
     const triggerCustomEvent2 = () => {
         socket.emit('post-comment', '60edf74d2e60276eed250130', 'Needed a change', (obj) => {
-            console.log(obj);
+            
             if(obj.err) {
-                console.log('error bruhh', obj.err);
+                
             }
         });
     }
@@ -118,7 +118,7 @@ const Community = () => {
 
             socket.on('post-comment', data => {
                 const postedComment = data.comment;
-                // console.log(postedComment);
+                // 
                 setPostsById(prev => {
                     const pid = postedComment.commentedOn;
                     return {
@@ -156,7 +156,7 @@ const Community = () => {
             })
 
             socket.on('delete-comment', data => {
-                console.log(data.comment);
+                
                 if(data.comment) {
                     const pid = data.comment.commentedOn;
                     setPostsById(prev => {

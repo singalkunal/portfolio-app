@@ -54,7 +54,7 @@ const Reset = () => {
              password: ""
          },
          onSubmit: async () => {
-             console.log('Submit', values);
+             
              setShownErrors([]);
              const res = await doRequest();
 
@@ -68,7 +68,7 @@ const Reset = () => {
                  );
 
              }
-            //  console.log(res);
+            //  
          }
      });
 

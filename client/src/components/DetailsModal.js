@@ -1,8 +1,8 @@
-import { useEffect, useRef, forwardRef } from 'react';
+import { forwardRef, useEffect } from 'react';
 import '../css/DetailsModal.css';
-
-import Tags from './Tags';
 import ExternalLinks from './ExternalLinks';
+import Tags from './Tags';
+
 
 const DetailsModal = forwardRef(({ experience, closeModal }, ref) => {
     const handleEsc = (event) => {
@@ -16,22 +16,6 @@ const DetailsModal = forwardRef(({ experience, closeModal }, ref) => {
         }
     }, []);
 
-
-    // useEffect(() => {
-    //     const modal = modalRef.current
-    //     if(!modal) return;
-    //     let element;
-    //     if(isModalOpen) {
-    //         for (element of modal.children) {
-    //             element.classList.add(activeClass);
-    //         }
-    //     }
-    //     else {
-    //         for (element of modal.children) {
-    //             element.classList.remove(activeClass);
-    //         }
-    //     }
-    // }, [isModalOpen]);
 
     return (
         <div ref = {ref}>

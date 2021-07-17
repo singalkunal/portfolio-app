@@ -46,7 +46,6 @@ async (req, res) => {
         
         const userId = req.currentUser._id;
         const comments = await Comment.find({commentedBy: userId}).select('_id');
-        console.log(comments);
 
         // update posts
         const posts = await Post.updateMany({},

@@ -10,12 +10,12 @@ const useAsyncRef = (value, isProp=false) => {
         // if (!Object.is(ref.current, newState)) {
         //     ref.current = newState;
         //     forceRender(s => !s);
-        //     console.log('re-render');
+        //     
         // }
 
         ref.current = newState;
         forceRender(s => !s);
-        console.log('re-render');
+        
     }
       
     if (isProp) {

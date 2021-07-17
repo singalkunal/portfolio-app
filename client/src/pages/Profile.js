@@ -6,17 +6,12 @@ const Profile = () => {
         url: 'http://localhost:3080/api/users/currentuser',
         method: 'get',
         onSuccess: (res) => {
-            console.log("Response:", res);
+            
         }
     });
 
     const onSubmit = async (e) => {
-        try {
-            await doRequest();
-        }
-        catch(err) {
-            console.log(err);
-        }
+        await doRequest();
     }
 
     return (

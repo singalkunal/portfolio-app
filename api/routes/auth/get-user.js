@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.get('/api/users/details/:username',
 async (req, res) => {
-    // console.log(req.currentUser);
     const { username } = req.params;
     try {
         const user = await User.findOne({username}).exec();

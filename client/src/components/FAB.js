@@ -36,7 +36,6 @@ const FAB = ({ url, iconClass="fas fa-edit" }) => {
 
 
     const onMouseDown = (e) => {
-        console.log('mouse down');
         setDragging(true);
 
         // const pageX = e.pageX || e.changedTouches[0].pageX;

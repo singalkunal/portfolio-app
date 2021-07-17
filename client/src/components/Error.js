@@ -1,14 +1,30 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../css/Error.css';
-import useAsyncRef from '../hooks/use-async-ref';
 
-const Error = ({errors=[]}) => {
+const Error = ({errors=[], disappearIn=null }) => {
 
+    const [localErrors, setErrors] = useState([]);
+    useEffect(() => {
+        var timer;
+        if(errors && errors.length) {
+            setErrors(errors);
+
+            if(disappearIn) {
+                timer = setTimeout(() => {
+                    setErrors([]);
+                }, disappearIn)
+            }
+        }
+
+        return () => {
+            clearTimeout(timer);
+            setErrors([]);
+        }
+    }, [errors])
 
     return (
         <div className="errors">
-            {errors.length > 0 && <div> 
-            {/* <i className="iconRight fas fa-exclamation-circle"></i> */}
+            {localErrors.length > 0 && <div> 
             <ul>
                 {
                     errors.map(error => {

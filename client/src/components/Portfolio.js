@@ -46,12 +46,11 @@ const Portfolio = () => {
             if(signedInUser && (signedInUser.username === username)) setShowFab(true);
 
             if(passedPortfolio) {
-                console.log('passeed');
+
                 setIsError(false);
                 setPortfolio(passedPortfolio);
             }
             else {
-                console.log('nadda');
                 try {
                     const { user } = await fetchUser();
                     if(user) {
@@ -69,7 +68,6 @@ const Portfolio = () => {
         };
 
         fetchPortfolio();
-
         return () => {
             setShowMail(null);
         };
@@ -78,12 +76,10 @@ const Portfolio = () => {
 
     useEffect(() => {
         if(errors && errors.length) {
-            console.log(errors)
             setIsError(true);
             setLoading(false);
         }
         else if(curerr && curerr.length) {
-            console.log(curerr);
             setIsError(true);
             setLoading(false);
         }
