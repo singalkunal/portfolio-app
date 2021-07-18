@@ -41,7 +41,7 @@ async (req, res) => {
         await user.save();
     }
     catch(err){
-        console.log(err);
+        console.log("==========>", err);
         throw new BadRequestError('Can\'t update portfolio', 500);
     }
 
