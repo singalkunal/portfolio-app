@@ -118,7 +118,7 @@ const EditPage = () => {
         }
         else {
             const portfolio = {
-                id: user.portfolio._id,
+                _id: user.portfolio._id,
                 about: about,
                 experiences: experiences,
                 skills: skills

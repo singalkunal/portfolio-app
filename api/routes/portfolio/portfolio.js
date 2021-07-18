@@ -32,7 +32,7 @@ async (req, res) => {
     const { portfolio } = req.body;
 
     if(user.portfolio._id != portfolio._id) {
-        throw new BadRequestError('Can\'t update portfolio', 500);
+        throw new BadRequestError('provided and saved portfolio ids don\'t match', 500);
     }
 
     Object.assign(user.portfolio, portfolio);
