@@ -126,7 +126,7 @@ const EditPage = () => {
 
             const res = await putPortfolio({portfolio:portfolio});
             console.log('Response: ', res);
-            if(res) history.push(`/portfolio/${user._id}`);
+            if(res) history.push(`/portfolio/${user.username}`);
         }
     }
     const onCancel = () => {
