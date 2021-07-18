@@ -32,6 +32,9 @@ async (req, res) => {
     const { portfolio } = req.body;
 
     if(user.portfolio._id != portfolio._id) {
+        console.log(user.portfolio, portfolio);
+        console.log(user, portfolio);
+        console.log(user.portfolio._id, portfolio._id);
         throw new BadRequestError('Can\'t update portfolio', 500);
     }
 
