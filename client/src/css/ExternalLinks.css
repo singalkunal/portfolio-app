@@ -30,6 +30,8 @@
 }
 
 .link i.icon-ex {
+    width: unset;
+    height: unset;
     max-width: 24px;
     max-height: 24px;
 
