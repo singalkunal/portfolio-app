@@ -40,7 +40,7 @@ export const FaceCardBack = styled(Card)`
 export const StyledTwoFaceCard = styled.div`
     width: 100%;
     max-width: 360px;
-    min-width: 350px;
+    min-width: min(350px, 100%);
     aspect-ratio: 4/5;
     border: 1px solid #f1f1f1;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */

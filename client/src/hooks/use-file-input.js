@@ -29,6 +29,10 @@ const useFileInput = ({
         setFiles([...gotFiles]);
     };
 
+    const handleDiscard = (e) => {
+        setFiles(null);
+    }
+
     const uploadFile = async () => {
         const data = new FormData();
         data.append('path', path);
@@ -51,7 +55,7 @@ const useFileInput = ({
         onSubmit(event);
     };
 
-    return { files, uploadErrors, errors, handleChange, uploadFile, handleSubmit };
+    return { files, uploadErrors, errors, handleChange, handleDiscard, uploadFile, handleSubmit };
 }
 
 export default useFileInput

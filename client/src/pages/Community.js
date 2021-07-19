@@ -7,7 +7,7 @@ import useRequest from "../hooks/use-request";
 import { Container } from '../styled-components/Container.style';
 import Navbar from '../styled-components/Navbar';
 import Post, { StyledPost } from '../styled-components/Post';
-
+import EmptyPage from "../styled-components/EmptyPage";
 
 import Load from "../components/Load";
 import CommentBlock from '../styled-components/CommentBlock';
@@ -189,21 +189,27 @@ const Community = () => {
                         <Navbar />
                     }
 
-                    <StyledPostWrapper commentFor = {commentFor} >
-                        <MyContainer>
-                            {
-                                Object.entries(postsById).map(([_, post]) => {
-                                    return <Post 
-                                            post={post}
-                                            key={post._id}
-                                            onComment={triggerCustomEvent2}
-                                            showCommentForMe={setCommentFor}
-                                        />
-                                })
+                    {
+                        Object.keys(postsById).length
+                        ?
+                        <StyledPostWrapper commentFor = {commentFor} >
+                            <MyContainer>
+                                {
+                                    Object.entries(postsById).map(([_, post]) => {
+                                        return <Post 
+                                                post={post}
+                                                key={post._id}
+                                                onComment={triggerCustomEvent2}
+                                                showCommentForMe={setCommentFor}
+                                            />
+                                    })
 
-                            }
-                        </MyContainer>
-                    </StyledPostWrapper>
+                                }
+                            </MyContainer>
+                        </StyledPostWrapper>
+                        :
+                        <EmptyPage />
+                    }
                 </CommunityWrapper>
             </RequireAuth>
 

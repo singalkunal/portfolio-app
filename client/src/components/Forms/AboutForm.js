@@ -22,7 +22,7 @@ const AboutForm = forwardRef(({ about, closeModal, updateAbout }, ref) => {
     const { values, 
             handleChange, 
             handleSubmit,
-            handleDiscard,
+            handleDiscard: formDiscard,
             isSubmitting: isUpdatingAbout,
             changeSpecificValue
          } = useForm({
@@ -69,6 +69,7 @@ const AboutForm = forwardRef(({ about, closeModal, updateAbout }, ref) => {
         changeSpecificValue: changeProfileLinkField,
         handleChange: profileLinkChange,
         handleSubmit: profileLinkSubmit,
+        handleDiscard: profileLinkDiscard,
         isSubmitting: isAddingLink,
         errors
     } = useForm({
@@ -104,11 +105,18 @@ const AboutForm = forwardRef(({ about, closeModal, updateAbout }, ref) => {
     const {
         files: profileImg,
         handleChange: handleProfileImgChange,
+        handleDiscard: profileImgDiscard,
         uploadFile: uploadProfileImg
     } = useFileInput({
         path: 'profileImg/'
     })
 
+
+    const handleDiscard = (e) => {
+        formDiscard(e);
+        profileLinkDiscard(e);
+        profileImgDiscard()
+    }
     
 
 

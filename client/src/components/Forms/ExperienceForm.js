@@ -21,7 +21,7 @@ const ExperienceForm = forwardRef(({experience, updateExperiences, closeModal}, 
             handleChange,
             reinitializeForm, 
             handleSubmit,
-            handleDiscard,
+            handleDiscard: formDiscard,
             isSubmitting: isUpdatingExperience,
             errors: formValidationErrors,
             changeSpecificValue
@@ -69,6 +69,7 @@ const ExperienceForm = forwardRef(({experience, updateExperiences, closeModal}, 
         values: tagValues,
         handleChange: tagChange,
         handleSubmit: tagSubmit,
+        handleDiscard: tagDiscard,
         isSubmitting: isAddingTag,
         errors
     } = useForm({
@@ -100,6 +101,7 @@ const ExperienceForm = forwardRef(({experience, updateExperiences, closeModal}, 
         values: additionalTagValues,
         handleChange: additionalTagChange,
         handleSubmit: additionalTagSubmit,
+        handleDiscard: additionalTagDiscard,
         isSubmitting: isAddingAdditionalTag,
         errors: additionalTagErrors
     } = useForm({
@@ -125,6 +127,7 @@ const ExperienceForm = forwardRef(({experience, updateExperiences, closeModal}, 
     const {
         files: images,
         handleChange: handleImgChange,
+        handleDiscard: filesDiscard,
         errors: validationImgErrors,
         uploadFile: uploadImages
     } = useFileInput({
@@ -153,6 +156,7 @@ const ExperienceForm = forwardRef(({experience, updateExperiences, closeModal}, 
         values: externalLinkValues,
         handleChange: externalLinkChange,
         handleSubmit: externalLinkSubmit,
+        handleDiscard: externalLinkDiscard,
         isSubmitting: isAddingExternal_link,
         errors: externalLinkErrors
     } = useForm({
@@ -186,6 +190,17 @@ const ExperienceForm = forwardRef(({experience, updateExperiences, closeModal}, 
         path: 'icon/'
     });
 
+
+    // discard all changes
+    const handleDiscard = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        formDiscard(e);
+        tagDiscard(e);
+        additionalTagDiscard(e);
+        filesDiscard();
+        externalLinkDiscard(e);
+    }
     /****************************************Side Effects***************************************************/
 
     useEffect(() => {

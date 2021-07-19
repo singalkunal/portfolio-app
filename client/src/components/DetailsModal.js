@@ -6,7 +6,9 @@ import Tags from './Tags';
 
 const DetailsModal = forwardRef(({ experience, closeModal }, ref) => {
     const handleEsc = (event) => {
-        if(event.key === 'Escape') closeModal();
+        if(ref.current?.children[1].classList.contains("active")) {
+            if(event.key === 'Escape') closeModal();
+        }
     };
 
     useEffect(() => {

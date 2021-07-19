@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { useContext } from 'react';
 import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 
+import bgImage from '../public/images/sdlc.png';
+
 const Home = () => {
     const history = useHistory();
     const API_URL = process.env.REACT_APP_API_BASE_URL;
@@ -17,7 +19,7 @@ const Home = () => {
 
     return (
         <div className="container">
-            <div className="home" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/sdlc.png)`}}>
+            <div className="home" style={{backgroundImage: `url(${bgImage})`}}>
                 <div className="content-container">
                     <h1 className="heading">Build Your Portfolio Now!</h1>
                     <Button className="example" label="See Example" iconClass="fas fa-external-link-alt"/>

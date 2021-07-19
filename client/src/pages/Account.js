@@ -48,7 +48,11 @@ const Account = () => {
     const { modalContainerRef:alertRef, openModal:openAlert, closeModal:closeAlert } = useModal({activeClass:"active"});
     
     const PostPortfolio = async () => {
-        await postPortfolio();
+        const res = await postPortfolio();
+        if(res?.post) {
+            history.push(`/community#${res.post._id}`);
+        }
+
     }
 
     const onProceedDelete = async () => {
