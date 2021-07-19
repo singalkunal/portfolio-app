@@ -22,6 +22,7 @@ const ExperienceForm = forwardRef(({experience, updateExperiences, closeModal}, 
             reinitializeForm, 
             handleSubmit,
             handleDiscard,
+            isSubmitting: isUpdatingExperience,
             errors: formValidationErrors,
             changeSpecificValue
         } = useForm({
@@ -326,7 +327,7 @@ const ExperienceForm = forwardRef(({experience, updateExperiences, closeModal}, 
                     <div className="action-buttons">
                         <Button
                             label="Save" 
-                            className="form-button save-button white" 
+                            className={"form-button save-button white" + (isUpdatingExperience ? " disable" : "")} 
                             iconUrl={TickIcon}
                             onClick={handleSubmit}
                         />

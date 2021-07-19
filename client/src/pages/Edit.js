@@ -45,6 +45,7 @@ const EditPage = () => {
 
     /****************************************states***************************************************/
     const [loading, setLoading] = useState(true);
+    const [submitting, setSubmitting] = useState(false);
     const [isError, setIsError] = useState(false);
     const [user, setUser] = useState({});
 
@@ -117,6 +118,7 @@ const EditPage = () => {
             history.push(`/portfolio/${user.username}`);
         }
         else {
+            setSubmitting(true);
             const portfolio = {
                 _id: user.portfolio._id,
                 about: about,
@@ -125,7 +127,7 @@ const EditPage = () => {
             };
 
             const res = await putPortfolio({portfolio:portfolio});
-            console.log('Response: ', res);
+            setSubmitting(false);
             if(res) history.push(`/portfolio/${user.username}`);
         }
     }
@@ -251,7 +253,7 @@ const EditPage = () => {
                     <div className="action-buttons">
                         <Button
                             label="Save"
-                            className="save"
+                            className={"save" + (submitting ? " disable" : "")}
                             onClick={onSubmit}
                             iconUrl={TickIcon}
                         />

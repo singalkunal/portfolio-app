@@ -23,6 +23,7 @@ const AboutForm = forwardRef(({ about, closeModal, updateAbout }, ref) => {
             handleChange, 
             handleSubmit,
             handleDiscard,
+            isSubmitting: isUpdatingAbout,
             changeSpecificValue
          } = useForm({
             initialValues: {...about},
@@ -192,7 +193,7 @@ const AboutForm = forwardRef(({ about, closeModal, updateAbout }, ref) => {
                     <div className="action-buttons">
                         <Button
                             label="Save" 
-                            className="form-button save-button white" 
+                            className={"form-button save-button white" + (isUpdatingAbout ? " disable" : "")}
                             iconUrl={TickIcon}
                             onClick={handleSubmit}
                         />

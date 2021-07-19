@@ -26,10 +26,8 @@ const useFormTag = ({
         const id = event.target.dataset.id;
 
         var prevValues = [...tags];
-        console.log(prevValues);
         
         prevValues = await deleteById(id, prevValues);
-        console.log(prevValues);
         
 
         // timeout to pad time for animation

@@ -45,6 +45,7 @@ const SkillsForm = forwardRef(({
         reinitializeForm,
         handleSubmit,
         handleDiscard,
+        isSubmitting: isUpdatingSkills,
     } = useForm({
         initialValues: {...skillsById},
         onSubmit: () => {
@@ -153,7 +154,7 @@ const SkillsForm = forwardRef(({
                     <div className="action-buttons">
                         <Button
                             label="Save" 
-                            className="form-button save-button white" 
+                            className={"form-button save-button white" + (isUpdatingSkills ? " disable" : "")}
                             iconUrl={TickIcon}
                             onClick={handleSubmit}
                         />

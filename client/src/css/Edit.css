@@ -28,7 +28,7 @@
 
     padding: 20px;
     max-height: 80%;
-    max-width: 400px;
+    max-width: 440px;
     min-width: 350px;
     border-radius: 15px;
     overflow: scroll;
@@ -57,12 +57,14 @@
 .edit-form-wrapper .form-group {
     display: flex;
     flex-direction: column;
+    width: 95%;
 }
 
 .edit-form-wrapper input[type=text],
 .edit-form-wrapper input[type=url],
 .edit-form-wrapper textarea{
     min-width: 300px;
+    width: 100%;
     padding-left: 10px;
 }
 
