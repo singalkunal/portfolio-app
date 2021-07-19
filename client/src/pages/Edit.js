@@ -164,6 +164,7 @@ const EditPage = () => {
         fetchUser();
 
         return () => {
+            setShowFooterButton(true);
             const body = document.querySelector('body');
             body.style.overflowY = "scroll";
         }

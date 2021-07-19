@@ -21,7 +21,6 @@ const Portfolio = () => {
 
     const {signedInUser, setShowMail } = useContext(LiveUpdateContext);
 
-    const [showFab, setShowFab] = useState(false);
     const [portfolio, setPortfolio] = useState({});
     const [loading, setLoading] = useState(true);
     const [isError, setIsError] = useState(true);
@@ -42,8 +41,6 @@ const Portfolio = () => {
         const fetchPortfolio = async () => {
             var passedPortfolio = null;
             if(location.state) passedPortfolio = location.state.portfolio;
-            
-            if(signedInUser && (signedInUser.username === username)) setShowFab(true);
 
             if(passedPortfolio) {
 
@@ -100,7 +97,7 @@ const Portfolio = () => {
                     </SomeError>
                 </Load>
             </div>
-            {showFab && <FAB url="/portfolio/edit" />}
+            {(signedInUser?.username === username) && <FAB url="/portfolio/edit" />}
         </>
     )
 }

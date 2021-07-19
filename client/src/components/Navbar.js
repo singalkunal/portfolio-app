@@ -34,7 +34,7 @@ const Navbar = () => {
     }
 
     const { showMail } = useContext(LiveUpdateContext);
-
+    
     return (
         <nav className="navbar">
             <FaIconLink icon={faHome} link="/#" />
@@ -50,7 +50,7 @@ const Navbar = () => {
             }
 
 
-            <a href={`mailto:${showMail ||  process.env.EMAIL}`} className="main-nav-item button takeme">
+            <a href={`mailto:${showMail ? showMail : process.env.REACT_APP_EMAIL}`} className="main-nav-item button takeme">
                 {'Mail ' + (showMail ? 'Me' : 'Us')}
             </a>
 

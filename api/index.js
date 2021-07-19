@@ -132,6 +132,8 @@ const startUp = async () => {
         useCreateIndex: true,
         useUnifiedTopology: true
     });
+
+    console.log('Connected to database...');
     
 
     // connect Firebase Storage
@@ -140,14 +142,15 @@ const startUp = async () => {
         storageBucket: process.env.BUCKET_URL
     });
 
+
     // locals properties can be accessed in any middleware using req.app.locals
     app.locals.bucket = admin.storage().bucket()
     
-
+    console.log('Firebase storage connected...');
     
 
     server.listen(PORT, () => {
-        
+        console.log(`Server listening on ${PORT}...`);
     })
 };
 

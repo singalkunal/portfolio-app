@@ -8,15 +8,17 @@ import { LiveUpdateContext } from '../contexts/LiveUpdateContext';
 import styled from 'styled-components/macro';
 
 const FooterWrapper = styled.div`
+    @media only screen and (max-width: 620px) {
+        padding-bottom: ${props => props.padBottom ? "60px" : 0};
+    }
 `
-const Footer = () => {
+const Footer = ({padBottom}) => {
     const {
         signedInUser, setSignedInUser,
         showFooterButton,
     } = useContext(LiveUpdateContext);
-    
     return (
-       <FooterWrapper>
+       <FooterWrapper padBottom={padBottom}>
                 <div id="#footer" className={"footer" + (showFooterButton ? "" : " middle")}>
                 <span className="copyright">&copy; 2021 Developed By Kunal</span>
                 {

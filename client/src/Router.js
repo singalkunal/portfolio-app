@@ -72,14 +72,14 @@ const Router = () => {
                     <Navbar />
                     <SideBar />
                     <EditPage />
-                    <Footer />
+                    <Footer padBottom/>
                 </Route>
 
                 <Route exact path="/portfolio/:username">
                     <Navbar />
                     <SideBar />
                     <Portfolio /> 
-                    <Footer />
+                    <Footer padBottom/>
                 </Route>
 
                 <Route exact path="/community">

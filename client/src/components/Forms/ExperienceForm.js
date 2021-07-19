@@ -36,7 +36,7 @@ const ExperienceForm = forwardRef(({experience, updateExperiences, closeModal}, 
                 if(images) {
                     response = await uploadImages();
 
-                    response = response;
+                    // response = response;
                 }
 
 
@@ -49,7 +49,7 @@ const ExperienceForm = forwardRef(({experience, updateExperiences, closeModal}, 
 
                 await updateExperiences({
                     ...values,
-                    img_url: newImages ? newImages : experience.img_url
+                    img_url: newImages && newImages.length ? newImages : experience.img_url
                 });
 
                 closeModal();
