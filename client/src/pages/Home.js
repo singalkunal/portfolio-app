@@ -15,6 +15,7 @@ const Home = () => {
         history.push('/auth');
     }
 
+
     const {signedInUser} = useContext(LiveUpdateContext);
 
     return (
@@ -22,7 +23,12 @@ const Home = () => {
             <div className="home" style={{backgroundImage: `url(${bgImage})`}}>
                 <div className="content-container">
                     <h1 className="heading">Build Your Portfolio Now!</h1>
-                    <Button className="example" label="See Example" iconClass="fas fa-external-link-alt"/>
+                    <Button 
+                        className="example" 
+                        label="See Example" 
+                        iconClass="fas fa-external-link-alt"
+                        onClick = {() => history.push(`/portfolio/${schrutedwight}`)}
+                    />
                     <ul className="steps">
                         <li className="step">
                             <i class="fas fa-pencil-alt"></i>
