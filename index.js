@@ -53,6 +53,7 @@ app.use(function(req, res, next) {
 const session = cookieSession({
     signed: false, // disables encryption of jwt
     // secure: true
+    sameSite: 'strict',
 });
 app.use(session);
 
