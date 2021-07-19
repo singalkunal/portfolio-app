@@ -7,6 +7,7 @@ const Post = require('../../models/post');
 const currentUser = require('../../middlewares/current-user');
 const RequireAuth = require('../../middlewares/require-auth');
 const BadRequestError = require('../../errors/bad-request-error');
+const User = require('../../models/user');
 
 const router = express.Router();
 
@@ -26,9 +27,18 @@ async (req, res) => {
         user: id
     });
 
-    post = await post.save();
+    const user = await User.findById(id).exec();
+    user.portfolio.post = post._id;
+    try {
+        await user.save();
+        post = await post.save();
 
-    res.status(201).json({post});
+        res.status(201).json({post});
+    }
+    catch(err) {
+        console.log(err);
+        throw new BadRequestError('Error posting portfolio...');
+    }
     
 });
 
