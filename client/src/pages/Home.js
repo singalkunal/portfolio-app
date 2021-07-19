@@ -27,7 +27,7 @@ const Home = () => {
                         className="example" 
                         label="See Example" 
                         iconClass="fas fa-external-link-alt"
-                        onClick = {() => history.push(`/portfolio/${schrutedwight}`)}
+                        onClick = {() => history.push(`/portfolio/schrutedwight`)}
                     />
                     <ul className="steps">
                         <li className="step">
