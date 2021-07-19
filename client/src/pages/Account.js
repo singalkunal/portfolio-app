@@ -132,7 +132,7 @@ const Account = () => {
                                     <div ref={progressRef} className="bar-percentage" data-percentage={calcPercentageCompleted(user)}></div>
                                 </li>
 
-                                <li className="views d_flex">
+                                <li className="views">
                                     <i className="fas fa-eye"></i>
                                     <span className="text">Views: {viewCount} </span>
                                 </li>
