@@ -84,7 +84,7 @@ async (req, res) => {
             <h1>Hello</h1>
             <p>Thanks for registering with us</p>
             <p>Please click the link below to verify your account. Code is valid only for 30 mins </p>
-            <a href = http://${process.env.REACT_APP_URL}/auth/verify?code=${code.code}&email=${base64email}>Verify your account</a>
+            <a href = ${process.env.REACT_APP_URL_NAKED}/auth/verify?code=${code.code}&email=${base64email}>Verify your account</a>
         `
     }
 
