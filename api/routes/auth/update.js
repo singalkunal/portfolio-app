@@ -2,6 +2,8 @@ const express = require('express');
 require('express-async-errors');
 const { body, query, oneOf, check } = require('express-validator');
 
+require('dotenv').config({path: '../Docker/api/api-variable.env'});
+
 const BadRequestError = require('../../errors/bad-request-error');
 const validateRequest = require('../../middlewares/validate-request');
 const validator = require('validator');

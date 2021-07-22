@@ -48,7 +48,7 @@ const MyContainer = styled(Container)`
     display: block;
     margin-top: 100px;
 
-    margin-right: 0;
+    /* margin-right: 0; */
     position: sticky;
     background-color: white;
     &.transition-enter {
@@ -256,10 +256,6 @@ const CommentBlock = ({postId, username, setCommentFor, className}) => {
             <CommentBlockWrapper>
                 {
                     Object.entries(commentsById).map(([_, comment]) => {
-                        if(comment._id === "60f0928acff6522b052fc173") {
-                            
-
-                        }
                         return <Comment 
                             key={comment._id}
                             comment={comment}

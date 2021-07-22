@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useTranslate = () => {
+const useTranslate = (props) => {
     const in_data = {
         type: 'in',
         banner: 'Henlo vro',
@@ -18,13 +18,13 @@ const useTranslate = () => {
         desc: 'Already have an account?',
         ghostTitle: 'SIGN IN',
         title: 'SIGN UP',
-        helptext: 'Your credentials are safe',
+        helptext: 'Email verification is currently turned off....It means currently any dummy email can be used to signup',
         ghosticon: 'fas fa-sign-in-alt',
         icon: 'fas fa-user-plus'
     }
 
-    const [trans, setTrans] = useState(false)
-    const [data, setData] = useState(in_data);
+    const [trans, setTrans] = useState(props?.preTrans)
+    const [data, setData] = useState(trans ? up_data : in_data);
     // 
 
 

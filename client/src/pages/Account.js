@@ -21,7 +21,7 @@ const Account = () => {
     const history = useHistory();
 
     const [user, setUser] = useState({});
-    const { setSignedInUser } = useContext(LiveUpdateContext);
+    const { signedInUser, setSignedInUser } = useContext(LiveUpdateContext);
 
     const [loading, setLoading] = useState(true);
     const [isError, setIsError] = useState(false);
@@ -117,8 +117,9 @@ const Account = () => {
             <Load loading={loading}>
                 <SomeError isError={isError || !user} redirect redirectTime={+redirectTime} path="/auth">
                     {
-                        user
+                        user && signedInUser
                         &&
+
                         <div className="account">
                             <header className="label">
                                 <i className="fas fa-user-alt"></i>

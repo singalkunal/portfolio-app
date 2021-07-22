@@ -59,6 +59,7 @@
     border-radius: 0 0 20px 20px;
     /* width: fit-content; */
     width: 100%;
+    max-width: 375px;
     height: fit-content;
     box-sizing: border-box;
     padding: 20px;

@@ -4,7 +4,7 @@ import ExternalLinks from './ExternalLinks';
 import Tags from './Tags';
 
 
-const DetailsModal = forwardRef(({ experience, closeModal }, ref) => {
+const DetailsModal = forwardRef(({ experience={}, closeModal }, ref) => {
     const handleEsc = (event) => {
         if(ref.current?.children[1].classList.contains("active")) {
             if(event.key === 'Escape') closeModal();
@@ -36,7 +36,7 @@ const DetailsModal = forwardRef(({ experience, closeModal }, ref) => {
 
                     <div className="modal-images">
                         {
-                            experience.img_url.map(url => {
+                            (experience.img_url || []).map(url => {
                                 return <img src={url} alt="Can't load image" />
                             })
                         }

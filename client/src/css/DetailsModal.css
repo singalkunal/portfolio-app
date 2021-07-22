@@ -17,6 +17,10 @@
     padding: 20px 5px;
 }
 
+
+.details-modal .detail {
+    white-space: pre-wrap;
+}
  /* Hide scrollbar for Chrome, Safari and Opera */
  .details-modal::-webkit-scrollbar {
     display: none;

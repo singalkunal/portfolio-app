@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import useTranslate from '../hooks/use-translate';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory, useLocation } from 'react-router-dom';
 
 // custom hooks
 import useRequest from '../hooks/use-request';
@@ -18,7 +18,8 @@ import '../css/Auth.css';
 
 const Auth = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
-    const { translate, data } = useTranslate();
+    const location = useLocation();
+    const { translate, data } = useTranslate({preTrans: location.state?.preTrans});
 
     const { setSignedInUser, setShowFooterButton } = useContext(LiveUpdateContext);
 
@@ -40,7 +41,10 @@ const Auth = () => {
 
     const onSignup = async () => {
         const res = await signupRequest();
-        if(res) {
+        if(res?.byPassEmailVerification) {
+            await onSignin();
+        }
+        else if(res) {
             
             
             history.push({

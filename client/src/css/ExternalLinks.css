@@ -35,6 +35,8 @@
     max-width: 24px;
     max-height: 24px;
 
+    display: flex;
+    align-items: center;
 }
 
 /* .link .icon img {

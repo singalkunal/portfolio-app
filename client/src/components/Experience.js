@@ -66,7 +66,7 @@ const Experience = ({
 
                         <div className="exp-images" onMouseOver={imgHover} onMouseLeave={imgrmHover}>
                             {
-                                experience.img_url.map(url => {
+                                (experience.img_url || []).map(url => {
                                     return <img src={url} alt="Can't load image" />
                                 })
                             }

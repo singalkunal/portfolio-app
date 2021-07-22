@@ -9,7 +9,7 @@ const Alert = forwardRef(({ closeModal, isPositive, onProceed, msg=null }, ref) 
         <div ref={ref}>
             <div className="overlay" id="app-overlay"></div>
             <div className="edit-form-wrapper">
-                <header>
+                <header style={{textAlign: 'center'}}>
                     <h3 className="text">{msg || (msgs[+isPositive] + 'Proceed?')}</h3>
                 </header>
                 <div className="action-buttons">

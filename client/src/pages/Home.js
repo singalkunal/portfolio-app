@@ -11,7 +11,16 @@ const Home = () => {
     const API_URL = process.env.REACT_APP_API_BASE_URL;
     // 
     
-    const onClick = () => {
+    const onSignUp = () => {
+        history.push({
+            pathname: '/auth',
+            state: {
+                preTrans: true
+            }
+        });
+    }
+
+    const onSignIn = () => {
         history.push('/auth');
     }
 
@@ -48,8 +57,8 @@ const Home = () => {
                        !signedInUser
                        ?
                         <>
-                            <Button label="SignIn" onClick={onClick} />
-                            <Button label="SignUp" onClick={onClick} />
+                            <Button label="SignIn" onClick={onSignIn} />
+                            <Button label="SignUp" onClick={onSignUp} />
                         </>
                         :
                         <Button label="My Account" onClick={() => history.push('/account')} />

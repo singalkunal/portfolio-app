@@ -37,6 +37,9 @@ app.use(express.urlencoded({extended: false}));
 
 app.set('trust proxy', true);
 
+// Passport
+// require('./services/passport')(passport);
+
 const server = require('http').createServer(app);
 const io = require('./services/socket').init(server);
 

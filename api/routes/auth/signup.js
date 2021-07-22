@@ -44,11 +44,17 @@ router.post('/api/users/signup', [
 ],
 validateRequest,
 async (req, res) => {
+    const byPassEmailVerification = true;
+
     const { username, email, password } = req.body;
     
-    user = new User({username, email, password});
+    user = new User({username, email, password, active: byPassEmailVerification});
     
     await user.save();
+
+    if(byPassEmailVerification) {
+        return res.status(200).json({byPassEmailVerification});
+    }
 
     await SecretCode.deleteOne({username});
     const code = new SecretCode({
