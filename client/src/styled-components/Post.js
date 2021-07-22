@@ -233,7 +233,7 @@ const Post = ({
                 >
                     <Left>
                         <PostHeader>
-                            <Link to="/portfolio/posted_by">
+                            <Link to={`/portfolio/${post.user.username}`}>
                                 <span>&#64;{post.user.username}</span>
                             </Link>
                             <FontAwesomeIcon icon={flipped ? faMinus : faEllipsisH} size="2x" onClick={() => setFlipped(prev => !prev)} />
