@@ -2,8 +2,6 @@ const express = require('express');
 require('express-async-errors');
 const { body, query, oneOf, check } = require('express-validator');
 
-require('dotenv').config({path: '../Docker/api/api-variable.env'});
-
 const BadRequestError = require('../../errors/bad-request-error');
 const validateRequest = require('../../middlewares/validate-request');
 const validator = require('validator');
@@ -88,12 +86,12 @@ async (req, res) => {
         text: `
             Hello,
             Please copy and paste below url in browser to rest your password
-            http://${process.env.REACT_APP_URL}/auth/reset?code=${code.code}&email=${base64email}
+            ${process.env.REACT_APP_URL_NAKED}/auth/reset?code=${code.code}&email=${base64email}
         `,
         html: `
             <h1>Hello</h1>
             <p>Please click the link below to rest your password. Code is valid only for 30 mins </p>
-            <a href = http://${process.env.REACT_APP_URL}/auth/reset?code=${code.code}&email=${base64email}>Reset your password</a>
+            <a href = ${process.env.REACT_APP_URL_NAKED}/auth/reset?code=${code.code}&email=${base64email}>Reset your password</a>
         `
     }
 
